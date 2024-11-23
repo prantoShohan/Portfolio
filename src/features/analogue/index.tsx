@@ -6,6 +6,7 @@ import CustomSections from './custom-sections';
 import { SectionType } from '@/model/sectiontype';
 
 const Analogue = () => {
+  // Define section refs here
   const overviewRef = useRef(null);
   const modulesRef = useRef(null);
   const vcoRef = useRef(null);
@@ -14,6 +15,7 @@ const Analogue = () => {
   const vcaRef = useRef(null);
   const buildingFromScratchRef = useRef(null);
 
+  // assign any newly created ref here
   const sectionRefs = [
     overviewRef,
     modulesRef,
@@ -23,8 +25,13 @@ const Analogue = () => {
     vcaRef,
     buildingFromScratchRef,
   ];
+
+  // Current selected selction state
   const [activeSection, setActiveSection] = useState<string>();
 
+  // Section definitio with ref
+  // For First level sections add in the first layer
+  // So on and so forth
   const ANALOG_SECTIONS: SectionType[] = [
     {
       title: 'Overview',
@@ -59,6 +66,9 @@ const Analogue = () => {
     },
   ];
 
+
+  // To determine the in view section
+  // can be reused by cp 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -68,7 +78,7 @@ const Analogue = () => {
           }
         });
       },
-      { threshold: .75 } // Adjust this to control how much of the section needs to be visible
+      { threshold: 0.75 } // Adjust this to control how much of the section needs to be visible
     );
 
     // Observe all sections
@@ -80,12 +90,12 @@ const Analogue = () => {
     return () => observer.disconnect();
   }, [sectionRefs]);
 
-  console.log(activeSection);
-
   return (
     <div className="bg-white min-h-screen relative">
       {/* Emergence Details */}
+      {/* Project cover */}
       <div className="relative h-[460px]">
+        {/* Cover Image */}
         <Image
           src={'/images/analog/cover.png'}
           className="object-cover"
@@ -93,22 +103,29 @@ const Analogue = () => {
           fill
           unoptimized
         />
+        {/* Cover Text */}
         <div className="absolute bottom-0  w-full bg-black/50 responsive-padding">
           <div className="w-full pb-4 backdrop:blur space-y-2 ">
+            {/* Title */}
             <div className="text-5xl font-bold">Analog</div>
+            {/* Subtitle */}
             <div className="text-base font-bold top-40 ">
               Modular synthsizer
             </div>
           </div>
         </div>
       </div>
+      {/* Text section starts */}
       <div className="text-black relative px-4 responsive-padding ">
+        {/* Section navigation */}
         <CustomSections
           sections={ANALOG_SECTIONS}
           activeSection={activeSection}
         />
+
         <div className=" text-black py-10 relative space-x-3  ">
           <div className="space-y-7 section-text">
+            {/* Overview Section */}
             <div
               className="flex space-x-4 justify-between"
               id="Overview"
@@ -135,6 +152,7 @@ const Analogue = () => {
 
             <div id="growth_2" className="flex justify-between space-x-3">
               <div id="text" className="space-y-2">
+                {/* Module section */}
                 <div className="space-y-2" id="Modules" ref={modulesRef}>
                   <div className="section-title">Modules</div>
                   Dhaka is one of the most densly populated cities in the world.
@@ -149,6 +167,7 @@ const Analogue = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
+                  {/* VCO section */}
                   <div className="pt-10" id="VCO" ref={vcoRef}>
                     <div className="subsection-title">VCO</div>
                     <div className="section-text">
@@ -179,6 +198,7 @@ const Analogue = () => {
                       />
                     </div>
                   </div>
+                  {/* Clock + Divider & ADSR section */}
                   <div
                     className="text-section"
                     id="Clock + Divider & ADSR"
@@ -205,6 +225,7 @@ const Analogue = () => {
                       />
                     </div>
                   </div>
+                  {/* 10 Step Sequencer section */}
                   <div
                     className="flex space-x-4 relative text-section"
                     id="10 Step Sequencer"
@@ -259,6 +280,7 @@ const Analogue = () => {
                     </div>
                   </div> */}
                 </div>
+                {/* Building from scratch section */}
                 <div
                   className="space-y-2"
                   id="Building From Scratch"
