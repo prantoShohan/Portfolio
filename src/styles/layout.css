@@ -1,0 +1,27 @@
+.responsive-padding {
+  @apply px-[25%] !important;
+}
+
+.responsive-page-padding {
+  @apply px-[20%];
+}
+
+.section-title {
+  @apply text-2xl font-bold py-4;
+}
+
+.subsection-title {
+  @apply text-xl font-bold py-6 text-black/60;
+}
+
+.sub-subsection-title {
+  @apply text-lg font-bold;
+}
+
+.section-text {
+  @apply text-[14px];
+}
+
+.text-section {
+  @apply pt-16;
+}
