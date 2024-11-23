@@ -17,7 +17,7 @@ const ProjectShowcase = () => {
 
         <ProjectCard
           imageSrc={`./images/img_2.jpg`}
-          route={ROUTES.EMERGENCE}
+          route={ROUTES.EVOLUTION}
           serial="02"
           subtitle="Computational Growth of Urban Organism"
           title="Evolution"
