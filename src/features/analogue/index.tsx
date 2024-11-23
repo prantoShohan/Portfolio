@@ -1,7 +1,87 @@
+'use client';
+
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import CustomSections from './custom-sections';
+import { SectionType } from '@/model/sectiontype';
 
 const Analogue = () => {
+  const overviewRef = useRef(null);
+  const modulesRef = useRef(null);
+  const vcoRef = useRef(null);
+  const clockDividerADSRRef = useRef(null);
+  const tenStepSequencerRef = useRef(null);
+  const vcaRef = useRef(null);
+  const buildingFromScratchRef = useRef(null);
+
+  const sectionRefs = [
+    overviewRef,
+    modulesRef,
+    vcoRef,
+    clockDividerADSRRef,
+    tenStepSequencerRef,
+    vcaRef,
+    buildingFromScratchRef,
+  ];
+  const [activeSection, setActiveSection] = useState<string>();
+
+  const ANALOG_SECTIONS: SectionType[] = [
+    {
+      title: 'Overview',
+      ref: overviewRef,
+      subsections: [],
+    },
+    {
+      title: 'Modules',
+      ref: modulesRef,
+      subsections: [
+        {
+          title: 'VCO',
+          ref: vcoRef,
+          subsections: [],
+        },
+        {
+          title: 'Clock + Divider & ADSR',
+          ref: clockDividerADSRRef,
+          subsections: [],
+        },
+        {
+          title: '10 Step Sequencer',
+          ref: tenStepSequencerRef,
+          subsections: [],
+        },
+      ],
+    },
+    {
+      title: 'Building From Scratch',
+      ref: buildingFromScratchRef,
+      subsections: [],
+    },
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id); // Update active section based on `id`
+          }
+        });
+      },
+      { threshold: .75 } // Adjust this to control how much of the section needs to be visible
+    );
+
+    // Observe all sections
+    sectionRefs.forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    // Cleanup
+    return () => observer.disconnect();
+  }, [sectionRefs]);
+
+  console.log(activeSection);
+
   return (
     <div className="bg-white min-h-screen relative">
       {/* Emergence Details */}
@@ -14,7 +94,7 @@ const Analogue = () => {
           unoptimized
         />
         <div className="absolute bottom-0  w-full bg-black/50 responsive-padding">
-          <div className="w-full pb-4 backdrop:blur px-5 space-y-2 ">
+          <div className="w-full pb-4 backdrop:blur space-y-2 ">
             <div className="text-5xl font-bold">Analog</div>
             <div className="text-base font-bold top-40 ">
               Modular synthsizer
@@ -23,21 +103,17 @@ const Analogue = () => {
         </div>
       </div>
       <div className="text-black relative px-4 responsive-padding ">
-        <div className="fixed border w-[10%] bottom-10 -left-[10%] text-black ">
-          <div>
-            <div>Name</div>
-            <div>Title</div>
-            <div>Title</div>
-          </div>
-        </div>
-        <div className=" text-black py-10 relative space-x-3 border border-black">
+        <CustomSections
+          sections={ANALOG_SECTIONS}
+          activeSection={activeSection}
+        />
+        <div className=" text-black py-10 relative space-x-3  ">
           <div className="space-y-7 section-text">
-            <div id="growth" className="flex justify-between space-x-3">
-              {/* <div id="text" className="space-y-2">
-                <div className="section-title ">Overview</div>
-              </div> */}
-            </div>
-            <div className="flex space-x-4 justify-between">
+            <div
+              className="flex space-x-4 justify-between"
+              id="Overview"
+              ref={overviewRef}
+            >
               <div className="section-text w-[30%] text-justify">
                 <div className="section-title p-0 pb-8">Overview</div>
                 Dhaka is one of the most densly populated cities in the world.
@@ -59,7 +135,7 @@ const Analogue = () => {
 
             <div id="growth_2" className="flex justify-between space-x-3">
               <div id="text" className="space-y-2">
-                <div className="space-y-2">
+                <div className="space-y-2" id="Modules" ref={modulesRef}>
                   <div className="section-title">Modules</div>
                   Dhaka is one of the most densly populated cities in the world.
                   <div id="multimedia" className="relative h-[370px]">
@@ -73,7 +149,7 @@ const Analogue = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <div className="pt-10">
+                  <div className="pt-10" id="VCO" ref={vcoRef}>
                     <div className="subsection-title">VCO</div>
                     <div className="section-text">
                       Dhaka is one of the most densly populated cities in the
@@ -103,7 +179,11 @@ const Analogue = () => {
                       />
                     </div>
                   </div>
-                  <div className="text-section">
+                  <div
+                    className="text-section"
+                    id="Clock + Divider & ADSR"
+                    ref={clockDividerADSRRef}
+                  >
                     <div className="subsection-title">
                       {' '}
                       Clock + Divider & ADSR{' '}
@@ -125,7 +205,11 @@ const Analogue = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex space-x-4 relative text-section">
+                  <div
+                    className="flex space-x-4 relative text-section"
+                    id="10 Step Sequencer"
+                    ref={tenStepSequencerRef}
+                  >
                     <div className="section-text w-[20%]">
                       <div className="subsection-title">
                         {' '}
@@ -148,7 +232,11 @@ const Analogue = () => {
                     </div>
                   </div>
                   {/*TODO: Placeholder */}
-                  <div className="text-section">
+                  {/* <div
+                    className="text-section"
+                    id="Clock + Divider & ADSR"
+                    ref={clockDividerADSRRef}
+                  >
                     <div className="subsection-title">
                       {' '}
                       Clock + Divider & ADSR{' '}
@@ -169,9 +257,13 @@ const Analogue = () => {
                         unoptimized
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
-                <div className="space-y-2">
+                <div
+                  className="space-y-2"
+                  id="Building From Scratch"
+                  ref={buildingFromScratchRef}
+                >
                   <div className="section-title">Building From Scratch</div>
                   Dhaka is one of the most densly populated cities in the world.
                   <div id="multimedia" className="relative h-[470px]">

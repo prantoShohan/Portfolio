@@ -16,7 +16,7 @@ const sketch: Sketch = (p5: P5CanvasInstance) => {
 
 const HeroSection = () => {
   return (
-    <div className="min-h-screen responsive-padding">
+    <div className="min-h-[70vh] responsive-padding">
       <NextReactP5Wrapper sketch={sketch} />
     </div>
   );
