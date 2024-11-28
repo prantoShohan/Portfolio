@@ -8,7 +8,7 @@ const ProjectShowcase = () => {
       <div className="text-4xl text-black px-4 pt-[40px]">Academics</div>
       <div className="flex flex-col space-y-16 py-8">
         <ProjectCard
-          imageSrc={`./images/img_1.jpg`}
+          imageSrc={`./images/emergence/Cover animation.gif`}
           route={ROUTES.EMERGENCE}
           serial="01"
           subtitle="Computational Growth of Urban Organism"
