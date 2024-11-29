@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
+import CompareSlider from './CompareSlider';
 
 const EmergenceDetails = () => {
   return (
@@ -79,6 +80,19 @@ const EmergenceDetails = () => {
             />
         </div>
 
+        <div>
+          <div className="subsection-title">Site</div>
+          <div className="section-text">
+            Uttara Phase-3 is one of three biggest housing projects conducted by Dhaka government. But the amount of wetland destroyed is shocking.
+          </div>
+          <div className="w-full h-auto py-4">
+            <CompareSlider
+              beforeImage="/images/emergence/before.jpg"
+              afterImage="/images/emergence/after.jpg"
+            />
+          </div>
+        </div>
+
 
 {/*Urban Organism */}
         <div >
@@ -132,9 +146,8 @@ const EmergenceDetails = () => {
             <div className="md:flex md:flex-row md:space-x-5 relative text-section">
             <div className="md:w-[20%] md:basis-1/3 md:ml-4 md:py-4 relative md:order-last">
                 <div className="section-text ">
-                  Dhaka has a unique landform pattern. The Madhupur Tract, greater Dhaka is surrounded by rivers. 
-                  Every year the river floods and brings freshwater inland. Thousands of years of flooding has created amoeboid patterns in the geography. 
-                  The highlands are surrounded by lower lands used for agriculture in the dry season. The water has fused in the nooks and crannies of the land. 
+                  Differential growth or reaction diffusion can be simulated with an algorithm and it can give us a pattern similar to the landform of Dhaka.
+
                 </div>
               </div>
               <div className="md:w-[80%] relative grow mt-4 w-full h-auto !ml-0">
