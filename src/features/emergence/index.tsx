@@ -130,7 +130,7 @@ const EmergenceDetails = () => {
 
           <div className="w-full">           
             <div className="md:flex md:flex-row md:space-x-5 relative text-section">
-            <div className="md:w-[20%] md:basis-1/3 ml-4 py-4 relative md:order-last">
+            <div className="md:w-[20%] md:basis-1/3 md:ml-4 md:py-4 relative md:order-last">
                 <div className="section-text ">
                   Dhaka has a unique landform pattern. The Madhupur Tract, greater Dhaka is surrounded by rivers. 
                   Every year the river floods and brings freshwater inland. Thousands of years of flooding has created amoeboid patterns in the geography. 
