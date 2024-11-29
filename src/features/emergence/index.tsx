@@ -160,6 +160,21 @@ const EmergenceDetails = () => {
               
             </div>
           </div>
+
+          <div className="pt-8">
+            <div className="section-text">
+              Relating the natural geography with the differential growth, we can use this model to design landform that will maintain the 
+              flow of water during flooding season. This pattern also maximizes the lenght of edge ecology.
+            </div>
+
+            <div className="w-full mt-4">
+              <img 
+                src="/images/emergence/differential growth.gif"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
           
 
         </div>
