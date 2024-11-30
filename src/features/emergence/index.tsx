@@ -176,42 +176,163 @@ const EmergenceDetails = () => {
             </div>
           </div>
           
+          {/* Connectivity design */}
+          <div className='pt-8'>
+            <div className='subsection-title'>
+              Connectivity Design
+            </div>
+            <div className="section-text">
+            This basic connectivity problem is not new in nature. almost every organism deals with the transportation problem in some way. 
+            Slime molds can optimize connectivity among the food sources. Ants can collectively create more efficient routes.
+            Swarm intelligence where the knowledge of multiple individuals collectively creates an emergent pattern is seen in nature in abundance.
+            </div>
+            <div className="w-full mt-4">
+              <img 
+                src="/images/emergence/slime mold japan.png"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+            <div className="w-full mt-4">
+              <img 
+                src="/images/emergence/Ants path.png"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+            <div className="section-text mt-4">
+              These systems can also be modelled computationally to solve Connectivity problems. 
+              In these landforms, creating efficient road network is a challanging task.
+              But by mimicking the collective intelligence in nature, 
+              we can find several different ways to connect and develop a road network based on this information.
+            </div>
+            <div className="w-full mt-4">
+              <img 
+                src="/images/emergence/Slime mold.gif"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
+
+          {/* Zoning system */}
+          <div className="w-full">           
+            <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+              {/* Text Section */}
+              <div className="md:w-[20%] md:basis-1/2 relative">
+                <div className="text-xl font-bold py-4 text-gray-600">Zoning System</div>
+                <div className="section-text">
+                  There are natural settlement growth in this type of landform. But to design an efficient and walkable neighbourhood is challanging.
+                  The natural settlement growth pattern is simulated using walkability metrics.
+                </div>
+              </div>
+
+              {/* Image Section */}
+              <div className="md:w-[80%] relative grow mt-4 w-full h-auto">
+                <img
+                  src="/images/emergence/Dhaka settlement.png"
+                  className="object-contain w-full h-auto"
+                  alt="Dhaka Landform"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="w-full">           
+            <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            <div className="flex flex-col justify-between md:w-[20%] md:basis-1/2 md:ml-4 md:py-4 relative md:order-last">
+                <div className="section-text ">
+                  Using walkability metrices, we can find the optimum walking distance from different types of zones.
+                  We can calculate demand of certain amenities according to what is present around.
+                  This type of natural growth can be understood on the basis of demand and growth.
+                  Growth of certain zone creates demand for more amenities around. This cycle contineously grows a settlement.
+
+                </div>
+                <div className="md:w-[80%] relative grow mt-4 w-full h-auto">
+                  <img
+                    src="/images/emergence/Cycle.png"
+                    className="object-contain w-full h-auto"
+                    alt="Dhaka Landform"
+                  />
+                </div>
+
+              </div>
+              <div className="md:w-[80%] relative grow mt-4 w-full h-auto !ml-0">
+                <img
+                  src="/images/emergence/entities.png"
+                  className="object-contain w-full h-auto"
+                  alt="Dhaka Landform"
+                />
+              </div>
+              
+            </div>
+          </div>
+          <div className="w-full mt-4">
+              <img 
+                src="/images/emergence/steps.png"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+          </div>
+
+          <div className="section-text mt-4">
+              For example, in step 1 there are a number of residential units present, which creates demand for schools and shops nearby. 
+              New commercial and educational units grows based on the demand in step 2. But this growth also creates new demand which is responded in step 3.
+          </div>
+
+          <div className="w-full mt-4">
+              <img 
+                src="/images/emergence/formula.png"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+          </div>
+
+          <div className="section-text mt-4">
+            The demand is calculated with this formula. The demand of any amenities depend upon 3 things. The number of requester of that amenity, 
+            required number amenities per requester unit and the walkability distance factor.
+          </div>
+
+
+          <div className="w-full">           
+            <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            <div className="md:w-[20%] md:basis-1/3 md:ml-4 md:py-4 relative md:order-last">
+                <div className="section-text ">
+                  Using a small network this algorithm is tested. This is just the cycle of calculating demand and adding required zones. 
+                  The cycle gradually comes to an equilibrium after around 50 steps and positions the required amenities in such places that it can serve
+                  maximum number of people in walkable distance.
+
+                </div>
+              </div>
+              <div className="md:w-[80%] relative grow mt-4 w-full h-auto !ml-0">
+                <img
+                  src="/images/emergence/zoning example.gif"
+                  className="object-contain w-full h-auto"
+                  alt="Dhaka Landform"
+                />
+              </div>
+              
+            </div>
+          </div>
+
+          <div className="section-text mt-4">
+            Then it is applied to our site which has a much larger area and more complex network. It also reaches an equilibrium in around step 35.
+          </div>
+
+          <div className="w-full mt-4">
+              <img 
+                src="/images/emergence/zoning animation.gif"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+          </div>
+
 
         </div>
 
         <div className= "h-[30px]"></div>
 
-        {/* <div className=" text-black py-10 relative space-x-3  border">
-          <div className="space-y-7 section-text">
-
-              <div
-                className="flex flex-row space-x-10 relative text-section  border"
-                id="Urban Organismr"
-              >
-                <div className="section-text w-[20%] border basis-1/3">
-                  <div className="section-title border">
-                    Urban Organism
-                  </div>
-                  Dhaka is one of the most densly populated cities in the
-                  world. It has rapid growth in last 30 years with steady
-                  decline in its wetland and natural landscapes. It has
-                  become an parasite. This project poses an alternative
-                  means of growth through simulating natural growth process.
-                </div>
-                <div id="multimedia" className="relative w-[60%] h-[460px] border basis-2/3">
-                  <Image
-                    src={'/images/emergence/dhaka timelapse small.gif'}
-                    className="object-cover"
-                    alt=""
-                    fill
-                    unoptimized
-                  />
-                </div>
-              </div>
-            
-
-          </div>
-        </div> */}
+        
       </div>
     </div>
 
