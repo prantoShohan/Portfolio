@@ -257,7 +257,7 @@ const EmergenceDetails = () => {
                 </div>
 
               </div>
-              <div className="md:w-[80%] relative grow mt-4 w-full h-auto !ml-0">
+              <div className="md:w-[80%] relative grow mt-4 w-full h-auto !ml-0 border">
                 <img
                   src="/images/emergence/entities.png"
                   className="object-contain w-full h-auto"
@@ -267,7 +267,7 @@ const EmergenceDetails = () => {
               
             </div>
           </div>
-          <div className="w-full mt-4">
+          <div className="w-full mt-4 border">
               <img 
                 src="/images/emergence/steps.png"
                 className="w-full h-auto object-contain"
@@ -326,9 +326,112 @@ const EmergenceDetails = () => {
                 alt="Reaction Diffusion"
               />
           </div>
+        </div>
+
+{/* Efficiency of Urban Organism */}
+        <div className="w-full">  
+
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+              {/* Text Section */}
+              <div className="md:w-[20%] md:basis-1/3 relative">
+                <div className="text-2xl font-bold pb-4 text-gray-800">
+                  Efficiency of Urban Organism
+                </div>
+                
+                <div className="section-text">
+                  This is a kind of swarm intelligent, where each agent reacts with its neighbours. The cycle of growth and demand is a dynamical system.
+                  After the system reaches an equilibrium, a solution is found.
+                </div>
+              </div>
+
+              {/* Image Section */}
+              <div className="md:w-[80%] relative grow mt-4 w-full h-auto border" >
+                <img
+                  src="/images/emergence/mp.png"
+                  className="object-contain w-full h-auto "
+                  
+                  alt="Dhaka Landform"
+                />
+              </div>
+          </div>
+
+
+          
+          <div className='md:flex md:flex-row pt-8 md:space-x-5'>
+            <div className="w-full mt-4 border">
+                <img 
+                  src="/images/emergence/ex1.png"
+                  className="w-full h-auto object-contain"
+                  alt="Reaction Diffusion"
+                />
+            </div>
+
+            <div className="w-full mt-4 border">
+                <img 
+                  src="/images/emergence/ex2.png"
+                  className="w-full h-auto object-contain"
+                  alt="Reaction Diffusion"
+                />
+            </div>
+          </div>
+          <div className="section-text mt-4">
+            In these two examples, the distance from different amenities are shown. All amenities are within walking distance.
+          </div>
+          
+        </div>
+
+{/* Landscape System */}
+        <div className="w-full">
+          <div className="section-title">Landscape and Walkability</div>
+
+          <div className="section-text mt-4">
+            The eco-system of the edge is the most important in these landscapes. The long edge is lined up with vegetable gardens, wild plants and ponds.
+            The the roads are designed to promote walking and cycling. There are trails along the edge for public. 
+          </div>
+
+          <div className="w-full mt-4">
+              <img 
+                src="/images/emergence/masterplan annotated.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+          </div>
+          
+          <div className="section-text mt-4">
+            The ponds are used as public spaces. The inner courtyard also acts as public space.
+          </div>
+
+          <div className='md:flex md:flex-row pt-8 md:space-x-5'>
+            <div className="w-full mt-4">
+                <img 
+                  src="/images/emergence/cake 1.jpeg"
+                  className="w-full h-auto object-contain"
+                  alt="Reaction Diffusion"
+                />
+            </div>
+
+            <div className="w-full mt-4">
+                <img 
+                  src="/images/emergence/cake 2.jpeg"
+                  className="w-full h-auto object-contain"
+                  alt="Reaction Diffusion"
+                />
+            </div>
+          </div>
+
+
+          <div className="w-full mt-4">
+              <img 
+                src="/images/emergence/section.jpeg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+          </div>
 
 
         </div>
+
+        
 
         <div className= "h-[30px]"></div>
 
