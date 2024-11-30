@@ -1,10 +1,104 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
 import CompareSlider from './CompareSlider';
+import React, { useEffect, useRef, useState } from 'react';
+import CustomSections from './custom-sections';
+import { SectionType } from '@/model/sectiontype';
+
 
 const EmergenceDetails = () => {
+
+  const overviewRef = useRef(null);
+  const ContextRef = useRef(null);
+  const SiteRef = useRef(null);
+  const Urban_OrganismRef = useRef(null);
+  const LandformRef = useRef(null);
+  const ConnectivityRef = useRef(null);
+  const ZoningRef = useRef(null);
+  const EfficiencyRef = useRef(null);
+  const LandscapeRef = useRef(null);
+
+
+  const sectionRefs = [
+    overviewRef, ContextRef, SiteRef, Urban_OrganismRef,
+    LandformRef, ConnectivityRef, ZoningRef, EfficiencyRef,
+    LandscapeRef
+
+  ];
+
+  const [activeSection, setActiveSection] = useState<string>();
+
+  const EMERGENCE_SECTIONS: SectionType[] = [
+    {
+      title: 'Overview',
+      ref: overviewRef,
+      subsections: [],
+    },
+    {
+      title: 'Context',
+      ref: ContextRef,
+      subsections: [{
+        title: 'Site',
+        ref: SiteRef,
+        subsections: [],
+      }],
+    },
+    {
+      title: 'Urban Organism',
+      ref: Urban_OrganismRef,
+      subsections: [{
+        title: 'Landform System',
+        ref: LandformRef,
+        subsections: [],
+      },
+      {
+        title: 'Connectivity System',
+        ref: ConnectivityRef,
+        subsections: [],
+      },
+      {
+        title: 'Zoning System',
+        ref: ZoningRef,
+        subsections: [],
+      }],
+    },
+    {
+      title: 'Efficiency',
+      ref: EfficiencyRef,
+      subsections: [],
+    },
+    {
+      title: 'Landscape',
+      ref: LandscapeRef,
+      subsections: [],
+    }
+
+  ]
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id); // Update active section based on `id`
+          }
+        });
+      },
+      { threshold: 0.75 } // Adjust this to control how much of the section needs to be visible
+    );
+
+    // Observe all sections
+    sectionRefs.forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    // Cleanup
+    return () => observer.disconnect();
+  }, [sectionRefs]);
+
+
+
+
   return (
 
     
@@ -31,8 +125,14 @@ const EmergenceDetails = () => {
 
 
       <div className="text-black relative px-4 responsive-padding">
+      <CustomSections
+          sections={EMERGENCE_SECTIONS}
+          activeSection={activeSection}
+        />
 {/*Overview  */}
-        <div>
+        <div
+          id="Overview"
+          ref={overviewRef}>
           <div className="section-title">Overview</div>
           <div className="section-text">
             This is my final year thesis.  It is based on the idea that cities are also organisms.
@@ -45,7 +145,9 @@ const EmergenceDetails = () => {
         </div>
 
 {/* Context */}
-        <div className="md:flex md:flex-row md:space-x-5 relative text-section" id="">
+        <div className="md:flex md:flex-row md:space-x-5 relative text-section" 
+          id="Context"
+          ref={ContextRef}>
           <div className="md:w-[20%] md:basis-1/3 relative">
           {/* this header needs to have a custom class */}
             <div className="text-2xl font-bold pb-4 text-gray-800">
@@ -80,7 +182,9 @@ const EmergenceDetails = () => {
             />
         </div>
 
-        <div>
+        <div
+          id="Site"
+          ref={SiteRef}>
           <div className="subsection-title">Site</div>
           <div className="section-text">
             Uttara Phase-3 is one of three biggest housing projects conducted by Dhaka government. But the amount of wetland destroyed is shocking.
@@ -95,7 +199,9 @@ const EmergenceDetails = () => {
 
 
 {/*Urban Organism */}
-        <div >
+        <div 
+          id="Urban Organism"
+          ref={Urban_OrganismRef}>
           <div className="section-title">Urban Organism</div>
           <div className="section-text">
             If we compare the different systems of an organism with different system of a city, we can find a clear similarity.
@@ -105,7 +211,9 @@ const EmergenceDetails = () => {
           </div>
 
 {/* Landform System */}
-          <div className="w-full">           
+          <div className="w-full"
+            id="Landform System"
+            ref={LandformRef}>           
             <div className="md:flex md:flex-row md:space-x-5 relative text-section">
               {/* Text Section */}
               <div className="md:w-[20%] md:basis-1/3 relative">
@@ -176,10 +284,12 @@ const EmergenceDetails = () => {
             </div>
           </div>
           
-          {/* Connectivity design */}
-          <div className='pt-8'>
+          {/* Connectivity System */}
+          <div className='pt-8'
+            id="Connectivity System"
+            ref={ConnectivityRef}>
             <div className='subsection-title'>
-              Connectivity Design
+              Connectivity System
             </div>
             <div className="section-text">
             This basic connectivity problem is not new in nature. almost every organism deals with the transportation problem in some way. 
@@ -216,7 +326,9 @@ const EmergenceDetails = () => {
           </div>
 
           {/* Zoning system */}
-          <div className="w-full">           
+          <div className="w-full"
+            id="Zoning System"
+            ref={ZoningRef}>           
             <div className="md:flex md:flex-row md:space-x-5 relative text-section">
               {/* Text Section */}
               <div className="md:w-[20%] md:basis-1/2 relative">
@@ -329,7 +441,9 @@ const EmergenceDetails = () => {
         </div>
 
 {/* Efficiency of Urban Organism */}
-        <div className="w-full">  
+        <div className="w-full"
+          id="Efficiency"
+          ref={EfficiencyRef}>  
 
           <div className="md:flex md:flex-row md:space-x-5 relative text-section">
               {/* Text Section */}
@@ -381,7 +495,9 @@ const EmergenceDetails = () => {
         </div>
 
 {/* Landscape System */}
-        <div className="w-full">
+        <div className="w-full"
+          id="Landscape"
+          ref={LandscapeRef}>
           <div className="section-title">Landscape and Walkability</div>
 
           <div className="section-text mt-4">
