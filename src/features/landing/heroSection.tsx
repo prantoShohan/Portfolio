@@ -134,7 +134,7 @@ class Node {
 
   hovered() {
     if (this.isHovered()) {
-      this.p5.background('rgba(10, 10, 10, 0.5)');
+      this.p5.background('rgba(5, 5, 5, 0.5)');
       this.draw();
       this.drawParents();
     }
@@ -155,13 +155,14 @@ class Node {
     this.p5.circle(this.position.x, this.position.y, 10);
 
     this.p5.fill(0, 0)
-    this.p5.stroke(100);
+    this.p5.stroke(25);
     this.p5.circle(this.position.x, this.position.y, this.radius);
     this.p5.stroke(256);
 
     this.p5.fill(256);
-    this.p5.textSize(10);
-    this.p5.text(this.name, this.position.x+10, this.position.y);
+    this.p5.textSize(15);
+    this.p5.textFont('Courier New');
+    this.p5.text(this.name, this.position.x-30, this.position.y+15);
 
     // this.p5.fill(this.isHovered() ? 'red' : 'white');
     // this.p5.circle(this.position.x, this.position.y, this.radius);
@@ -193,8 +194,18 @@ const sketch: Sketch = (p5: p5) => {
   let allNodes: Node[];
 
   p5.setup = () => {
-    p5.createCanvas(p5.windowWidth, p5.windowHeight);
-    rootNode = new Node(p5, 0, "Root", 600, p5.width / 2, p5.height - 100);
+    let width = p5.windowWidth;
+    let height = p5.windowHeight
+    p5.createCanvas(p5.windowWidth -15, p5.windowHeight);
+    // if(width > height){
+    //   p5.createCanvas(p5.windowWidth -15, p5.windowHeight);
+    // }else{
+    //   p5.createCanvas(p5.windowWidth, p5.windowWidth*2);
+    // }
+    
+    rootNode = new Node(p5, 0, "Root", 600, p5.width / 2, p5.height-50);
+
+    
 
     // Initialize nodes
     let Nature = new Node(p5, 1, "Nature", 150, 2 * p5.width / 7, p5.height / 2);
@@ -291,7 +302,7 @@ const sketch: Sketch = (p5: p5) => {
   };
 
   p5.draw = () => {
-    p5.background(100);
+    p5.background(25);
 
     rootNode.draw();
     rootNode.hovered();
@@ -325,7 +336,7 @@ const sketch: Sketch = (p5: p5) => {
 // HeroSection component
 const HeroSection: React.FC = () => {
   return (
-    <div className="min-h-screen">
+    <div className=" w-auto h-auto ">
       <NextReactP5Wrapper sketch={sketch} />
     </div>
   );

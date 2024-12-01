@@ -23,7 +23,7 @@ const ProjectCard = ({
       onClick={() => router.push(route)}
     >
       <div className="flex items-center justify-center">
-        <div className="text-[180px] text-center font-bold text-black/10">
+        <div className="text-[50px] md:text-[180px] text-center font-bold text-black/10">
           {serial}
         </div>
       </div>
@@ -38,7 +38,7 @@ const ProjectCard = ({
           loader={() => imageSrc}
         />
         <div className="absolute bottom-0 text-white px-4 pb-4 backdrop:blur space-y-2 w-full">
-          <div className="text-5xl font-bold ">{title}</div>
+          <div className="text-2xl md:text-5xl font-bold ">{title}</div>
           <div className="text-base font-bold top-40 ">{subtitle}</div>
         </div>
       </div>
