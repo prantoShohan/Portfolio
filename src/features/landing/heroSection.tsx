@@ -15,6 +15,7 @@ class Node {
   public children: Node[];
   public parents: Node[];
   public speed: number = 2;
+  static textsize: number = 15;
 
   constructor(p5: p5, id: number, name: string, radius: number, x: number, y: number) {
     this.p5 = p5;
@@ -160,7 +161,7 @@ class Node {
     this.p5.stroke(256);
 
     this.p5.fill(256);
-    this.p5.textSize(15);
+    this.p5.textSize(Node.textsize);
     this.p5.textFont('Courier New');
     this.p5.text(this.name, this.position.x-30, this.position.y+15);
 
@@ -194,21 +195,31 @@ const sketch: Sketch = (p5: p5) => {
   let allNodes: Node[];
 
   p5.setup = () => {
+    let scalefactor = 1;
     let width = p5.windowWidth;
     let height = p5.windowHeight
+    if(width < 500){
+       scalefactor = .5;
+       Node.textsize = 8;   
+    }else{
+      scalefactor = 1;
+      Node.textsize = 15;
+    }
+
     p5.createCanvas(p5.windowWidth -15, p5.windowHeight);
+
     // if(width > height){
     //   p5.createCanvas(p5.windowWidth -15, p5.windowHeight);
     // }else{
     //   p5.createCanvas(p5.windowWidth, p5.windowWidth*2);
     // }
     
-    rootNode = new Node(p5, 0, "Root", 600, p5.width / 2, p5.height-50);
+    rootNode = new Node(p5, 0, "Root", 600*scalefactor, p5.width / 2, p5.height-50);
 
     
 
     // Initialize nodes
-    let Nature = new Node(p5, 1, "Nature", 150, 2 * p5.width / 7, p5.height / 2);
+    let Nature = new Node(p5, 1, "Nature", 150*scalefactor, 2 * p5.width / 7, p5.height / 2);
     rootNode.addChild(Nature);
     let Observation = new Node(p5, 1, "Observation", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     Nature.addChild(Observation);
@@ -219,7 +230,7 @@ const sketch: Sketch = (p5: p5) => {
     let EmergentBehaviour = new Node(p5, 1, "EmergentBehaviour", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     Nature.addChild(EmergentBehaviour);
 
-    let Architecture = new Node(p5, 2, "Architecture", 150, 3 * p5.width / 7, p5.height / 2);
+    let Architecture = new Node(p5, 2, "Architecture", 150*scalefactor, 3 * p5.width / 7, p5.height / 2);
     rootNode.addChild(Architecture);
     let ArchitecturalProjects = new Node(p5, 2, "ArchitecturalProjects", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     Architecture.addChild(ArchitecturalProjects);
@@ -245,7 +256,7 @@ const sketch: Sketch = (p5: p5) => {
     PlaceHolder.addChild(Emergence);
     PlaceHolder.addChild(Evolution);
 
-    let Programming = new Node(p5, 3, "Programming", 150, 4 * p5.width / 7, p5.height / 2);
+    let Programming = new Node(p5, 3, "Programming", 150*scalefactor, 4 * p5.width / 7, p5.height / 2);
     rootNode.addChild(Programming);
     let Languages = new Node(p5, 3, "Languages", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     Programming.addChild(Languages);
@@ -269,7 +280,7 @@ const sketch: Sketch = (p5: p5) => {
     Programming.addChild(EmbeddedSystem);
     Programming.addChild(ComputationalDesign);
 
-    let Electronics = new Node(p5, 4, "Electronics", 150, 5 * p5.width / 7, p5.height / 2);
+    let Electronics = new Node(p5, 4, "Electronics", 150*scalefactor, 5 * p5.width / 7, p5.height / 2);
     rootNode.addChild(Electronics);
     let AnalogElectronics = new Node(p5, 4, "AnalogElectronics", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     Electronics.addChild(AnalogElectronics);
@@ -277,16 +288,16 @@ const sketch: Sketch = (p5: p5) => {
     AnalogElectronics.addChild(ModularSynthesizer);
     Electronics.addChild(EmbeddedSystem);
 
-    let Music = new Node(p5, 4, "Music", 150, 6 * p5.width / 7, p5.height / 2);
+    let Music = new Node(p5, 4, "Music", 150*scalefactor, 6 * p5.width / 7, p5.height / 2);
     rootNode.addChild(Music);
     let Instruments = new Node(p5, 4, "Instruments", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     Music.addChild(Instruments);
     Instruments.addChild(ModularSynthesizer);
 
-    let Art = new Node(p5, 4, "Art", 150, 7 * p5.width / 7, p5.height / 2);
+    let Art = new Node(p5, 4, "Art", 150*scalefactor, 7 * p5.width / 7, p5.height / 2);
     rootNode.addChild(Art);
 
-    let Interests = new Node(p5, 4, "Interests", 150, p5.width / 7, p5.height / 2);
+    let Interests = new Node(p5, 4, "Interests", 150*scalefactor, p5.width / 7, p5.height / 2);
     rootNode.addChild(Interests);
 
     // Add all nodes to the allNodes array
