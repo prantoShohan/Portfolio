@@ -174,7 +174,9 @@ class Node {
 
   draw() {
     this.drawNode();
+
     this.children.forEach((child) => {
+      this.p5.stroke(150);
       this.p5.line(this.position.x, this.position.y, child.position.x, child.position.y);
       child.draw();
     });
