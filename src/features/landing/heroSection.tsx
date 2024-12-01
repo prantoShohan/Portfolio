@@ -14,7 +14,7 @@ class Node {
   public totalCollision: number;
   public children: Node[];
   public parents: Node[];
-  public speed: number = 5;
+  public speed: number = 2;
 
   constructor(p5: p5, id: number, name: string, radius: number, x: number, y: number) {
     this.p5 = p5;
@@ -42,20 +42,20 @@ class Node {
   callChildren() {
     //for children
     for (let i = 0; i < this.children.length; i++) {
-      this.collide(this.children[i], 10);
+      this.collide(this.children[i], 20);
       this.children[i].callChildren();
     }
     //for sibilings
     for (let i = 0; i < this.children.length; i++) {
       for(let j = 0; j < this.children.length; j++){
-        this.children[i].collideRepulse(this.children[j], 10)
+        this.children[i].collideRepulse(this.children[j], 40)
       }
     }
     //for grandChildrens
     for (let i = 0; i < this.children.length; i++) {
       if(this.children[i].children.length>0){
         for(let j = 0; j < this.children[i].children.length; j++){
-          this.collide(this.children[i].children[j], 200)
+          this.collide(this.children[i].children[j], 300)
         }
       }
     }
@@ -194,7 +194,7 @@ const sketch: Sketch = (p5: p5) => {
 
   p5.setup = () => {
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
-    rootNode = new Node(p5, 0, "Root", 500, p5.width / 2, p5.height - 200);
+    rootNode = new Node(p5, 0, "Root", 600, p5.width / 2, p5.height - 100);
 
     // Initialize nodes
     let Nature = new Node(p5, 1, "Nature", 150, 2 * p5.width / 7, p5.height / 2);
