@@ -84,28 +84,28 @@ class Node {
       if (this.position.y + this.radius > this.p5.height) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(0, this.p5.height - (this.position.y + this.radius));
-        this.applyForce(moveVector);
+        this.applyForce(moveVector.mult(2));
       }
       
       // Check if the node has gone above the top of the canvas
       if (this.position.y - this.radius < 0) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(0, -this.position.y + this.radius);
-        this.applyForce(moveVector);
+        this.applyForce(moveVector.mult(2));
       }
     
       // Check if the node has gone to the right of the canvas
-      if (this.position.x + this.radius > this.p5.width) {
+      if (this.position.x + this.radius+50 > this.p5.width) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(this.p5.width - (this.position.x + this.radius), 0);
-        this.applyForce(moveVector);
+        this.applyForce(moveVector.mult(3));
       }
       
       // Check if the node has gone to the left of the canvas
-      if (this.position.x - this.radius < 0) {
+      if (this.position.x - (this.radius+50) < 0) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(-this.position.x + this.radius, 0);
-        this.applyForce(moveVector);
+        this.applyForce(moveVector.mult(3));
       }
     }
     
@@ -240,16 +240,16 @@ const sketch: Sketch = (p5: p5) => {
     Architecture.addChild(ComputationalDesign);
     Architecture.addChild(Landscaping);
 
-    let Highrise = new Node(p5, 4, "Highrise", 20, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Highrise = new Node(p5, 4, "Highrise", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     ArchitecturalProjects.addChild(Highrise);
-    let SportsCenter = new Node(p5, 4, "SportsCenter", 20, p5.random(0, p5.width), p5.random(0, p5.height));
+    let SportsCenter = new Node(p5, 4, "SportsCenter", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     ArchitecturalProjects.addChild(SportsCenter);
-    let Mawa = new Node(p5, 4, "Mawa", 20, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Mawa = new Node(p5, 4, "Mawa", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     UrbanDesign.addChild(Mawa);
-    let PlaceHolder = new Node(p5, 4, "", 20, p5.random(0, p5.width), p5.random(0, p5.height));
-    let Emergence = new Node(p5, 4, "Emergence", 20, p5.random(0, p5.width), p5.random(0, p5.height));
-    let Evolution = new Node(p5, 4, "Evolution", 20, p5.random(0, p5.width), p5.random(0, p5.height));
-    let Exploration = new Node(p5, 4, "Exploration", 20, p5.random(0, p5.width), p5.random(0, p5.height));
+    let PlaceHolder = new Node(p5, 4, "", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Emergence = new Node(p5, 4, "Emergence", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Evolution = new Node(p5, 4, "Evolution", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Exploration = new Node(p5, 4, "Exploration", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     ComputationalDesign.addChild(PlaceHolder);
     ComputationalDesign.addChild(Exploration);
     EmergentBehaviour.addChild(PlaceHolder);
@@ -265,12 +265,12 @@ const sketch: Sketch = (p5: p5) => {
     let Android = new Node(p5, 3, "Android", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     Programming.addChild(Android);
     let EmbeddedSystem = new Node(p5, 3, "EmbeddedSystem", 50, p5.random(0, p5.width), p5.random(0, p5.height));
-    let Python = new Node(p5, 4, "Python", 20, p5.random(0, p5.width), p5.random(0, p5.height));
-    let Cpp = new Node(p5, 4, "Cpp", 20, p5.random(0, p5.width), p5.random(0, p5.height));
-    let Processing = new Node(p5, 4, "Processing", 20, p5.random(0, p5.width), p5.random(0, p5.height));
-    let Kaleidoscope = new Node(p5, 4, "Kaleidoscope", 20, p5.random(0, p5.width), p5.random(0, p5.height));
-    let Tabulature = new Node(p5, 4, "Tabulature", 20, p5.random(0, p5.width), p5.random(0, p5.height));
-    let QuietQuotes = new Node(p5, 4, "QuietQuotes", 20, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Python = new Node(p5, 4, "Python", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Cpp = new Node(p5, 4, "Cpp", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Processing = new Node(p5, 4, "Processing", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Kaleidoscope = new Node(p5, 4, "Kaleidoscope", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+    let Tabulature = new Node(p5, 4, "Tabulature", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+    let QuietQuotes = new Node(p5, 4, "QuietQuotes", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     Android.addChild(QuietQuotes);
     MachineLearning.addChild(Tabulature);
     Cpp.addChild(Kaleidoscope);
@@ -284,7 +284,7 @@ const sketch: Sketch = (p5: p5) => {
     rootNode.addChild(Electronics);
     let AnalogElectronics = new Node(p5, 4, "AnalogElectronics", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     Electronics.addChild(AnalogElectronics);
-    let ModularSynthesizer = new Node(p5, 4, "ModularSynthesizer", 20, p5.random(0, p5.width), p5.random(0, p5.height));
+    let ModularSynthesizer = new Node(p5, 4, "ModularSynthesizer", 50, p5.random(0, p5.width), p5.random(0, p5.height));
     AnalogElectronics.addChild(ModularSynthesizer);
     Electronics.addChild(EmbeddedSystem);
 
@@ -320,10 +320,20 @@ const sketch: Sketch = (p5: p5) => {
     rootNode.resetForce();
     rootNode.callChildren();
 
+    allNodes.forEach((node) => {
+      allNodes.forEach((othernode) => {
+        if(node != othernode ){
+          node.collideRepulse(othernode, 50);
+        }
+      });
+    });
+
     // Boundary check and movement for all nodes
     allNodes.forEach((node) => {
       node.collideBoundary();
     });
+
+    
 
     rootNode.move();
   };
