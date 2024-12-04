@@ -8,12 +8,14 @@ const ProjectCard = ({
   route,
   imageSrc,
   subtitle,
+  color,
 }: {
   title: string;
   serial: string;
   route: string;
   imageSrc: string;
   subtitle: string;
+  color: string;
 }) => {
   const router = useRouter();
 
@@ -28,22 +30,24 @@ const ProjectCard = ({
         </div>
       </div>
 
-      <div className="w-full h-[134px] relative">
+      <div className="w-full h-[134px] relative rounded-2xl shadow-inner bg-white">
         <Image
           src={imageSrc}
           fill
-          className="rounded-2x object-cover"
+          className="rounded-2xl object-cover border border-gray-300/50"
           unoptimized
           alt=""
-          loader={() => imageSrc}
         />
-        <div className="absolute bottom-0 text-white px-4 pb-4 backdrop:blur space-y-2 w-full">
-          <div className="text-2xl md:text-5xl font-bold ">{title}</div>
-          <div className="text-base font-bold top-40 ">{subtitle}</div>
+        <div
+          className="absolute bottom-0 px-4 pb-4 backdrop:blur space-y-2 w-full"
+          style={{ color }}
+        >
+          <div className="text-2xl md:text-5xl font-bold">{title}</div>
+          <div className="text-base font-bold">{subtitle}</div>
         </div>
       </div>
     </div>
+
   );
 };
-
 export default ProjectCard;

@@ -135,7 +135,7 @@ class Node {
 
   hovered() {
     if (this.isHovered()) {
-      this.p5.background('rgba(5, 5, 5, 0.5)');
+      this.p5.background('rgba(5, 5, 5, 0.9)');
       this.draw();
       this.drawParents();
     }
