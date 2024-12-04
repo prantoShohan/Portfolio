@@ -15,9 +15,9 @@ class Node {
   public children: Node[];
   public parents: Node[];
   public speed: number = 2;
-  static textsize: number = 15;
+  static textsize: number;
 
-  constructor(p5: p5, id: number, name: string, radius: number, x: number, y: number) {
+  constructor(p5: p5, id: number, name: string, radius: number, x: number, y: number, textsize: number = 15) {
     this.p5 = p5;
     this.id = id;
     this.name = name;
@@ -194,6 +194,7 @@ class Node {
 // Define the p5.js sketch
 const sketch: Sketch = (p5: p5) => {
   let rootNode: Node;
+  let hi: Node;
   let allNodes: Node[];
 
   p5.setup = () => {
@@ -217,6 +218,8 @@ const sketch: Sketch = (p5: p5) => {
     // }
     
     rootNode = new Node(p5, 0, "Root", 600*scalefactor, p5.width / 2, p5.height-50);
+
+    hi = new Node(p5, 0, "Hi", 200, p5.random(0, p5.width), p5.random(0, p5.height), 30)
 
     
 
@@ -310,7 +313,7 @@ const sketch: Sketch = (p5: p5) => {
       Languages, MachineLearning, Android, EmbeddedSystem, AnalogElectronics, 
       ModularSynthesizer, Instruments, Highrise, SportsCenter, Mawa, Emergence, 
       PlaceHolder, Evolution, Exploration, Python, Cpp, Processing, Kaleidoscope, 
-      Tabulature, QuietQuotes
+      Tabulature, QuietQuotes, hi
     ];
   };
 
@@ -319,8 +322,23 @@ const sketch: Sketch = (p5: p5) => {
 
     rootNode.draw();
     rootNode.hovered();
+    // hi.draw();
+    // hi.hovered();
+
+    // for(let i = 0; i < allNodes.length; i++){
+    //   allNodes[i].collide(hi, 200);
+    // }
+
     rootNode.resetForce();
+    // hi.resetForce();
+
     rootNode.callChildren();
+
+    
+    
+    
+    // hi.callChildren();
+
 
     allNodes.forEach((node) => {
       allNodes.forEach((othernode) => {
