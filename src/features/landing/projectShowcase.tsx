@@ -60,6 +60,7 @@ const ProjectShowcase = () => {
           serial="03"
           subtitle="Computational Growth of Urban Organism"
           title="Exploration"
+          color="#202020"
         />
 
         <ProjectCard
@@ -68,6 +69,7 @@ const ProjectShowcase = () => {
           serial="04"
           subtitle="Computational Growth of Urban Organism"
           title="Architecture"
+          color="#202020"
         />
       </div>
     </div>
