@@ -23,42 +23,19 @@ const ProjectShowcase = () => {
           imageSrc={`/images/evolution/cover.gif`}
           route={ROUTES.EVOLUTION}
           serial="02"
-          subtitle="Computational Growth of Urban Organism"
+          subtitle="Designing Building Form in Natural System"
           title="Evolution"
           color="#202020"  // or "#000000"
         />
 
-        {/* <div
-          className="flex items-center w-full space-x-8 h-[180px] rounded-2xl cursor-pointer"
-          onClick={() => router.push(ROUTES.EVOLUTION)}
-        >
-          <div className="flex items-center justify-center">
-            <div className="text-[50px] md:text-[180px] text-center font-bold text-black/10">
-              {serial}
-            </div>
-          </div>
 
-          <div className="w-full h-[134px] relative">
-            <Image
-              src={imageSrc}
-              fill
-              className="rounded-2x object-cover"
-              unoptimized
-              alt=""
-              loader={() => imageSrc}
-            />
-            <div className="absolute bottom-0 text-white px-4 pb-4 backdrop:blur space-y-2 w-full">
-              <div className="text-2xl md:text-5xl font-bold ">{title}</div>
-              <div className="text-base font-bold top-40 ">{subtitle}</div>
-            </div>
-          </div>
-        </div> */}
+
 
         <ProjectCard
-          imageSrc={`./images/img_3.jpg`}
-          route={ROUTES.EMERGENCE}
+          imageSrc={`./images/exploration/anima.gif`}
+          route={ROUTES.EXPLORATION}
           serial="03"
-          subtitle="Computational Growth of Urban Organism"
+          subtitle="of Parametric Forms"
           title="Exploration"
           color="#202020"
         />
