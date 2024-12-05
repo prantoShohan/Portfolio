@@ -1,6 +1,9 @@
 .responsive-padding {
   @apply px-[4%] md:px-[15%] lg:px-[25%] !important;
 }
+.responsive-padding-pages {
+  @apply px-[4%] md:pl-[4%] lg:pl-[25%] !important;
+}
 
 .responsive-page-padding {
   @apply px-[20%];
