@@ -34,7 +34,7 @@ const ProjectCard = ({
         <Image
           src={imageSrc}
           fill
-          className="rounded-2xl object-cover border border-gray-300/50"
+          className="rounded-2xl object-cover object-bottom border border-gray-300/50"
           unoptimized
           alt=""
         />

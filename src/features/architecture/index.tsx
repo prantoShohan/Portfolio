@@ -73,17 +73,17 @@ const Architecture = () => {
       {/* Cover */}
       <div className="relative h-[460px] bg-white">
         <Image
-          src={'/images/exploration/anima.gif'}
+          src={'/images/architecture/Cover.png'}
           className="object-cover md:object-contain"
           alt=""
           fill
           unoptimized
         />
-        <div className="absolute bottom-0 backdrop-blur-sm w-full bg-black/30 ">
+        <div className="absolute bottom-0  w-full bg-black/30 ">
           <div className="w-full pb-4  space-y-2 responsive-padding">
-            <div className="text-5xl font-bold ">Exploration</div>
+            <div className="text-5xl font-bold ">Architecture</div>
             <div className="text-base font-bold top-40 ">
-                of Parametric Forms
+            Academic Design Projects
             </div>
           </div>
         </div>
@@ -299,6 +299,100 @@ const Architecture = () => {
               alt="Reaction Diffusion"
             />
           </div>
+
+          <div className='flex flex-row w-full border border-gray-300/50' 
+            id="Riverfront Development"
+            ref={MawaRef}>
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0034.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0035.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
+
+          <div className='flex flex-row w-full ' >
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0036.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0037.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
+
+          <div className='flex flex-row w-full 0' >
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0038.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0039.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
+
+          <div className='flex flex-row w-full ' >
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0040.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0041.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
+
+          <div className='flex flex-row w-full  ' >
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0042.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+
+            <div className="w-full mt-4">
+              <img 
+                src="/images/architecture/portfolio 2_page-0043.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
+
+
 
 
 

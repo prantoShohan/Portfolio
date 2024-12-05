@@ -41,7 +41,7 @@ const ProjectShowcase = () => {
         />
 
         <ProjectCard
-          imageSrc={`./images/img_2.jpg`}
+          imageSrc={`./images/architecture/Cover.png`}
           route={ROUTES.ARCHITECTURE}
           serial="04"
           subtitle="Academic Design Projects"

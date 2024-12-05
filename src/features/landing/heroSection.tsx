@@ -219,7 +219,7 @@ const sketch: Sketch = (p5: p5) => {
     
     rootNode = new Node(p5, 0, "Root", 600*scalefactor, p5.width / 2, p5.height-50);
 
-    hi = new Node(p5, 0, "Hi", 200, p5.random(0, p5.width), p5.random(0, p5.height), 30)
+    // hi = new Node(p5, 0, "Hi", 200, p5.random(0, p5.width), p5.random(0, p5.height), 30)
 
     
 
@@ -313,7 +313,7 @@ const sketch: Sketch = (p5: p5) => {
       Languages, MachineLearning, Android, EmbeddedSystem, AnalogElectronics, 
       ModularSynthesizer, Instruments, Highrise, SportsCenter, Mawa, Emergence, 
       PlaceHolder, Evolution, Exploration, Python, Cpp, Processing, Kaleidoscope, 
-      Tabulature, QuietQuotes, hi
+      Tabulature, QuietQuotes,
     ];
   };
 
