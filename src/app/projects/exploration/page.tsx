@@ -1,4 +1,4 @@
-import Evolution from '@/features/evolution';
+
 import Exploration from '@/features/exploration';
 import React from 'react';
 

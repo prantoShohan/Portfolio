@@ -4,4 +4,5 @@ export const ROUTES = {
   ANALOG: '/projects/analog',
   EVOLUTION: '/projects/evolution',
   EXPLORATION: '/projects/exploration',
+  ARCHITECTURE: '/projects/architecture',
 };
