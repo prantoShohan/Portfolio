@@ -3,6 +3,7 @@ import HeroSection from './heroSection';
 import ProjectShowcase from './projectShowcase';
 import AboutMe from './aboutMe';
 import ProjectShowcasePersonal from './projectShowcasePersonal';
+import ProjectShowcaseArtsMisc from './projectShowcaseArtsMisc';
 
 const LandingPage = () => {
   return (
@@ -10,6 +11,7 @@ const LandingPage = () => {
       <HeroSection />
       <ProjectShowcase />
       <ProjectShowcasePersonal />
+      <ProjectShowcaseArtsMisc />
       <AboutMe />
     </div>
   );

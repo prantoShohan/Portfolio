@@ -411,7 +411,7 @@ with open(output_path, 'w') as f:
               <div className='pt-1'>
                 <div className="subsection-title">Sample 2: </div>
                 <div className="section-subtitle">Original audio :</div>
-                <Mp3Player mp3FilePath="/audios/m_wav.mp3" title="MIDI" />
+                <Mp3Player mp3FilePath="/audios/m_wav.mp3" title="WAV" />
                 <div className="section-subtitle mt-8">This is converted to MIDI</div>
                 <Mp3Player mp3FilePath="/audios/m_midi.mp3" title="MIDI" />
                 <div className="section-subtitle mt-8">The algorithm converts the MIDI to playable guitar tab </div>
