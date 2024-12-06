@@ -28,3 +28,78 @@
 .text-section {
   @apply pt-16;
 }
+
+/* Wrapper for the code block and header */
+.code-block-wrapper {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden; /* Keeps the header and block visually contained */
+  margin: 16px 0; /* Optional outer margin */
+}
+
+/* Top bar styling */
+.code-block-header {
+  background-color: #333; /* Dark header for contrast */
+  color: #fff; /* White text for readability */
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Copy button styling */
+.copy-button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.copy-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Code block area */
+.code-block {
+  background-color: #f9f9f9; /* Light gray background for code */
+  max-height: 300px; /* Limit vertical height */
+  overflow-x: auto; /* Enable horizontal scrolling for long lines */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  padding: 0; /* Remove padding to avoid extra white space */
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+/* Prevent extra space around <pre> */
+.code-block pre {
+  margin: 0; /* No extra margin */
+  padding: 16px; /* Inner padding for readability */
+  white-space: pre; /* Preserve spaces and enable horizontal scrolling */
+  word-wrap: normal; /* Prevent breaking of long words */
+}
+
+/* Prevent extra space around <code> */
+.code-block code {
+  display: block; /* Ensures the code spans full width */
+  padding: 0; /* No extra padding */
+}
+
+/* Custom scrollbar for better UX */
+.code-block::-webkit-scrollbar {
+  height: 8px; /* Horizontal scrollbar height */
+  background: #f0f0f0; /* Subtle background */
+}
+
+.code-block::-webkit-scrollbar-thumb {
+  background: #bbb; /* Thumb color */
+  border-radius: 4px;
+}
+
+.code-block::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Darker on hover */
+}
