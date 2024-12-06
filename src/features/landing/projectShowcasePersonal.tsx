@@ -24,16 +24,16 @@ const ProjectShowcasePersonal = () => {
           color="#202020"
         />
         <ProjectCard
-          imageSrc={`./images/img_3.jpg`}
-          route={ROUTES.EMERGENCE}
+          imageSrc={`./images/tabulature/Cover.png`}
+          route={ROUTES.TABULATURE}
           serial="03"
-          subtitle="Computational Growth of Urban Organism"
+          subtitle="Audio to Guitar Tab Generation"
           title="Tabulature"
           color="#202020"
         />
         <ProjectCard
           imageSrc={`./images/img_2.jpg`}
-          route={ROUTES.EMERGENCE}
+          route={ROUTES.QUOTES}
           serial="04"
           subtitle="Computational Growth of Urban Organism"
           title="Quiet Quotes"

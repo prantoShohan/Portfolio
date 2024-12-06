@@ -6,4 +6,9 @@ export const ROUTES = {
   EXPLORATION: '/projects/exploration',
   ARCHITECTURE: '/projects/architecture',
   KALEIDOSCOPE: '/projects/kaleidoscope',
+  DRAWINGS: '/projects/drawings',
+  PHOTOGRAPHY: '/projects/photography',
+  QUOTES: '/projects/quotes',
+  TABULATURE: '/projects/tabulature',
+  TRAVELSKETCHES: '/projects/travelsketches',
 };
