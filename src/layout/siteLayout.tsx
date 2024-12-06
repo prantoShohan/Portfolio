@@ -11,7 +11,7 @@ const SiteLayout = ({ children }: { readonly children: React.ReactNode }) => {
       <div className="min-h-[84vh] h-full w-full pb-6 relative ">
         {children}
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

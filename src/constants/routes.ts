@@ -5,4 +5,5 @@ export const ROUTES = {
   EVOLUTION: '/projects/evolution',
   EXPLORATION: '/projects/exploration',
   ARCHITECTURE: '/projects/architecture',
+  KALEIDOSCOPE: '/projects/kaleidoscope',
 };

@@ -16,19 +16,19 @@ const ProjectShowcasePersonal = () => {
           color="white"
         />
         <ProjectCard
-          imageSrc={`./images/img_2.jpg`}
-          route={ROUTES.EMERGENCE}
+          imageSrc={`./images/kaleidoscope/Cover.gif`}
+          route={ROUTES.KALEIDOSCOPE}
           serial="02"
-          subtitle="Computational Growth of Urban Organism"
-          title="Tabulature"
-          color="white"
+          subtitle="A toy app in OpenGL"
+          title="Kaleidoscope"
+          color="#202020"
         />
         <ProjectCard
           imageSrc={`./images/img_3.jpg`}
           route={ROUTES.EMERGENCE}
           serial="03"
           subtitle="Computational Growth of Urban Organism"
-          title="Quiet Quotes"
+          title="Tabulature"
           color="#202020"
         />
         <ProjectCard
@@ -36,7 +36,7 @@ const ProjectShowcasePersonal = () => {
           route={ROUTES.EMERGENCE}
           serial="04"
           subtitle="Computational Growth of Urban Organism"
-          title="Kaleidoscope"
+          title="Quiet Quotes"
           color="white"
         />
       </div>
