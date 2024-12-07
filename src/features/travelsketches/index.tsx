@@ -109,13 +109,14 @@ const TravelSketches: React.FC = () => {
             id="Overview"
             ref={OverviewRef}>Overview</div>
           <div className="section-text max-w-[600px]">
-            These projects were done during the first year of my architecture school.
-            Having prior experience in programming, I became immidiately interested in Grasshopper.
-            As I experimented with grasshopper for my class projects, it became intuitive to me.
+            These sketches were done on site taking not more than 30 minuites each. My travels broadened my perspective about the Life Universe and Everything.
           </div>
           <div className="section-title" 
             id="India Trip"
             ref={IndiaTripRef}>India Trip</div>
+          <div className="section-text max-w-[600px]">
+            I travelled around the india for 35 days. visiting more than 15 cities I learned about culture, architecture, food and natural adaptations.
+          </div>
           <div className="w-full mt-4">
             <img 
               src="/images/travelsketches/portfolio 2_page-0046.jpg"
@@ -164,6 +165,10 @@ const TravelSketches: React.FC = () => {
           <div className="section-title" 
             id="Kerala"
             ref={KeralaRef}>Kerala</div>
+          <div className="section-text max-w-[600px]">
+            I was one of the first students in my university who went abroad the country for internship. I interned at Center for Sustainable Built and Natural Environment(CSBNE) in Kerala, India for 2 months and
+            travelled around Kerala. I learned about vernacular architecture and culture.
+          </div>
 
           <div className='md:flex md:flex-row w-full md:space-x-4' >
             <div className="w-full mt-4">
