@@ -13,13 +13,13 @@ const ProjectShowcaseArtsMisc = () => {
           serial="01"
           subtitle=""
           title="Travel Sketches"
-          color="#202020"
+          color="white"
         />
         <ProjectCard
-          imageSrc={`./images/kaleidoscope/Cover.gif`}
-          route={ROUTES.KALEIDOSCOPE}
+          imageSrc={`./images/photography/cover.png`}
+          route={ROUTES.PHOTOGRAPHY}
           serial="02"
-          subtitle="A toy app in OpenGL"
+          subtitle="of Nature"
           title="Observations"
           color="#202020"
         />

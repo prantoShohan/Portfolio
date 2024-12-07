@@ -5,15 +5,76 @@ import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import CustomSections from './custom-sections';
 import { SectionType } from '@/model/sectiontype';
+import ImageGrid from '../ImageGrid';
 
 const Photography = () => {
 
-  const MakingRef = useRef(null);
-  const ToyappRef = useRef(null);
+  const Mushrooms = [
+    '/images/photography/m1-min.jpg',
+    '/images/photography/m2-min.jpg',
+    '/images/photography/m3-min.jpg',
+    '/images/photography/m4-min.jpg',
+    '/images/photography/m5-min.jpg',
+    '/images/photography/m6-min.jpg',
+    '/images/photography/m9-min.jpg',
+    '/images/photography/m10-min.jpg',
+    '/images/photography/m11-min.jpg',
+    '/images/photography/m12-min.jpg',
+    '/images/photography/m13-min.jpg',
+    '/images/photography/m15-min.jpg',
+    // Add more images as needed
+  ];
+
+  const Lens = [
+    '/images/photography/ms1.jpg',
+    '/images/photography/ms2.jpg',
+    // '/images/photography/ms3.jpg',
+    '/images/photography/ms4.jpg',
+    '/images/photography/ms5.jpg',
+    '/images/photography/ms6.jpg',
+    '/images/photography/ms7.jpg',
+    '/images/photography/ms9.jpg',
+    '/images/photography/ms13.jpg',
+    '/images/photography/ms11.jpg',
+    '/images/photography/ms10.jpg',
+    '/images/photography/ms12.jpg',
+
+
+    // Add more images as needed
+  ];
+
+  const Collection = [
+    '/images/photography/1.jpg',
+
+    '/images/photography/3.jpg',
+    '/images/photography/4.jpg',
+    '/images/photography/5.jpg',
+    '/images/photography/6.jpg',
+    '/images/photography/8.jpg',
+
+
+    // Add more images as needed
+  ];
+
+  const Bladderwort = [
+    '/images/photography/j1.jpg',
+    '/images/photography/j2.jpg',
+    '/images/photography/j3.jpg',
+    '/images/photography/j5.jpg',
+
+
+
+    // Add more images as needed
+  ];
+
+  const LensRef = useRef(null);
+  const MushroomRef = useRef(null);
+  const CollectionRef = useRef(null);
+
 
 
   const sectionRefs = [
-     MakingRef, ToyappRef,
+     LensRef, MushroomRef, CollectionRef
 
   ];
 
@@ -22,13 +83,18 @@ const Photography = () => {
   const PHOTOGRAPHY_SECTIONS: SectionType[] = [
 
     {
-      title: 'Making from Scratch',
-      ref: MakingRef,
+      title: 'Through Lenses',
+      ref: LensRef,
       subsections: [],
     },
     {
-      title: 'Toy Application',
-      ref: ToyappRef,
+      title: 'Mushrooms',
+      ref: MushroomRef,
+      subsections: [],
+    },
+    {
+      title: 'Collections',
+      ref: CollectionRef,
       subsections: [],
     },
 
@@ -64,7 +130,7 @@ const Photography = () => {
       {/* Cover */}
       <div className="relative h-[460px] bg-white">
         <Image
-          src={'/images/kaleidoscope/Cover.gif'}
+          src={'/images/photography/cover.png'}
           className="object-cover md:object-cover"
           alt=""
           fill
@@ -72,9 +138,9 @@ const Photography = () => {
         />
         <div className="absolute bottom-0 backdrop-blur-sm w-full bg-black/30 ">
           <div className="w-full pb-4  space-y-2 responsive-padding">
-            <div className="text-5xl font-bold ">Kaleidoscope</div>
+            <div className="text-5xl font-bold ">Observations</div>
             <div className="text-base font-bold top-40 ">
-                A toy app with OpenGL
+                of Nature
             </div>
           </div>
         </div>
@@ -91,85 +157,37 @@ const Photography = () => {
         
         <div>
 
-          <div className="md:flex md:flex-row md:space-x-5 relative text-section" >
-            <div className="md:w-[20%] md:basis-1/2 relative">
-            {/* this header needs to have a custom class */}
-              <div className="text-2xl font-bold pt-2 text-gray-800"
-                id="Making from Scratch"
-                ref={MakingRef}>
-                Making from Scratch
-              </div>
-              <div className="section-text ">
-              I was fascinated with the idea of kelaidoscope, how it can take a small piece of reality and makes a 
-              whole universe out of that. Building a kelaidoscope was really easy. So I went to a glass shop and brought 
-              three pieces of mirror and bound them together with duct tape. 
-              </div>
-            </div>
-            <div className="w-full mt-4 border border-gray-300/50">
-              <img 
-                src="/images/kaleidoscope/hand.png"
-                className="w-full h-auto object-contain"
-                alt="Reaction Diffusion"
-              />
-            </div>
-            
-          </div>
-
-          <div className="w-full mt-4">
-            <img 
-              src="/images/kaleidoscope/real.gif"
-              className="w-full h-auto object-contain"
-              alt="Reaction Diffusion"
-            />
-          </div>
-
+          <div className="section-title"    
+              id="Through Lenses"
+              ref={LensRef}>Through Lenses</div>
           
-
-          <div className="w-full">   
-             <div className="text-2xl font-bold pt-2 text-gray-800 pt-12"
-                  id="Toy Application"
-                  ref={ToyappRef}>
-                  Toy Application
-              </div>      
-             
-            <div className="md:flex md:flex-row md:space-x-5 relative text-section">
-            <div className="md:w-[20%] md:basis-1/2 md:ml-4  relative md:order-last">
-                <div className="section-text ">
-                  I was learning C++ and design patterns of object oriented languages and experimenting with openGL
-                  for graphics. openGL was very daunting. So I thought a simple project like e kelaidoscope can be 
-                  built with openGL.
-                </div>
-              </div>
-              <div className="md:w-[80%] relative grow  w-full h-auto !ml-0 border border-gray-300/50">
-                <img
-                  src="/images/kaleidoscope/setchbok.png"
-                  className="object-contain w-full h-auto"
-                  alt="Dhaka Landform"
-                />
-              </div>
-              
-            </div>
+          <div className="section-text max-w-[600px]">
+            As I started to look at nature with different lenses, I found out that there are more than that meets the naked eye.
+            I used my magnifying glass or microscope to take these photographs. The design of nature never fails to amaze me.
           </div>
 
-          <div className="w-full mt-4">
-            <img 
-              src="/images/kaleidoscope/Kaleidoscope_v1.3.gif"
-              className="w-full h-auto object-contain"
-              alt="Reaction Diffusion"
-            />
+          <div className="flex justify-center items-center ">
+            <ImageGrid images={Lens} />
           </div>
 
-          <div className='md:flex md:flex-row w-full mt-4 space-x-2'>
+          <div className="section-text max-w-[600px]">
+            These are eggs of snail I found in local water body. First I did not realize what these are, it looks like jelly. Looking under microscope
+            reveals it's cuteness.
+          </div>
+
+
+          <div className='md:flex md:flex-row w-full' >
             <div className="w-full mt-4">
               <img 
-                src="/images/kaleidoscope/1.png"
+                src="/images/photography/s2.jpg"
                 className="w-full h-auto object-contain"
                 alt="Reaction Diffusion"
               />
             </div>
+
             <div className="w-full mt-4">
               <img 
-                src="/images/kaleidoscope/2.jpg"
+                src="/images/photography/snl.jpg"
                 className="w-full h-auto object-contain"
                 alt="Reaction Diffusion"
               />
@@ -178,6 +196,75 @@ const Photography = () => {
 
           <div className= "h-[30px]"></div>
 
+          <div className="section-text max-w-[600px]">
+            The Bladderwort is a carnivorous aquatic plants found in local water bodies.
+            It has small bladders which are kept in high pressure. A slight disturbance in around the mouth of the bladder triggers it to suck with high speed.
+            It is one of the fastest organisms.
+          </div>
+          <div className="flex justify-center items-center ">
+            <ImageGrid images={Bladderwort} />
+          </div>
+
+          
+
+          <div className= "h-[30px]"></div>
+
+          <div className="section-title"    
+              id="Mushrooms"
+              ref={MushroomRef}>Mushrooms</div>
+          
+          <div className="section-text max-w-[600px]">
+            I love mushrooms. And this is my collection.
+          </div>
+
+          <div className="flex justify-center items-center ">
+            <ImageGrid images={Mushrooms} />
+          </div>
+
+
+          <div className= "h-[30px]"></div>
+
+          <div className="section-title"    
+              id="Collections"
+              ref={CollectionRef}>Collections</div>
+
+          <div className="section-text max-w-[600px]">
+            I visit different biomes and collect seeds or other interesting plant parts for studying later.
+          </div>
+          <div className="w-full mt-4">
+            <img 
+              src="/images/photography/kit.jpg"
+              className="w-full h-auto object-contain"
+              alt="Reaction Diffusion"
+            />
+          </div>
+
+          <div className="flex justify-center items-center ">
+            <ImageGrid images={Collection} />
+          </div>
+          
+          <div className= "h-[30px]"></div>
+          <div className="section-text max-w-[600px]">
+            This is my plant lab outside my dormitory, where I grow and obsever plants for longer period of time.
+          </div>
+
+          <div className="w-full mt-4">
+            <img 
+              src="/images/photography/corridor.jpg"
+              className="w-full h-auto object-contain"
+              alt="Reaction Diffusion"
+            />
+          </div>
+          
+          <div className="w-full mt-4">
+            <img 
+              src="/images/photography/corridor1.jpg"
+              className="w-full h-auto object-contain"
+              alt="Reaction Diffusion"
+            />
+          </div>
+
+          <div className= "h-[30px]"></div>
           
           
           
