@@ -23,14 +23,14 @@ const ProjectShowcaseArtsMisc = () => {
           title="Observations"
           color="#202020"
         />
-        <ProjectCard
+        {/* <ProjectCard
           imageSrc={`./images/tabulature/Cover.png`}
           route={ROUTES.TABULATURE}
           serial="03"
           subtitle="Audio to Guitar Tab Generation"
           title="Interests"
           color="#202020"
-        />
+        /> */}
       </div>
     </div>
   );

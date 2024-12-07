@@ -10,20 +10,30 @@ const Analogue = () => {
   const overviewRef = useRef(null);
   const modulesRef = useRef(null);
   const vcoRef = useRef(null);
-  const clockDividerADSRRef = useRef(null);
+  const clockDividerRef = useRef(null);
+  const ADSRRef = useRef(null); 
   const tenStepSequencerRef = useRef(null);
   const vcaRef = useRef(null);
+  const vcfRef = useRef(null);
+  const powerRef = useRef(null);
   const buildingFromScratchRef = useRef(null);
+  const simulationRef = useRef(null);
+  const breadBoardRef = useRef(null);
+  const panelRef = useRef(null);
+  const veroRef = useRef(null);
+  const pcbRef = useRef(null);
 
   // assign any newly created ref here
   const sectionRefs = [
     overviewRef,
     modulesRef,
     vcoRef,
-    clockDividerADSRRef,
+    clockDividerRef,
     tenStepSequencerRef,
     vcaRef,
     buildingFromScratchRef,
+    ADSRRef,
+    vcfRef, powerRef, simulationRef, breadBoardRef, panelRef, veroRef, pcbRef
   ];
 
   // Current selected selction state
@@ -48,8 +58,8 @@ const Analogue = () => {
           subsections: [],
         },
         {
-          title: 'Clock + Divider & ADSR',
-          ref: clockDividerADSRRef,
+          title: 'Clock + Divider',
+          ref: clockDividerRef,
           subsections: [],
         },
         {
@@ -57,12 +67,58 @@ const Analogue = () => {
           ref: tenStepSequencerRef,
           subsections: [],
         },
+        {
+          title: 'ADSR',
+          ref: ADSRRef,
+          subsections: [],
+        },
+        {
+          title: 'VCA',
+          ref: vcaRef,
+          subsections: [],
+        },
+        {
+          title: 'VCF',
+          ref: vcfRef,
+          subsections: [],
+        },
+        {
+          title: 'Power and Casing',
+          ref: powerRef,
+          subsections: [],
+        },
       ],
     },
     {
       title: 'Building From Scratch',
       ref: buildingFromScratchRef,
-      subsections: [],
+      subsections: [
+        {
+          title: 'Circuit Simulation',
+          ref: simulationRef,
+          subsections: [],
+        },
+        {
+          title: 'Breadboard Prototype',
+          ref: breadBoardRef,
+          subsections: [],
+        },
+        {
+          title: 'Panel Design',
+          ref: panelRef,
+          subsections: [],
+        },
+        {
+          title: 'Vero Board Design',
+          ref: veroRef,
+          subsections: [],
+        },
+        {
+          title: 'PCB Design',
+          ref: pcbRef,
+          subsections: [],
+        },
+      ],
     },
   ];
 
@@ -123,185 +179,438 @@ const Analogue = () => {
           activeSection={activeSection}
         />
 
-        <div className=" text-black py-10 relative space-x-3  ">
-          <div className="space-y-7 section-text">
-            {/* Overview Section */}
-            <div
-              className="flex space-x-4 justify-between"
-              id="Overview"
-              ref={overviewRef}
-            >
-              <div className="section-text w-[30%] text-justify">
-                <div className="section-title p-0 pb-8">Overview</div>
-                Dhaka is one of the most densly populated cities in the world.
-                It has rapid growth in last 30 years with steady decline in its
-                wetland and natural landscapes. It has become an parasite. This
-                project poses an alternative means of growth through simulating
-                natural growth process.
+
+        <div className="w-full">           
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            {/* Text Section */}
+            <div className="md:w-[20%] md:basis-1/3 relative">
+              <div className="text-2xl font-bold py-4 text-gray-800"
+                id="Landform System"
+                ref={overviewRef}>Overview</div>
+              <div className="section-text">
+                Creating brings me immense joy, and my ability to learn new skills quickly has given me the confidence
+                 to explore uncharted territories. For instance, during my final year, I became fascinated with generative
+                  music and modular synthesizers. However, modular synthesizers were neither available in my country nor
+                   affordable. Undeterred, I decided to build one from scratch using locally sourced components.
+                    Despite having prior experience with digital electronics, I found analog electronics to be a steep
+                     learning curve. Yet, I persisted—learning the necessary math and circuit design, mastering soldering,
+                      and gradually building a set of basic modules through trial and error. I’m still building new ones today.
               </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/-AepALiHQB4?si=GaaYzYrUMpk3CxyN" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="Modules"
+          ref={modulesRef}>
+          <div className="section-title">Modules</div>
+          <div className="section-text">
+            These are the basic modules to function a analog synthesizer.
+          </div>
+
+          <div className="w-full mt-4">
+            <img 
+              src="/images/analog/full.png"
+              className="w-full h-auto object-contain"
+              alt="Reaction Diffusion"
+            />
+          </div>
+        </div>
+
+
+        <div className="w-full">           
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            {/* Text Section */}
+            <div className="md:w-[20%] md:basis-1/3 relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                id="VCO"
+                ref={vcoRef}>VCO</div>
+              <div className="section-text">
+                I am a fan of Don Buchla and West Coast synthesis.
+                 So I wanted to experiment with FM and triangle core oscillators.
+                  This design is based on Thomas Henry’s VCO 1. But I have actively modified it.
+                   In his design a transistor based schmidt trigger used. I used an LM311 comparator instead of that.
+                    His design used +15V to -15V. I modified it to +12V to -12V. And there are few other minor changes.
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img 
+                src="/images/analog/vco.png"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
+
+          <div className=" relative grow mt-4 w-full h-auto">
+            <img 
+              src="/images/analog/circuit.png"
+              className="w-full h-auto object-contain"
+              alt="Reaction Diffusion"
+            />
+          </div>
+
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            {/* Text Section */}
+            <div className="md:w-[20%] md:basis-1/3 relative">
+              <div className="section-text">
+                This was an earlier design of a sawtooth wave vco based on CD40106 as Schmitt Trigger.
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img 
+                src="/images/analog/vcosaw.png"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
+        </div>
+
+
+        <div className="w-full">           
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            {/* Text Section */}
+            <div className="md:w-[20%] md:basis-1/3 relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                 id="Clock + Divider"ref={clockDividerRef}>Clock + Divider</div>
+              <div className="section-text">
+                The clock divider is built with CD4040 binary counter. There is an external clock input support.
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img
+                src="/images/analog/clk.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+          </div>
+        </div>
+
+
+        <div className="w-full">           
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            {/* Text Section */}
+            <div className="md:w-[20%] md:basis-1/3 relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                 id="10 Step Sequencer"ref={tenStepSequencerRef}>10 Step Sequencer</div>
+              <div className="section-text">
+                The sequencer is based on CD4017 Decade Counter. The length of the sequence can be adjusted from 1 to 10.
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img
+                src="/images/analog/seq.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+          </div>
+        </div>
+
+
+        <div className="w-full">           
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            {/* Text Section */}
+            <div className="md:w-[20%] md:basis-1/3 relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                 id="ADSR"ref={ADSRRef}>ADSR: Attack Decay Sustain Release</div>
+              <div className="section-text">
+                This ADSR is based on Kassutronics Precision ADSR which is actually based on The Fastest Envelope in the West by Rene Schmitz.
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img
+                src="/images/analog/ADSR.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+          </div>
+        </div>
+
+
+        <div className="w-full">           
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            {/* Text Section */}
+            <div className="md:w-[20%] md:basis-1/3 relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                 id="VCA"ref={vcaRef}>Dual VCA: Voltage Controlled Amplifier</div>
+              <div className="section-text">
+                This is classic transistor VCA based on Moritz Klein.
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img
+                src="/images/analog/vca.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+          </div>
+        </div>
+
+
+        <div className="w-full">           
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+            {/* Text Section */}
+            <div className="md:w-[20%] md:basis-1/3 relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                 id="VCF"ref={vcfRef}>VCF: Voltage Controlled Filter</div>
+              <div className="section-text">
+                This is a diode ladder filter based on Moritz Klein.
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img
+                src="/images/analog/vca.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full">           
+          <div className="relative text-section">
+            {/* Text Section */}
+            <div className=" relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                 id="Power and Casing"ref={powerRef}>Power and Casing</div>
+              <div className="section-text">
+                The power supply provide the rail to rail voltage required for driving the op-amps.
+                The cover is made from 5mm PVC with glue joint.
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img
+                src="/images/analog/ps.jpg"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+          </div>
+        </div>
+
+
+        <div
+          id="Building From Scratch"
+          ref={buildingFromScratchRef}>
+          <div className="section-title">Building From Scratch</div>
+          <div className="section-text">
+            A lot of planning goes into building a module. First you have to understand what you want to do with the signals.
+            And designing a circuit is a task. Most circuit available require some level of modification and 
+            core understanding of the circuit. The the most challanging task is Debugging.
+          </div>
+        </div>
+
+
+        <div className="w-full">           
+          <div className="relative text-section">
+            {/* Text Section */}
+            <div className=" relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                 id="Circuit Simulation"ref={simulationRef}>Circuit Simulation</div>
+              <div className="section-text">
+                Simulators help to understand the circuits which is essential later during debugging.
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img
+                src="/images/analog/simulation.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+          </div>
+        </div>
+
+
+        <div className="w-full">           
+          <div className="relative text-section">
+            {/* Text Section */}
+            <div className=" relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                 id="Breadboard Prototype"ref={breadBoardRef}>Breadboard Prototype</div>
+              <div className="section-text">
+                Breadboarding a circuit creates understanding of the circuit and essential part of circuit design process.
+
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className="relative w-full pb-[56.25%] mt-8 h-0">
               <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/-AepALiHQB4?si=6rhr5dWdTmeej4-r"
+                className="absolute top-0 left-0 w-full h-full border-0"
+                src="https://www.youtube.com/embed/-AepALiHQB4?si=GaaYzYrUMpk3CxyN"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               ></iframe>
             </div>
+          </div>
+        </div>
 
-            <div id="growth_2" className="flex justify-between space-x-3">
-              <div id="text" className="space-y-2">
-                {/* Module section */}
-                <div className="space-y-2" id="Modules" ref={modulesRef}>
-                  <div className="section-title">Modules</div>
-                  Dhaka is one of the most densly populated cities in the world.
-                  <div id="multimedia" className="relative h-[370px]">
-                    <Image
-                      src={'/images/analog/video_ref.png'}
-                      className="object-contain"
-                      alt=""
-                      fill
-                      unoptimized
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  {/* VCO section */}
-                  <div className="pt-10" id="VCO" ref={vcoRef}>
-                    <div className="subsection-title">VCO</div>
-                    <div className="section-text">
-                      Dhaka is one of the most densly populated cities in the
-                      world. It has rapid growth in last 30 years with steady
-                      decline in its wetland and natural landscapes. It has
-                      become an parasite. This project poses an alternative
-                      means of growth through simulating natural growth process.
-                    </div>
-                    <div id="multimedia" className="relative h-[560px]">
-                      <Image
-                        src={'/images/analog/vco.png'}
-                        className="object-contain"
-                        alt=""
-                        fill
-                        unoptimized
-                      />
-                    </div>
-                    Dhaka is one of the most densly populated cities in the
-                    world.
-                    <div id="multimedia" className="relative h-[460px]">
-                      <Image
-                        src={'/images/analog/circuit.png'}
-                        className="object-contain"
-                        alt=""
-                        fill
-                        unoptimized
-                      />
-                    </div>
-                  </div>
-                  {/* Clock + Divider & ADSR section */}
-                  <div
-                    className="text-section"
-                    id="Clock + Divider & ADSR"
-                    ref={clockDividerADSRRef}
-                  >
-                    <div className="subsection-title">
-                      {' '}
-                      Clock + Divider & ADSR{' '}
-                    </div>
-                    <div className="section-text">
-                      Dhaka is one of the most densly populated cities in the
-                      world. It has rapid growth in last 30 years with steady
-                      decline in its wetland and natural landscapes. It has
-                      become an parasite. This project poses an alternative
-                      means of growth through simulating natural growth process.
-                    </div>
-                    <div id="multimedia" className="relative h-[360px]">
-                      <Image
-                        src={'/images/analog/clock+adsr.png'}
-                        className="object-contain"
-                        alt=""
-                        fill
-                        unoptimized
-                      />
-                    </div>
-                  </div>
-                  {/* 10 Step Sequencer section */}
-                  <div
-                    className="flex space-x-4 relative text-section"
-                    id="10 Step Sequencer"
-                    ref={tenStepSequencerRef}
-                  >
-                    <div className="section-text w-[20%]">
-                      <div className="subsection-title">
-                        {' '}
-                        10 Step Sequencer{' '}
-                      </div>
-                      Dhaka is one of the most densly populated cities in the
-                      world. It has rapid growth in last 30 years with steady
-                      decline in its wetland and natural landscapes. It has
-                      become an parasite. This project poses an alternative
-                      means of growth through simulating natural growth process.
-                    </div>
-                    <div id="multimedia" className="relative w-[70%] h-[460px]">
-                      <Image
-                        src={'/images/analog/sequencer.png'}
-                        className="object-contain"
-                        alt=""
-                        fill
-                        unoptimized
-                      />
-                    </div>
-                  </div>
-                  {/*TODO: Placeholder */}
-                  {/* <div
-                    className="text-section"
-                    id="Clock + Divider & ADSR"
-                    ref={clockDividerADSRRef}
-                  >
-                    <div className="subsection-title">
-                      {' '}
-                      Clock + Divider & ADSR{' '}
-                    </div>
-                    <div className="section-text">
-                      Dhaka is one of the most densly populated cities in the
-                      world. It has rapid growth in last 30 years with steady
-                      decline in its wetland and natural landscapes. It has
-                      become an parasite. This project poses an alternative
-                      means of growth through simulating natural growth process.
-                    </div>
-                    <div id="multimedia" className="relative h-[360px]">
-                      <Image
-                        src={'/images/analog/clock+adsr.png'}
-                        className="object-contain"
-                        alt=""
-                        fill
-                        unoptimized
-                      />
-                    </div>
-                  </div> */}
-                </div>
-                {/* Building from scratch section */}
-                <div
-                  className="space-y-2"
-                  id="Building From Scratch"
-                  ref={buildingFromScratchRef}
-                >
-                  <div className="section-title">Building From Scratch</div>
-                  Dhaka is one of the most densly populated cities in the world.
-                  <div id="multimedia" className="relative h-[470px]">
-                    <Image
-                      src={'/images/analog/video_ref.png'}
-                      className="object-contain"
-                      alt=""
-                      fill
-                      unoptimized
-                    />
-                  </div>
-                </div>
+        <div className="w-full pt-12">
+          <div className="relative">
+            <div
+              className="text-xl font-bold text-gray-600"
+              id="Panel Design"
+              ref={panelRef}
+            >
+              Panel Design
+            </div>
+            <div className="section-text">
+              The panel is made from single-sided copper-clad board. The copper base acts as a ground.
+            </div>
+          </div>
+          <div className="relative text-section">
+            {/* Text Section */}
+
+            <div className="relative grow w-full h-auto">
+              <img
+                src="/images/analog/paneldrw.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+
+            <div className="relative grow w-full">
+              <div className="relative w-full pb-[56.25%] h-0">
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/DSPrI5jOito?si=6GnRQRU5AF02xRua"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
               </div>
+            </div>
+
+              {/* Image Section */}
+          </div>
+        </div>
+
+
+        <div className="w-full pt-12">
+          <div className="relative">
+            <div
+              className="text-xl font-bold text-gray-600"
+              id="Vero Board Design"
+              ref={veroRef}
+            >
+              Vero Board Design
+            </div>
+            <div className="section-text">
+              I learned that soldering is a skill and is to be improved by practicing. I have yet to learn SMD soldering.
+            </div>
+          </div>
+          
+          <div className="relative text-section">
+            {/* Text Section */}
+
+            <div className="relative grow w-full h-auto">
+              <img
+                src="/images/analog/vero.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+
+            <div className="relative grow w-full mt-8">
+              <div className="relative w-full pb-[56.25%] h-0">
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/W2uDb4M_RMg?si=oarb8uV4lb58dhWz"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+
+              {/* Image Section */}
+          </div>
+        </div>
+
+
+        <div className="w-full">           
+          <div className="relative text-section">
+            {/* Text Section */}
+            <div className=" relative">
+              <div className="text-xl font-bold py-4 text-gray-600"
+                 id="PCB Design"ref={pcbRef}>PCB Design</div>
+              <div className="section-text">
+                I am starting to design PCB though it is really expensive for me. I am designing some modules for PCB.
+
+              </div>
+            </div>
+
+            {/* Image Section */}
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img
+                src="/images/analog/pcb.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+
+
+
+            <div className=" relative grow mt-4 w-full h-auto">
+              <img
+                src="/images/analog/hand.png"
+                className="object-contain w-full h-auto"
+                alt="Dhaka Landform"
+              />
+            </div>
+            <div className="section-text pt-4">
+                This is an earlier attempt of PCB manufacturing from a local shop. 
+
             </div>
           </div>
         </div>
+
+
+
+
+        <div className='h-[100px]'></div>
+
+
+
+
+
+
+        
       </div>
     </div>
   );

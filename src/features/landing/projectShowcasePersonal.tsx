@@ -31,14 +31,14 @@ const ProjectShowcasePersonal = () => {
           title="Tabulature"
           color="#202020"
         />
-        <ProjectCard
+        {/* <ProjectCard
           imageSrc={`./images/img_2.jpg`}
           route={ROUTES.QUOTES}
           serial="04"
           subtitle="Computational Growth of Urban Organism"
           title="Quiet Quotes"
           color="white"
-        />
+        /> */}
       </div>
     </div>
   );
