@@ -172,7 +172,7 @@ const Photography = () => {
 
           <div className="section-text max-w-[600px]">
             These are eggs of snail I found in local water body. First I did not realize what these are, it looks like jelly. Looking under microscope
-            reveals it's cuteness.
+            reveals it&apos;s cuteness.
           </div>
 
 
