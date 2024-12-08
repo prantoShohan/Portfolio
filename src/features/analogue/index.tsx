@@ -188,12 +188,10 @@ const Analogue = () => {
                 id="Landform System"
                 ref={overviewRef}>Overview</div>
               <div className="section-text">
-                Creating brings me immense joy, and my ability to learn new skills quickly has given me the confidence
-                 to explore uncharted territories. For instance, during my final year, I became fascinated with generative
-                  music and modular synthesizers. However, modular synthesizers were neither available in my country nor
-                   affordable. Undeterred, I decided to build one from scratch using locally sourced components.
-                    Despite having prior experience with digital electronics, I found analog electronics to be a steep
-                     learning curve. Yet, I persisted—learning the necessary math and circuit design, mastering soldering,
+                I am fascinated with generative
+                  music and modular synthesizers. However, modular synthesizers is neither available in my country nor
+                   affordable. So, I have built one from scratch using locally sourced components.
+                    I persisted—learning the necessary math and circuit design, mastering soldering,
                       and gradually building a set of basic modules through trial and error. I’m still building new ones today.
               </div>
             </div>
@@ -570,7 +568,7 @@ const Analogue = () => {
               <div className="text-xl font-bold py-4 text-gray-600"
                  id="PCB Design"ref={pcbRef}>PCB Design</div>
               <div className="section-text">
-                I am starting to design PCB though it is really expensive for me. I am designing some modules for PCB.
+                I am starting to design PCB though it is really expensive. I am designing some modules for PCB.
 
               </div>
             </div>

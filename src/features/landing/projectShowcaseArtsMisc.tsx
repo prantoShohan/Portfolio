@@ -6,11 +6,11 @@ const ProjectShowcaseArtsMisc = () => {
   return (
     <div className="bg-white responsive-padding py-6">
       <div className="text-4xl text-black px-4 pt-[40px]">Arts and Miscellaneous</div>
-      <div className="flex flex-col space-y-16 py-8">
+      <div className="flex flex-col space-y-8 py-8">
         <ProjectCard
           imageSrc={`./images/travelsketches/cover.png`}
           route={ROUTES.TRAVELSKETCHES}
-          serial="01"
+          serial="08"
           subtitle=""
           title="Travel Sketches"
           color="white"
@@ -18,7 +18,7 @@ const ProjectShowcaseArtsMisc = () => {
         <ProjectCard
           imageSrc={`./images/photography/cover.png`}
           route={ROUTES.PHOTOGRAPHY}
-          serial="02"
+          serial="09"
           subtitle="of Nature"
           title="Observations"
           color="#202020"
