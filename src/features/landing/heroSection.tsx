@@ -453,7 +453,10 @@ const HeroSection: React.FC = () => {
     p5.mouseClicked = () => {
       allNodes.forEach((node) => {
         if(node.isHovered() ){
-          node.handleClick(); // Check if a node is clicked and navigate
+          if(p5.windowWidth > 800){
+            node.handleClick(); // Check if a node is clicked and navigate
+          }
+          
         }
         
       });
