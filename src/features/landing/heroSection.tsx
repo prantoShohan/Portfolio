@@ -141,11 +141,13 @@ class Node {
   }
 
   isHovered(): boolean {
-    return (this.p5.dist(this.position.x, this.position.y, this.p5.mouseX, this.p5.mouseY) < 20); // Correct dist usage
+    this.focus = this.p5.dist(this.position.x, this.position.y, this.p5.mouseX, this.p5.mouseY) < 20;
+    return (this.focus); 
   }
 
   hovered() {
-    if (this.isHovered() || this.focus) {
+    this.isHovered()
+    if (this.focus) {
       this.p5.background('rgba(5, 5, 5, 0.9)');
       this.draw();
       this.drawParents();
@@ -160,9 +162,7 @@ class Node {
   }
 
   handleClick() {
-    if (this.isHovered() && this.path) {
-      this.router.push(this.path); // Navigate to the internal page
-    }
+    this.router.push(this.path);
   }
 
   handleTouch() {
@@ -445,7 +445,7 @@ const HeroSection: React.FC = () => {
   
     p5.mouseClicked = () => {
       allNodes.forEach((node) => {
-        if(p5.pmouseX < 10){
+        if(node.isHovered() ){
           node.handleClick(); // Check if a node is clicked and navigate
         }
         
@@ -454,10 +454,8 @@ const HeroSection: React.FC = () => {
 
     p5.touchStarted = () => {
       allNodes.forEach((node) => {
-        if(p5.pmouseY < 10){
-          node.handleTouch(); // Check if a node is clicked and navigate
-        }else{
-          node.focus = false;
+        if(node.isHovered()){
+          node.handleTouch();
         }
         
       });
