@@ -169,7 +169,7 @@ class Node {
   handleTouch() {
     if(this.isHovered() == true){
       if(this.focus == true){
-        this.handleClick();
+        // this.handleClick();
         this.focus = false;
       }else{
         this.focus = true;
