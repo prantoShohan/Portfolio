@@ -8,6 +8,7 @@ import { ROUTES } from '@/constants/routes';
 
 // Define the Node class in TypeScript
 class Node {
+  
   private p5: p5; // Correct usage of p5 type
   public id: number;
   public name: string;
@@ -17,10 +18,11 @@ class Node {
   public totalCollision: number;
   public children: Node[];
   public parents: Node[];
-  public speed: number = 2;
+  public speed: number = 3;
   static textsize: number;
   public path: any;
   public router: any;
+  public focus: boolean;
   
 
   constructor(p5: p5, id: number, name: string, radius: number, x: number, y: number, path: any = null, router: any = null, textsize: number = 15) {
@@ -35,6 +37,7 @@ class Node {
     this.parents = [];
     this.router = router
     this.path = path;
+    this.focus = false;
     
   }
 
@@ -138,15 +141,17 @@ class Node {
   }
 
   isHovered(): boolean {
-    return this.p5.dist(this.position.x, this.position.y, this.p5.mouseX, this.p5.mouseY) < 20; // Correct dist usage
+    return (this.p5.dist(this.position.x, this.position.y, this.p5.mouseX, this.p5.mouseY) < 20); // Correct dist usage
   }
 
   hovered() {
-    if (this.isHovered()) {
+    if (this.isHovered() || this.focus) {
       this.p5.background('rgba(5, 5, 5, 0.9)');
       this.draw();
       this.drawParents();
+      this.focus = false;
     }
+
 
     // Recursively call hovered on children
     for (let i = 0; i < this.children.length; i++) {
@@ -156,10 +161,16 @@ class Node {
 
   handleClick() {
     if (this.isHovered() && this.path) {
-
-      
-
       this.router.push(this.path); // Navigate to the internal page
+    }
+  }
+
+  handleTouch() {
+    if(this.focus == false){
+      this.focus = true;
+    }else{
+      this.handleClick();
+      this.focus = false;
     }
   }
 
@@ -434,11 +445,23 @@ const HeroSection: React.FC = () => {
   
     p5.mouseClicked = () => {
       allNodes.forEach((node) => {
-        if(p5.movedX < 10){
+        if(p5.pmouseX < 10){
           node.handleClick(); // Check if a node is clicked and navigate
         }
         
       });
+    };
+
+    p5.touchStarted = () => {
+      allNodes.forEach((node) => {
+        if(p5.pmouseY < 10){
+          node.handleTouch(); // Check if a node is clicked and navigate
+        }else{
+          node.focus = false;
+        }
+        
+      });
+
     };
   
    
