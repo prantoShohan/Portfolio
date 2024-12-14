@@ -8,11 +8,12 @@ import Footer from '@/layout/footer';
 
 const LandingPage = () => {
   return (
-    <div className="">
+    <div className=" bg-white">
       <HeroSection />
       <ProjectShowcase />
       <ProjectShowcasePersonal />
       <ProjectShowcaseArtsMisc />
+      <div className='h-[100px]'></div>
       <AboutMe />
       <Footer />
     </div>

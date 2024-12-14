@@ -10,11 +10,11 @@
 }
 
 .section-title {
-  @apply text-2xl font-bold py-4 mt-28 text-gray-800;
+  @apply text-5xl font-extrabold py-4 mt-28 text-gray-800;
 }
 
 .subsection-title {
-  @apply text-xl font-bold py-6 mt-16 text-gray-600;
+  @apply text-3xl font-bold py-6 mt-16 text-gray-600;
 }
 
 .sub-subsection-title {
