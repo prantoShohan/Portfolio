@@ -139,8 +139,8 @@ const EmergenceDetails = () => {
           with interdependent layers of systems that can be designed computationally. 
           Living in Dhaka, one of the fastest-growing cities in the world, 
           I witnessed firsthand the pressing need for sustainable urban development. 
-          Over the past 30 years, Dhaka's rapid expansion has severely impacted its ecology, environment and livability. 
-          Addressing these challenges requires a novel approach to urban planning that considers Dhaka's unique landform and ecology. 
+          Over the past 30 years, Dhaka&apos;s rapid expansion has severely impacted its ecology, environment and livability. 
+          Addressing these challenges requires a novel approach to urban planning that considers Dhaka&apos;s unique landform and ecology. 
           I employed computational simulation methods to mimic natural systems, 
           optimizing various urban layers such as landform, connectivity, and zoning.
           </div>
@@ -203,7 +203,7 @@ const EmergenceDetails = () => {
           ref={SiteRef}>
           <div className="subsection-title">Site</div>
           <div className="section-text">
-          Uttara Phase-3 is one of the three largest housing projects undertaken by RAJUK, Dhaka's planning body, 
+          Uttara Phase-3 is one of the three largest housing projects undertaken by RAJUK, Dhaka&apos;s planning body, 
           but the extent of wetland destruction it has caused is alarming.
           </div>
 
