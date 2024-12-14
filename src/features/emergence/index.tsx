@@ -135,66 +135,88 @@ const EmergenceDetails = () => {
           ref={overviewRef}>
           <div className="section-title">Overview</div>
           <div className="section-text">
-            This is my final year thesis.  It is based on the idea that cities are also organisms.
-            And we can design the layers of systems in cities like organisms. Living in Dhaka,
-            one of the most rapidly growing cities in the world, I certainly found out the necessity of sustainable growth of cities.
-            In last 30 years, Dhaka’s growth had a horrible impact on the environment and livability. To solve this issue we need a
-            totally a new way of planning specifically for the unique landform and ecology of Dhaka. I used computational simulation methods to mimick 
-            natural systems to optimize different layers of urban systems like landform, connectivity and zoning.
+          My undergraduate final year thesis explores the concept that cities function as living organisms, 
+          with interdependent layers of systems that can be designed computationally. 
+          Living in Dhaka, one of the fastest-growing cities in the world, 
+          I witnessed firsthand the pressing need for sustainable urban development. 
+          Over the past 30 years, Dhaka's rapid expansion has severely impacted its ecology, environment and livability. 
+          Addressing these challenges requires a novel approach to urban planning that considers Dhaka's unique landform and ecology. 
+          I employed computational simulation methods to mimic natural systems, 
+          optimizing various urban layers such as landform, connectivity, and zoning.
           </div>
         </div>
 
 {/* Context */}
-        <div className="md:flex md:flex-row md:space-x-5 relative text-section" 
+        <div className="md:space-x-5 relative text-section" 
           id="Context"
           ref={ContextRef}>
-          <div className="md:w-[20%] md:basis-1/3 relative">
+          <div className="relative">
           {/* this header needs to have a custom class */}
             <div className="text-2xl font-bold pb-4 text-gray-800">
                 Context
             </div>
-            <div className="section-text ">
-            Dhaka is one of the most densly populated cities in the
-            world. It has rapid growth in last 30 years with steady
-            decline in its wetland and natural landscapes. Though it has a very distinct geographical characteristic,
-             main growth method is to landfill the wetlands and create iron-grid road pattern. But just outskirts of Dhaka shows us a 
-             more organic form of settlement growth.
+            <div className="section-text">
+            Dhaka is one of the most densely populated cities in the world, 
+            experiencing rapid growth over the past 30 years alongside a steady decline in its wetlands and natural landscapes. 
+            Despite its distinct geographical characteristics, 
+            the predominant growth strategy has been to landfill wetlands and impose a rigid grid-like road pattern. 
+            However, the outskirts of Dhaka reveal a contrasting narrative—a more organic and adaptive form of settlement growth.
             </div>
-          </div>
-          <div id="multimedia" className="relative md:w-[60%] pt-4 md:py-auto h-[360px] md:basis-2/3">
-            <Image
-              src={'/images/emergence/Growth graph.png'}
-              className="object-contain md:object-cover object-left"
-              alt=""
-              fill
-              unoptimized
-            />
           </div>
         </div>
 
-        <div id="multimedia" className="relative md:mt-8 h-[300px] md:h-[600px]">
-            <Image
-              src={'/images/emergence/dhaka timelapse small.gif'}
-              className="object-cover"
-              alt=""
-              fill
-              unoptimized
+        <div className='relative mt-8'>
+          <div className="w-full">
+            <img 
+              src="/images/emergence/Growth graph.png"
+              className="w-full h-auto object-contain border border-gray-300/50"
+              alt="Reaction Diffusion"
             />
+          </div>
+          <div className='md:absolute md:bottom-0 md:left-full md:ml-4 text-[10px] text-gray-400 whitespace-normal md:w-[150px] font-style: italic'>
+            <div className='text-gray-500 text-[12px]'> Land use and land cover change map of Dhaka for the years 1990, 1995, 2000, 2005, 2010, 2015, and 2020.</div>
+            Rahman, Md & Szabó, György. (2021) 
+          </div>
         </div>
+
+
+
+        <div className='relative mt-12'>
+          <div id="multimedia" className="relative md:mt-8 h-[300px] md:h-[600px]">
+              <Image
+                src={'/images/emergence/dhaka timelapse small.gif'}
+                className="object-cover"
+                alt=""
+                fill
+                unoptimized
+              />
+          </div>
+          <div className='md:absolute md:bottom-0 md:left-full md:ml-4 text-[10px] text-gray-400 whitespace-normal md:w-[150px] font-style: italic'>
+            <div className='text-gray-500 text-[12px]'> land cover change 1990-2020.</div>
+            Google Earth
+          </div>
+        </div>
+
 
         <div
           id="Site"
           ref={SiteRef}>
           <div className="subsection-title">Site</div>
           <div className="section-text">
-            Uttara Phase-3 is one of three biggest housing projects conducted by Dhaka government. But the amount of wetland destroyed is shocking.
+          Uttara Phase-3 is one of the three largest housing projects undertaken by RAJUK, Dhaka's planning body, 
+          but the extent of wetland destruction it has caused is alarming.
           </div>
-          <div className="w-full h-auto py-4">
-            <CompareSlider
-              beforeImage="/images/emergence/before.jpg"
-              afterImage="/images/emergence/after.jpg"
-            />
-          </div>
+
+            <div className="w-full h-auto py-4">
+              <CompareSlider
+                beforeImage="/images/emergence/before.jpg"
+                afterImage="/images/emergence/after.jpg"
+              />
+            </div>
+            
+            
+          <div/>
+          
         </div>
 
 
