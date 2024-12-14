@@ -201,13 +201,22 @@ const Evolution = () => {
               </div>
 
           </div>
-          <div className="w-full mt-4">
-            <img 
-              src="/images/evolution/Script.png"
-              className="w-full h-auto object-contain"
-              alt="Reaction Diffusion"
-            />
+
+          <div className='relative'>
+            <div className="w-full mt-4">
+              <img 
+                src="/images/evolution/Script.png"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+            <div className='text=[12px] md:absolute md:bottom-0 md:left-full md:ml-4 text-[12px] text-gray-700 whitespace-normal w-[150px]'>
+              Grasshopper script of the parametric system
+            </div>
           </div>
+          
+
+
         </div>
 
 

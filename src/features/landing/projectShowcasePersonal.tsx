@@ -11,7 +11,7 @@ const ProjectShowcasePersonal = () => {
           imageSrc={`./images/analog/cover.png`}
           route={ROUTES.ANALOG}
           serial="05"
-          subtitle="Computational Growth of Urban Organism"
+          subtitle="Modular Synthesizer from Scratch"
           title="Analog"
           color="white"
         />
