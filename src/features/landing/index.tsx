@@ -6,6 +6,8 @@ import ProjectShowcasePersonal from './projectShowcasePersonal';
 import ProjectShowcaseArtsMisc from './projectShowcaseArtsMisc';
 import Footer from '@/layout/footer';
 import Loader from './Loader';
+import Header from '@/layout/header';
+
 
 const LandingPage: React.FC = () => {
   const [isHeroLoaded, setIsHeroLoaded] = useState(false);
@@ -17,6 +19,9 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="bg-white">
+      {/* Add another copy of the Header in the LandingPage */}
+      <Header />
+
       <HeroSection onLoad={handleHeroSectionLoad} />
       {/* Show loader while HeroSection is loading */}
       {!isHeroLoaded && <Loader />}
@@ -24,7 +29,6 @@ const LandingPage: React.FC = () => {
       {/* Once the HeroSection is loaded, render the content */}
       {isHeroLoaded && (
         <>
-
           <ProjectShowcase />
           <ProjectShowcasePersonal />
           <ProjectShowcaseArtsMisc />

@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <div className="!min-h-[4vh] flex items-center bg-[#222222] w-full responsive-padding z-30 sticky top-0 justify-between py-2">
+    <div className="!min-h-[4vh] flex items-center bg-[#222222] w-full responsive-padding z-10 position: sticky top-0 justify-between py-1">
       <div>
         <Link href={'/'} className="text-2xl font-bold">
           Pranto Shohan
