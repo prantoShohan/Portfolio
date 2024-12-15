@@ -10,10 +10,18 @@ const Footer = () => {
           <div className="text-sm">Pranto Shohan</div>
         </div>
         <div className="flex space-x-3 justify-end items-center">
-          <Facebook size={24} />
-          <Instagram size={24} />
-          <Youtube size={28} />
-          <Github size={24} />
+          <a href="https://www.facebook.com/pranto.shohan" target="_blank">
+            <Facebook size={24} />
+          </a>
+          <a href="https://www.instagram.com/pranto91/" target="_blank">
+            <Instagram size={24} />
+          </a>
+          <a href="https://www.youtube.com/@PrantoShohan" target="_blank">
+            <Youtube size={28} />
+          </a>
+          <a href="https://github.com/prantoShohan" target="_blank">
+            <Github size={24} />
+          </a>
         </div>
       </div>
     </div>
