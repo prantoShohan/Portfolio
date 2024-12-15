@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutMe = () => {
   return (
-    <div className="w-full relative h-[500px]">
+    <div id="about-me" className="w-full relative h-[500px]">
       {/* Background image with custom blur level */}
       {/* <div
         className="absolute inset-0 bg-cover bg-center"
@@ -29,13 +29,11 @@ const AboutMe = () => {
           <div className="text-6xl font-bold">About</div>
           <p className="text-xl">Shohanur Rahman Pranto</p>
           <div className="max-w-[400px] italic text-[12px]">
-            I am fascinated by design of Nature and 
-            Computational approaches to Architecture 
-            and Urban Design. I study organisms 
-            and explore the emergent behavior with 
-            creative coding. I am curious, learn fast and 
-            want to further my understanding of Nature, 
-            Computation and Human Sustainability.
+            I am fascinated by design of Nature and Computational approaches to
+            Architecture and Urban Design. I study organisms and explore the
+            emergent behavior with creative coding. I am curious, learn fast and
+            want to further my understanding of Nature, Computation and Human
+            Sustainability.
           </div>
         </div>
       </div>
