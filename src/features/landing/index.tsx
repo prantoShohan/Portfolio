@@ -17,6 +17,34 @@ const LandingPage: React.FC = () => {
     setIsHeroLoaded(true); // Update the state when HeroSection has finished loading
   };
 
+  // Scroll to the section when the hash changes or on initial load if hash exists
+  useEffect(() => {
+    const handleHashChange = () => {
+      const targetId = window.location.hash.substring(1); // Get the ID from hash
+      if (targetId) {
+        const element = document.getElementById(targetId);
+        if (element) {
+          // Scroll to the element smoothly
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    // Delay the initial scroll if the hash is present
+    const initialScroll = setTimeout(() => {
+      handleHashChange();
+    }, 500); // Delay to ensure elements are rendered
+
+    // Listen for hash change event
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Cleanup on component unmount
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      clearTimeout(initialScroll);
+    };
+  }, []);
+
   return (
     <div className="bg-white">
       {/* Add another copy of the Header in the LandingPage */}
@@ -32,7 +60,7 @@ const LandingPage: React.FC = () => {
           <ProjectShowcase />
           <ProjectShowcasePersonal />
           <ProjectShowcaseArtsMisc />
-          <div className="h-[100px]"></div>
+          <div id="academic-projects" className="h-[100px]"></div> {/* Make sure this section has a valid ID */}
           <AboutMe />
           <Footer />
         </>
