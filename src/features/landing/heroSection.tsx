@@ -312,8 +312,10 @@ class Node {
 // Define the p5.js sketch
 
 // HeroSection component
-const HeroSection: React.FC = () => {
+const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
   const router = useRouter();
+  const [isSketchLoaded, setIsSketchLoaded] = useState(false);
+  
 
   const sketch: Sketch = (p5: p5) => {
     let rootNode: Node;
@@ -708,6 +710,8 @@ const HeroSection: React.FC = () => {
         QuietQuotes,
         TravelSketches,
       ];
+
+      setIsSketchLoaded(true);
     };
 
     p5.draw = () => {
@@ -743,6 +747,10 @@ const HeroSection: React.FC = () => {
       });
 
       rootNode.move();
+
+      if (isSketchLoaded) {
+        onLoad(); // Trigger the onLoad callback once the sketch is loaded
+      }
     };
 
     // Mouse dragged function to move nodes
@@ -785,30 +793,7 @@ const HeroSection: React.FC = () => {
     };
   };
 
-  const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          setIsVisible(true); // Trigger visibility when in view
-        }
-      },
-      { threshold: 0.5 } // 50% of the element should be visible
-    );
-
-    const heroSection = document.getElementById('hero-section');
-    if (heroSection) {
-      observer.observe(heroSection);
-    }
-
-    return () => {
-      if (heroSection) {
-        observer.unobserve(heroSection);
-      }
-    };
-  }, []);
 
   return (
     <div className=" w-auto h-screen bg-[#222222] " id = "mind-map">

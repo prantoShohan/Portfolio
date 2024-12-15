@@ -5,29 +5,26 @@ import AboutMe from './aboutMe';
 import ProjectShowcasePersonal from './projectShowcasePersonal';
 import ProjectShowcaseArtsMisc from './projectShowcaseArtsMisc';
 import Footer from '@/layout/footer';
-import Loader from './Loader'; // Import the Loader component
+import Loader from './Loader';
 
-const LandingPage = () => {
+const LandingPage: React.FC = () => {
   const [isHeroLoaded, setIsHeroLoaded] = useState(false);
 
-  useEffect(() => {
-    // Simulate loading for 2 seconds
-    const timer = setTimeout(() => {
-      setIsHeroLoaded(true); // After 2 seconds, set the hero section as loaded
-    }, 3000); // Adjust the delay as needed
-
-    return () => clearTimeout(timer);
-  }, []);
+  // This function will be passed to HeroSection to notify when the sketch is ready
+  const handleHeroSectionLoad = () => {
+    setIsHeroLoaded(true); // Update the state when HeroSection has finished loading
+  };
 
   return (
     <div className="bg-white">
-      {/* Show loader while the page is loading */}
+      <HeroSection onLoad={handleHeroSectionLoad} />
+      {/* Show loader while HeroSection is loading */}
       {!isHeroLoaded && <Loader />}
 
       {/* Once the HeroSection is loaded, render the content */}
       {isHeroLoaded && (
         <>
-          <HeroSection />
+
           <ProjectShowcase />
           <ProjectShowcasePersonal />
           <ProjectShowcaseArtsMisc />
