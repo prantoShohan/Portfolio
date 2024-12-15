@@ -14,7 +14,7 @@ const LandingPage = () => {
     // Simulate loading for 2 seconds
     const timer = setTimeout(() => {
       setIsHeroLoaded(true); // After 2 seconds, set the hero section as loaded
-    }, 2000); // Adjust the delay as needed
+    }, 3000); // Adjust the delay as needed
 
     return () => clearTimeout(timer);
   }, []);
