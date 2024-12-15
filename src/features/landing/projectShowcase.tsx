@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 const ProjectShowcase = () => {
   const router = useRouter();
   return (
-    <div id="projects" className="bg-white responsive-padding py-6">
+    <div id="academic-projects" className="bg-white responsive-padding py-6">
       <div className="text-4xl text-black px-4 pt-[40px]">Academics</div>
       <div className="flex flex-col space-y-8 py-8">
         <ProjectCard

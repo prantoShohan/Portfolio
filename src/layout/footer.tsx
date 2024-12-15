@@ -3,11 +3,11 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="h-[0px] responsive-padding w-full bg-[#222222] space-y-6 flex flex-col justify-between px-4 ">
+    <div className=" responsive-padding w-full bg-[#222222] space-y-6 flex flex-col justify-between px-4 py-4">
       <div className="py-1 flex justify-between items-center">
         <div className="flex space-x-1 justify-center items-center">
           <Copyright size={14} />
-          <div className="text-sm">Pranto Shohan</div>
+          <div className="text-sm">Pranto Shohan 2024</div>
         </div>
         <div className="flex space-x-3 justify-end items-center">
           <a href="https://www.facebook.com/pranto.shohan" target="_blank">

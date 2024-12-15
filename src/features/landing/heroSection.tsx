@@ -786,7 +786,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <div className=" w-auto h-screen bg-[#222222]">
+    <div className=" w-auto h-screen bg-[#222222] " id = "mind-map">
       <NextReactP5Wrapper sketch={sketch} />
     </div>
   );

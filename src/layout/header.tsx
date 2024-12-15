@@ -15,8 +15,8 @@ const Header = () => {
   };
 
   return (
-    <div className="!min-h-[4vh] flex items-center  bg-[#222222] w-full responsive-padding z-30 sticky top-0 justify-between">
-      <div className="">
+    <div className="!min-h-[4vh] flex items-center bg-[#222222] w-full responsive-padding z-30 sticky top-0 justify-between py-2">
+      <div>
         <Link href={'/'} className="text-2xl font-bold">
           Pranto Shohan
         </Link>
@@ -27,29 +27,66 @@ const Header = () => {
         {isMenuOpen && (
           <div
             className={cn(
-              'absolute animate-in fade-in-0 zoom-in-95 duration-600 flex flex-col space-y-4 shadow-md rounded-md md:right-[26%] right-[2%] -left-[2%] md:left-auto z-50 px-4 py-4 md:w-[200px] bg-black/60',
+              'absolute animate-in fade-in-0 zoom-in-95 duration-600 flex flex-col space-y-6 shadow-lg rounded-md md:right-[26%] right-[2%] -left-[2%] md:left-auto z-50 px-4 py-4 md:w-[200px] bg-black/60 backdrop-blur-md',
               isMenuOpen
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 -translate-y-4'
             )}
           >
-            <div className="pt-4">
+            <div className="pt-4 flex flex-col items-end space-y-6">
               <Link
-                href={'/#projects'}
-                className="link-hover font-medium"
+                href={'/#mind-map'}
+                className="link-hover font-medium group"
                 onClick={toggleMenu}
               >
-                <div className="flex items-center space-x-1">
-                  <span>Projects</span>
+                <div className="relative flex items-center space-x-1">
+                  <span className="group-hover:after:w-full after:transition-all after:duration-300 after:ease-in-out after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-white after:w-0">
+                    Mind Map
+                  </span>
                 </div>
               </Link>
               <Link
-                href={'/#projects'}
-                className="link-hover font-medium"
+                href={'/#academic-projects'}
+                className="link-hover font-medium group"
                 onClick={toggleMenu}
               >
-                <div className="flex items-center space-x-1">
-                  <span>About me</span>
+                <div className="relative flex items-center space-x-1">
+                  <span className="group-hover:after:w-full after:transition-all after:duration-300 after:ease-in-out after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-white after:w-0">
+                    Academic Projects
+                  </span>
+                </div>
+              </Link>
+              <Link
+                href={'/#personal-projects'}
+                className="link-hover font-medium group"
+                onClick={toggleMenu}
+              >
+                <div className="relative flex items-center space-x-1">
+                  <span className="group-hover:after:w-full after:transition-all after:duration-300 after:ease-in-out after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-white after:w-0">
+                    Personal Projects
+                  </span>
+                </div>
+              </Link>
+              <Link
+                href={'/#arts-and-misc'}
+                className="link-hover font-medium group"
+                onClick={toggleMenu}
+              >
+                <div className="relative flex items-center space-x-1">
+                  <span className="group-hover:after:w-full after:transition-all after:duration-300 after:ease-in-out after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-white after:w-0">
+                    Arts and Misc.
+                  </span>
+                </div>
+              </Link>
+              <Link
+                href={'/#about'}
+                className="link-hover font-medium group"
+                onClick={toggleMenu}
+              >
+                <div className="relative flex items-center space-x-1">
+                  <span className="group-hover:after:w-full after:transition-all after:duration-300 after:ease-in-out after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-white after:w-0">
+                    About
+                  </span>
                 </div>
               </Link>
             </div>

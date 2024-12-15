@@ -4,7 +4,7 @@ import ProjectCard from './projectCard';
 
 const ProjectShowcasePersonal = () => {
   return (
-    <div className="bg-white responsive-padding py-6">
+    <div id="personal-projects" className="bg-white responsive-padding py-6">
       <div className="text-4xl text-black px-4 pt-[40px]">Personal</div>
       <div className="flex flex-col space-y-8 py-8">
         <ProjectCard
