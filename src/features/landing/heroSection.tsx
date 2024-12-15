@@ -18,7 +18,7 @@ class Node {
   public totalCollision: number;
   public children: Node[];
   public parents: Node[];
-  public speed: number = 3;
+  public speed: number = 2;
   static textsize: number;
   public path: any;
   public router: any;
@@ -67,7 +67,12 @@ class Node {
     for (let i = 0; i < this.children.length; i++) {
       if(this.children[i].children.length>0){
         for(let j = 0; j < this.children[i].children.length; j++){
-          this.collide(this.children[i].children[j], 300)
+          if(this.p5.windowWidth < 600){
+            this.collide(this.children[i].children[j], 500);
+          }else{
+            this.collide(this.children[i].children[j], 300);
+          }
+          
         }
       }
     }
@@ -95,28 +100,28 @@ class Node {
       if (this.position.y + this.radius > this.p5.height) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(0, this.p5.height - (this.position.y + this.radius));
-        this.applyForce(moveVector.mult(2));
+        this.applyForce(moveVector.mult(10));
       }
       
       // Check if the node has gone above the top of the canvas
       if (this.position.y - this.radius < 0) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(0, -this.position.y + this.radius);
-        this.applyForce(moveVector.mult(2));
+        this.applyForce(moveVector.mult(10));
       }
     
       // Check if the node has gone to the right of the canvas
       if (this.position.x + this.radius+50 > this.p5.width) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(this.p5.width - (this.position.x + this.radius), 0);
-        this.applyForce(moveVector.mult(3));
+        this.applyForce(moveVector.mult(10));
       }
       
       // Check if the node has gone to the left of the canvas
       if (this.position.x - (this.radius+50) < 0) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(-this.position.x + this.radius, 0);
-        this.applyForce(moveVector.mult(3));
+        this.applyForce(moveVector.mult(10));
       }
     }
     
@@ -188,11 +193,14 @@ class Node {
     let txtx = 0;
     let txty = 0;
     this.p5.textSize(Node.textsize);
-    if(this.p5.windowWidth<600 && this.radius <= 50){
+    if(this.p5.windowWidth<600 && this.radius <= 50 && !this.router){
       this.p5.fill(100);
     }else{
       this.p5.fill(256);
     }
+
+    this.p5.textFont('Courier New');
+    this.p5.text(this.name, this.position.x-30, this.position.y+15+txty);
 
     this.p5.circle(this.position.x, this.position.y, 10);
 
@@ -228,9 +236,7 @@ class Node {
     this.p5.circle(this.position.x, this.position.y, this.radius);
     this.p5.stroke(256);
 
-    this.p5.fill(256);
-    this.p5.textFont('Courier New');
-    this.p5.text(this.name, this.position.x-30, this.position.y+15+txty);
+
 
     // this.p5.fill(this.isHovered() ? 'red' : 'white');
     // this.p5.circle(this.position.x, this.position.y, this.radius);
@@ -319,7 +325,7 @@ const HeroSection: React.FC = () => {
       Architecture.addChild(ArchitecturalProjects);
       let UrbanDesign = new Node(p5, 2, "UrbanDesign", 50, p5.random(0, p5.width), p5.random(0, p5.height));
       Architecture.addChild(UrbanDesign);
-      let ComputationalDesign = new Node(p5, 2, "ComputationalDesign", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+      let ComputationalDesign = new Node(p5, 2, "ComputationalDesign", 80, p5.random(0, p5.width), p5.random(0, p5.height));
       Architecture.addChild(ComputationalDesign);
       Architecture.addChild(Landscaping);
   
@@ -341,7 +347,7 @@ const HeroSection: React.FC = () => {
   
       let Programming = new Node(p5, 3, "Programming", 150*scalefactor, 4 * p5.width / 6, p5.height / 2);
       rootNode.addChild(Programming);
-      let Languages = new Node(p5, 3, "Languages", 50, p5.random(0, p5.width), p5.random(0, p5.height));
+      let Languages = new Node(p5, 3, "Languages", 70, p5.random(0, p5.width), p5.random(0, p5.height));
       Programming.addChild(Languages);
       let MachineLearning = new Node(p5, 3, "MachineLearning", 50, p5.random(0, p5.width), p5.random(0, p5.height),);
       Programming.addChild(MachineLearning);
