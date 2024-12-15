@@ -22,7 +22,7 @@
 }
 
 .section-text {
-  @apply text-[14px] text-justify text-gray-500 py-8 ;
+  @apply text-[14px] text-justify text-gray-500  ;
 }
 
 .text-section {

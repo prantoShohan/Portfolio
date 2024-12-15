@@ -68,7 +68,7 @@ class Node {
       if(this.children[i].children.length>0){
         for(let j = 0; j < this.children[i].children.length; j++){
           if(this.p5.windowWidth < 600){
-            this.collide(this.children[i].children[j], 500);
+            this.collide(this.children[i].children[j], 200);
           }else{
             this.collide(this.children[i].children[j], 300);
           }
@@ -100,28 +100,28 @@ class Node {
       if (this.position.y + this.radius > this.p5.height) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(0, this.p5.height - (this.position.y + this.radius));
-        this.applyForce(moveVector.mult(10));
+        this.applyForce(moveVector.mult(3));
       }
       
       // Check if the node has gone above the top of the canvas
       if (this.position.y - this.radius < 0) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(0, -this.position.y + this.radius);
-        this.applyForce(moveVector.mult(10));
+        this.applyForce(moveVector.mult(3));
       }
     
       // Check if the node has gone to the right of the canvas
       if (this.position.x + this.radius+50 > this.p5.width) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(this.p5.width - (this.position.x + this.radius), 0);
-        this.applyForce(moveVector.mult(10));
+        this.applyForce(moveVector.mult(2));
       }
       
       // Check if the node has gone to the left of the canvas
       if (this.position.x - (this.radius+50) < 0) {
         // Apply a force to bring the node back within the bounds
         const moveVector = this.p5.createVector(-this.position.x + this.radius, 0);
-        this.applyForce(moveVector.mult(10));
+        this.applyForce(moveVector.mult(2));
       }
     }
     

@@ -154,7 +154,357 @@ Time = T
 Relaxed = I
 
 `
+const codeZoning = `
 
+
+__author__ = "prantoShohan"
+__version__ = "2024.05.19"
+
+import rhinoscriptsyntax as rs
+import ghpythonlib.treehelpers as TH
+import Grasshopper as gh
+import Rhino.Geometry as R
+import random as rand
+import math
+
+DistGraph = TH.tree_to_list(DISTANCES_GRAPH, retrieve_base=lambda y: y)
+NbrhdGraph = TH.tree_to_list(NEIGHBOURHOOD_GRAPH, retrieve_base=lambda y: y)
+
+DG = DistGraph
+
+if "NG" not in globals() or RESET:
+    NG = []
+    for n in range(len(NbrhdGraph)):
+        N = []
+        for m in range(len(NbrhdGraph[n])):
+            N.append(int(NbrhdGraph[n][m][1:]))
+        NG.append(N)
+
+
+
+
+MetroId = 302
+
+InfluenceFactor = {
+                #Demand per unit residential
+                "Residential_Residential" : 1/150,
+                "Residential_Educational" : 1/1500,
+                "Residential_Healthcare" : 1/400,
+                "Residential_SocioCultural" : 1/400,
+                #Demand for commercial from different landuses
+                "Residential_Commercial" : 1/50,
+                "Commercial_Commercial" : -1,
+                "Educational_Commercial" : 5,
+                "Healthcare_Commercial" : 3,
+                "SocioCultural_Commercial" : 2,
+                #Self distance
+                "Educational_Educational" : -1.5,
+                "Healthcare_Healthcare" : -1.5,
+                "SocioCultural_SocioCultural" : -1,
+                #With metro
+                "Metro_Residential" : 3,
+                "Metro_Commercial" : 5,
+                "Metro_Educational" : .5
+                
+            }
+
+DistanceFactor = {
+                #(B, d) d average walking distance(m)
+                "Residential_Residential" : (1.71, 756),
+                "Residential_Educational" : (2.01, 289),
+                "Residential_Healthcare" : (1.71, 756),
+                "Residential_SocioCultural" : (1.93, 289),
+                
+                "Residential_Commercial" : (2.14, 128),
+                "Commercial_Commercial" : (2.14, 128),
+                "Educational_Commercial" : (2.14, 128),
+                "Healthcare_Commercial" : (2.14, 128),
+                "SocioCultural_Commercial" : (2.14, 128),
+                
+                "Educational_Educational" : (2.01, 289),
+                "Healthcare_Healthcare" : (1.71, 756),
+                "SocioCultural_SocioCultural" : (2.14, 128),
+                
+                "Metro_Residential" : (1.71, 756),
+                "Metro_Commercial" : (3, 756),
+                "Metro_Educational" : (3, 128)
+            }
+
+class Block:
+    def __init__(self, position, id):
+        self.position = position
+        self.id = int(id[1:])
+        self.neighbours = [] 
+        
+        self.capacity = 20
+        self.maxCapacity = 30
+        
+        self.demand = {
+            "Residential" : 0.0,
+            "Commercial" : 0.0,
+            "Healthcare" : 0.0,
+            "Educational" : 0.0,
+            "SocioCultural" : 0.0
+            }
+        
+        self.distribution = {
+            "Residential" : 0.0,
+            "Commercial" : 0.0,
+            "Healthcare" : 0.0,
+            "Educational" : 0.0,
+            "SocioCultural" : 0.0, 
+            "Metro" : 0.0
+            }
+        
+        
+       
+    def addNeighbour(self, nbr, distance):
+        self.neighbours.append((nbr, distance))
+    
+    def addNeighbours(self, nbrList, distanceList, blockList):
+        assert(len(nbrList) == len(distanceList))
+        for i in range(len(nbrList)):
+            self.addNeighbour(blockList[nbrList[i] - 1], distanceList[i])
+    
+    def findNearest(self, type):
+        distance = 500
+        closestId = 301
+        for nbr in self.neighbours:
+            if(nbr[0].distribution[type] > 1):
+                if (nbr[1] < distance):
+                    closestId = nbr[0].id
+                    distance = nbr[1]
+        return((closestId, distance))
+    
+    def findNearestAll(self):
+        print("Commercial: ", self.findNearest("Commercial")[1], " id: ", self.findNearest("Commercial")[0])
+        print("Educational: ", self.findNearest("Educational")[1], " id: ", self.findNearest("Educational")[0])
+        print("Healthcare: ", self.findNearest("Healthcare")[1], " id: ", self.findNearest("Healthcare")[0])
+        print("SocioCultural: ", self.findNearest("SocioCultural")[1], " id: ", self.findNearest("SocioCultural")[0])
+    
+    def evaluateDemand(self):
+        #print("##########Evaluating id:", self.id)
+        
+        for nbr in self.neighbours:
+            if(nbr[1] != None):
+                #print("Against id: ", nbr[0].id, " Distance: ", nbr[1])
+                
+                
+                
+                self.demand["Residential"] += nbr[0].distribution["Residential"] * InfluenceFactor["Residential_Residential"] * self.calculateDistanceFactor(nbr[1], "Residential_Residential")
+                self.demand["Residential"] += nbr[0].distribution["Metro"] * InfluenceFactor["Metro_Residential"] * self.calculateDistanceFactor(nbr[1], "Metro_Residential") 
+                self.demand["Residential"] = min(10, max(-10, self.demand["Residential"]))
+                
+                self.demand["Commercial"] += nbr[0].distribution["Metro"] * InfluenceFactor["Metro_Commercial"] * self.calculateDistanceFactor(nbr[1], "Metro_Commercial") 
+                self.demand["Commercial"] += nbr[0].distribution["Residential"] * InfluenceFactor["Residential_Commercial"] * self.calculateDistanceFactor(nbr[1], "Residential_Commercial")
+                self.demand["Commercial"] += nbr[0].distribution["Commercial"] * InfluenceFactor["Commercial_Commercial"] * self.calculateDistanceFactor(nbr[1], "Commercial_Commercial")
+                self.demand["Commercial"] += nbr[0].distribution["Educational"] * InfluenceFactor["Educational_Commercial"] * self.calculateDistanceFactor(nbr[1], "Educational_Commercial")
+                self.demand["Commercial"] += nbr[0].distribution["Healthcare"] * InfluenceFactor["Healthcare_Commercial"] * self.calculateDistanceFactor(nbr[1], "Healthcare_Commercial")
+                self.demand["Commercial"] = min(10, max(-10, self.demand["Commercial"]))
+                
+                self.demand["Educational"] += nbr[0].distribution["Metro"] * InfluenceFactor["Metro_Educational"] * self.calculateDistanceFactor(nbr[1], "Metro_Educational")
+                self.demand["Educational"] += nbr[0].distribution["Residential"] * InfluenceFactor["Residential_Educational"] * self.calculateDistanceFactor(nbr[1], "Residential_Educational")
+                self.demand["Educational"] += nbr[0].distribution["Educational"] * InfluenceFactor["Educational_Educational"] * self.calculateDistanceFactor(nbr[1], "Educational_Educational")
+                self.demand["Educational"] = min(10, max(-10, self.demand["Educational"]))
+                
+                self.demand["Healthcare"] += nbr[0].distribution["Residential"] * InfluenceFactor["Residential_Healthcare"] * self.calculateDistanceFactor(nbr[1], "Residential_Healthcare")
+                self.demand["Healthcare"] += nbr[0].distribution["Healthcare"] * InfluenceFactor["Healthcare_Healthcare"] * self.calculateDistanceFactor(nbr[1], "Healthcare_Healthcare")
+                self.demand["Healthcare"] = min(10, max(-10, self.demand["Healthcare"]))
+                
+                self.demand["SocioCultural"] += nbr[0].distribution["Residential"] * InfluenceFactor["Residential_SocioCultural"] * self.calculateDistanceFactor(nbr[1], "Residential_SocioCultural")
+                self.demand["SocioCultural"] += nbr[0].distribution["SocioCultural"] * InfluenceFactor["SocioCultural_SocioCultural"] * self.calculateDistanceFactor(nbr[1], "SocioCultural_SocioCultural")
+                self.demand["SocioCultural"] = min(10, max(-10, self.demand["SocioCultural"]))
+                
+                
+        occupiedSpace = self.distribution["Residential"] + self.distribution["Commercial"] * .5 + 5 * self.distribution["Educational"] + 5 * self.distribution["Healthcare"] + 3*self.distribution["SocioCultural"] 
+        demandMultiplier = 1
+        if (occupiedSpace > self.capacity):
+            x = occupiedSpace - self.capacity
+            demandMultiplier = -(x/self.capacity) + 1
+        
+#        demandMultiplier = min(1, max(-2, demandMultiplier))
+        
+        self.demand["Residential"] *= demandMultiplier
+        self.demand["Commercial"] *= demandMultiplier
+        self.demand["Educational"] *= demandMultiplier
+        self.demand["Healthcare"] *= demandMultiplier
+        self.demand["SocioCultural"] *= demandMultiplier
+
+#        
+#        self.demand["Residential"] = min(10, max(-10, self.demand["Residential"]))
+#        self.demand["Commercial"] = min(10, max(-10, self.demand["Commercial"]))
+#        self.demand["Educational"] = min(5, max(-5, self.demand["Educational"]))
+        
+    def evaluateDemandWithMetro(self):
+#        print("##########Evaluating id:", self.id)
+        
+        for nbr in self.neighbours:
+            if(nbr[1] != None):
+#                print("Against id: ", nbr[0].id, " Distance: ", nbr[1])
+#                print("Residential_Residential","distribution",nbr[0].distribution["Residential"],  "influence_factor:", InfluenceFactor["Residential_Residential"], "distance Factor:", self.calculateDistanceFactor(nbr[1], "Residential_Residential"))
+                self.demand["Residential"] += nbr[0].distribution["Residential"] * InfluenceFactor["Residential_Residential"] * self.calculateDistanceFactor(nbr[1], "Residential_Residential")
+                self.demand["Residential"] += nbr[0].distribution["Metro"] * InfluenceFactor["Metro_Residential"] * self.calculateDistanceFactor(nbr[1], "Metro_Residential") 
+                
+                self.demand["Commercial"] += nbr[0].distribution["Metro"] * InfluenceFactor["Metro_Commercial"] * self.calculateDistanceFactor(nbr[1], "Metro_Commercial") 
+                self.demand["Commercial"] += nbr[0].distribution["Residential"] * InfluenceFactor["Residential_Commercial"] * self.calculateDistanceFactor(nbr[1], "Residential_Commercial") 
+                self.demand["Commercial"] += nbr[0].distribution["Commercial"] * InfluenceFactor["Commercial_Commercial"] * self.calculateDistanceFactor(nbr[1], "Commercial_Commercial") 
+                self.demand["Commercial"] += nbr[0].distribution["Educational"] * InfluenceFactor["Educational_Commercial"] * self.calculateDistanceFactor(nbr[1], "Educational_Commercial")
+                
+                self.demand["Educational"] += nbr[0].distribution["Metro"] * InfluenceFactor["Metro_Educational"] * self.calculateDistanceFactor(nbr[1], "Metro_Educational")
+                self.demand["Educational"] += nbr[0].distribution["Residential"] * InfluenceFactor["Residential_Educational"] * self.calculateDistanceFactor(nbr[1], "Residential_Educational")
+                self.demand["Educational"] += nbr[0].distribution["Educational"] * InfluenceFactor["Educational_Educational"] * self.calculateDistanceFactor(nbr[1], "Educational_Educational")
+    
+
+    def grow(self):
+        self.distribution["Residential"] += int(self.demand["Residential"] * 1)
+        self.distribution["Commercial"] += int(self.demand["Commercial"] * 1)
+        self.distribution["Educational"] += int(self.demand["Educational"] * 1)
+        self.distribution["Healthcare"] += int(self.demand["Healthcare"] * 1)
+        self.distribution["SocioCultural"] += int(self.demand["SocioCultural"] * 1)
+        
+        self.distribution["Residential"] = max(0, self.distribution["Residential"])
+        self.distribution["Commercial"] = max(0, self.distribution["Commercial"])
+        self.distribution["Educational"] = max(0, self.distribution["Educational"])
+        self.distribution["Healthcare"] = max(0, self.distribution["Healthcare"])
+        self.distribution["SocioCultural"] = max(0, self.distribution["SocioCultural"])
+        
+        if (self.distribution["Educational"] >= 1):
+            self.distribution["Commercial"] = 0
+            self.distribution["Residential"] = 0
+            self.distribution["Healthcare"] = 0
+            self.distribution["SocioCultural"] = 0
+        
+        if (self.distribution["Healthcare"] >= 1):
+            self.distribution["Commercial"] = 0
+            self.distribution["Residential"] = 0
+            self.distribution["Educational"] = 0
+            self.distribution["SocioCultural"] = 0
+
+    def calculateDistanceFactor(self, distance, relationship):
+        #Distance influences P(d) = e^(-Bd)
+        #https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3377942/
+        distanceInfluence = math.e ** ( - DistanceFactor[relationship][0] * distance/1609.34 ) # meter to miles
+        return distanceInfluence 
+    
+    def __str__(self):
+        s = " ID: "+str(self.id) + ", Neighbours: "
+        for n in self.neighbours:
+            s += " id: "+str(n[0].id) +  "- distance: "+str(n[1])
+        return s
+
+
+################## ID = index+1  #################
+
+def initial_influence():
+    for b in range(len(Blocks)):
+        Blocks[b].evaluateDemandWithMetro()
+
+def demand_loop():
+    for b in range(len(Blocks)):
+        Blocks[b].evaluateDemand()
+def grow_loop():
+    for b in range(len(Blocks)):
+        Blocks[b].grow()
+
+def main():
+
+    demand_loop()
+    grow_loop()
+
+
+
+
+
+# Instantiate or reset persistent counter variable
+if "c" not in globals() or RESET:
+    c = 0
+
+if "Blocks" not in globals() or RESET:
+    Blocks = []
+    for n in range(len(BLOCKS)):
+        Blocks.append(Block(BLOCKS[n], BLOCKS_ID[n]))
+    for b in range(len(Blocks)):
+        Blocks[b].addNeighbours(NG[b], DG[b], Blocks)
+        
+    Blocks[MetroId-1].distribution["Metro"] = 1
+    Blocks[246].distribution["Metro"] = 1
+    initial_influence()
+
+
+# Update the variable and component
+if (c < ITERATIONS):
+    c = c + 1
+    main()
+
+COUNTER = c
+
+
+Points = []
+Ids = []
+RD = []
+CD = []
+ED = []
+HD = []
+SD = []
+
+RDist = []
+CDist = []
+EDist = []
+HDist = []
+SDist = []
+
+for p in Blocks:
+    Points.append(p.position)
+    Ids.append(p.id)
+    RD.append(p.demand["Residential"])
+    CD.append(p.demand["Commercial"])
+    ED.append(p.demand["Educational"])
+    HD.append(p.demand["Healthcare"])
+    SD.append(p.demand["SocioCultural"])
+    
+    RDist.append(p.distribution["Residential"])
+    CDist.append(p.distribution["Commercial"])
+    EDist.append(p.distribution["Educational"])
+    HDist.append(p.distribution["Healthcare"])
+    SDist.append(p.distribution["SocioCultural"])
+
+points = Points
+ids = Ids
+
+RESIDENTIAL_DEMAND = RD
+COMMERCIAL_DEMAND = CD
+EDUCATIONAL_DEMAND = ED
+HEALTHCARE_DEMAND = HD
+SOCIOCULTURAL_DEMAND = SD
+
+RESIDENTIAL_DISTRIBUTION = RDist
+COMMERCIAL_DISTRIBUTION = CDist
+EDUCATIONAL_DISTRIBUTION = EDist
+HEALTHCARE_DISTRIBUTION = HDist
+SOCIOCULTURAL_DISTRIBUTION = SDist
+
+Blocks[287].findNearestAll()
+    
+#Blocks = []
+#
+#for b in range(len(BLOCKS)):
+#    Blocks.append(Block(BLOCKS[b], BLOCKS_ID[b]))
+#
+#def findBlock(blocks, id):
+#    for b in blocks:
+#        if b.id == id:
+#            return b
+#        else:
+#            print ("not found")
+#
+#for n in range(len(Blocks)):
+#    for m in range(len(NbrhdGraph[n])):
+#        Blocks[n].addNeighbour(findBlock(Blocks, int(NbrhdGraph[n][m][1:])), DistGraph[n][m])
+#
+#
+#print(Blocks[1])
+
+`
   const overviewRef = useRef(null);
   const ContextRef = useRef(null);
   const SiteRef = useRef(null);
@@ -275,11 +625,25 @@ Relaxed = I
           sections={EMERGENCE_SECTIONS}
           activeSection={activeSection}
         />
+{/* <div className="font-style:italic pt-16 max-w-prose text-xl text-justify"></div> */}
+      <div className='relative'>
+        <div className=" font-style: italic pt-24 max-w-prose text-3xl text-gray-500 font-extrabold text-justify">
+          &quot;The ecological neighbourhood is a living system, one
+          that is never static. It displays the same evolutionary
+          characters as living organisms and thus evolves over time&quot;.
+          
+        </div>
+        <div className='md:absolute md:bottom-0 md:left-full md:ml-4 text-[10px] text-gray-400 whitespace-normal md:w-[100px] lg:w-[200px] font-style: italic'>
+          <div className='text-gray-500 text-[12px]'> RESILIENCE AND EVOLUTION</div>
+          Neighbourhood Design Guidelines
+        </div>
+      </div>
+
+
         {/*Overview  */}
-        <div
-          id="Overview"
-          ref={overviewRef}>
-          <div className="section-title">Overview</div>
+        <div>
+          <div className="section-title"id="Overview"ref={overviewRef}>Overview</div>
+          <div className='font-style: italic text:xl  py-4 text-gray-600'>What distinguishes the organic growth of a city from its planned development?</div>
           <div className="section-text">
             My undergraduate final year thesis explores the concept that cities function as living organisms,
             with interdependent layers of systems that can be designed computationally.
@@ -294,13 +658,14 @@ Relaxed = I
 
         {/* Context */}
         <div className="md:space-x-5 relative text-section"
-          id="Context"
-          ref={ContextRef}>
+          >
           <div className="relative">
             {/* this header needs to have a custom class */}
-            <div className="section-title">
+            <div className="section-title" id="Context"
+          ref={ContextRef}>
               Context
             </div>
+            <div className='font-style: italic text:xl  py-4 text-gray-600'>Dhaka’s urban expansion vs. wetland geography and ecologicaly.</div>
             <div className="section-text">
               Dhaka is one of the most densely populated cities in the world,
               experiencing rapid growth over the past 30 years alongside a steady decline in its wetlands and natural landscapes.
@@ -345,9 +710,9 @@ Relaxed = I
 
 
         <div
-          id="Site"
-          ref={SiteRef}>
-          <div className="subsection-title">Site</div>
+         >
+          <div className="subsection-title"  id="Site"
+          ref={SiteRef}>Site</div>
           <div className="section-text">
             Uttara Phase-3 is one of the three largest housing projects undertaken by RAJUK, Dhaka&apos;s planning body,
             but the extent of wetland destruction it has caused is alarming.
@@ -368,10 +733,10 @@ Relaxed = I
 
 
         {/*Urban Organism */}
-        <div
-          id="Urban Organism"
-          ref={Urban_OrganismRef}>
-          <div className="section-title">Urban Organism</div>
+        <div>
+          <div className="section-title" id="Urban Organism"
+          ref={Urban_OrganismRef}>Urban Organism</div>
+          <div className='font-style: italic text:xl  py-4 text-gray-600'>Like organisms, cities function through interdependent systems.</div>
           <div className="section-text">
             Cities and organisms share many similarities in terms of circulation, resource cycles, information networks, and the positioning of their components. 
             While organisms have evolved to develop highly efficient and intelligent designs, cities have grown through the collective intelligence of people. 
@@ -379,13 +744,12 @@ Relaxed = I
           </div>
 
           {/* Landform System */}
-          <div className="w-full"
-            id="Landform System"
-            ref={LandformRef}>
+          <div className="w-full">
             <div className="md:flex md:flex-row md:space-x-5 relative text-section">
               {/* Text Section */}
               <div className="md:w-[20%] md:basis-1/3 relative">
-                <div className="text-3xl font-bold py-4 text-gray-600">Landform System</div>
+                <div className="text-3xl font-bold py-4 text-gray-600" id="Landform System"
+            ref={LandformRef}>Landform System</div>
                 <div className="section-text">
                   Dhaka has a unique landscape. The Madhupur Tract in greater Dhaka is surrounded by rivers that flood every year, 
                   bringing fresh water inland. Over thousands of years, these floods have shaped the land into amoeboid patterns. 
@@ -485,10 +849,9 @@ Relaxed = I
           </div>
 
           {/* Connectivity System */}
-          <div className='pt-8'
-            id="Connectivity System"
+          <div className='pt-8'>
+            <div className='subsection-title' id="Connectivity System"
             ref={ConnectivityRef}>
-            <div className='subsection-title'>
               Connectivity System
             </div>
             <div className="section-text">
@@ -539,13 +902,12 @@ Relaxed = I
           </div>
 
           {/* Zoning system */}
-          <div className="w-full"
-            id="Zoning System"
-            ref={ZoningRef}>
+          <div className="w-full">
             <div className="md:flex md:flex-row md:space-x-5 relative text-section">
               {/* Text Section */}
               <div className="md:w-[20%] md:basis-1/2 relative">
-                <div className="text-3xl font-bold py-4 text-gray-600">Zoning System</div>
+                <div className="text-3xl font-bold py-4 text-gray-600"  id="Zoning System"
+            ref={ZoningRef}>Zoning System</div>
                 <div className="section-text">
                 Natural settlements tend to grow organically in this type of landform. However, designing an efficient and walkable neighborhood in such areas is challenging. 
                 To address this, the natural settlement growth pattern can be simulated using walkability metrics.
@@ -603,6 +965,9 @@ Relaxed = I
           In step two, new commercial and educational facilities emerge to meet this demand. 
           However, this growth generates additional demand, which is addressed in step three, continuing the cycle.
           </div>
+          <div className='pt-8'>
+              <CodeBlock code={codeZoning} language="python" />
+            </div>
 
           <div className="w-full mt-4">
             <img
@@ -658,16 +1023,17 @@ Relaxed = I
         </div>
 
         {/* Efficiency of Urban Organism */}
-        <div className="w-full"
-          id="Efficiency"
-          ref={EfficiencyRef}>
+        <div className="w-full">
 
           <div className="md:flex md:flex-row md:space-x-5 relative text-section">
             {/* Text Section */}
             <div className="md:w-[20%] md:basis-1/3 relative">
-              <div className="text-5xl font-bold pb-4 text-gray-800">
+              <div className="text-5xl font-bold pb-4 text-gray-800" 
+                id="Efficiency"
+                ref={EfficiencyRef}>
                 Efficiency of Urban Organism
               </div>
+              <div className='font-style: italic text:xl  py-4 text-gray-600'>Effecient systems designed through collective intelligence.</div>
 
               <div className="section-text">
                 This is a kind of swarm intelligent or cellular automata, where each agent reacts with its neighbours. The cycle of growth and demand is a dynamical system.
@@ -712,10 +1078,11 @@ Relaxed = I
         </div>
 
         {/* Landscape System */}
-        <div className="w-full"
-          id="Landscape"
-          ref={LandscapeRef}>
-          <div className="section-title">Landscape and Walkability</div>
+        <div className="w-full">
+          <div className="section-title"
+            id="Landscape"
+            ref={LandscapeRef}>Landscape and Walkability</div>
+          <div className='font-style: italic text:xl  py-4 text-gray-600'>The land water interface supports the most important ecosystems.</div>
 
           <div className="section-text mt-4">
           The ecosystem of the edge plays a vital role in these landscapes. 

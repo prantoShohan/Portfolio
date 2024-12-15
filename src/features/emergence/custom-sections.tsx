@@ -9,17 +9,24 @@ export interface SectionProps {
 
 const CustomSections = ({ sections, activeSection }: SectionProps) => {
   return (
-    <div className="hidden lg:block fixed rounded-xl p-4 w-[10%] bottom-10 left-[10%] text-black bg-gry-100 border border-border/20 space-y-3">
+    <nav
+      className="hidden lg:block fixed rounded-xl p-4 w-[10%] bottom-20 left-[10%] text-black border border-border/20 space-y-3 shadow-md"
+      role="navigation"
+      aria-label="Section Navigation"
+    >
       {sections.map((section: SectionType) => (
         <div
           className={cn('text-base cursor-pointer space-y-3')}
           key={section.title}
         >
           <div
-            className={cn('', activeSection === section.title && 'font-bold')}
+            className={cn(
+              'hover:text-blue-600 transition-colors duration-200',
+              activeSection === section.title && 'font-bold text-blue-600'
+            )}
             onClick={() =>
               section.ref?.current.scrollIntoView({
-                behavior: 'auto',
+                behavior: 'smooth',
                 block: 'center',
                 inline: 'center',
               })
@@ -27,47 +34,44 @@ const CustomSections = ({ sections, activeSection }: SectionProps) => {
           >
             {section.title}
           </div>
-          {section.subsections?.map((section: SectionType) => (
+          {section.subsections?.map((subsection: SectionType) => (
             <div
               className={cn('text-black/70 pl-4 text-sm cursor-pointer')}
-              key={section.title}
+              key={subsection.title}
             >
               <div
                 className={cn(
-                  '',
-                  activeSection === section.title && 'font-bold'
+                  'hover:text-blue-500 transition-colors duration-200',
+                  activeSection === subsection.title && 'font-bold text-blue-500'
                 )}
                 onClick={() =>
-                  section.ref?.current.scrollIntoView({
-                    behavior: 'auto',
+                  subsection.ref?.current.scrollIntoView({
+                    behavior: 'smooth',
                     block: 'center',
                     inline: 'center',
                   })
                 }
               >
-                {section.title}
+                {subsection.title}
               </div>
-              {section.subsections?.map((section: SectionType) => (
+              {subsection.subsections?.map((subSubsection: SectionType) => (
                 <div
                   className={cn(
-                    'text-black/70 pl-4 text-sm cursor-pointer py-[2px]'
+                    'text-black/60 pl-6 text-sm cursor-pointer py-[2px] hover:text-blue-400 transition-colors duration-200',
+                    activeSection === subSubsection.title && 'font-bold text-blue-400'
                   )}
-                  key={section.title}
+                  key={subSubsection.title}
                 >
                   <div
-                    className={cn(
-                      '',
-                      activeSection === section.title && 'font-bold'
-                    )}
                     onClick={() =>
-                      section.ref?.current.scrollIntoView({
-                        behavior: 'auto',
+                      subSubsection.ref?.current.scrollIntoView({
+                        behavior: 'smooth',
                         block: 'center',
                         inline: 'center',
                       })
                     }
                   >
-                    {section.title}
+                    {subSubsection.title}
                   </div>
                 </div>
               ))}
@@ -75,7 +79,7 @@ const CustomSections = ({ sections, activeSection }: SectionProps) => {
           ))}
         </div>
       ))}
-    </div>
+    </nav>
   );
 };
 
