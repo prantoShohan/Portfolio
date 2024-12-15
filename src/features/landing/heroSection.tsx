@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { P5CanvasInstance, Sketch } from '@p5-wrapper/react';
 import { NextReactP5Wrapper } from '@p5-wrapper/next';
 import type p5 from 'p5'; // Ensure correct type import from p5 package
@@ -784,6 +784,31 @@ const HeroSection: React.FC = () => {
       });
     };
   };
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setIsVisible(true); // Trigger visibility when in view
+        }
+      },
+      { threshold: 0.5 } // 50% of the element should be visible
+    );
+
+    const heroSection = document.getElementById('hero-section');
+    if (heroSection) {
+      observer.observe(heroSection);
+    }
+
+    return () => {
+      if (heroSection) {
+        observer.unobserve(heroSection);
+      }
+    };
+  }, []);
 
   return (
     <div className=" w-auto h-screen bg-[#222222] " id = "mind-map">
