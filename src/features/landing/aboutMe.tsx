@@ -52,35 +52,37 @@ const AboutMe = () => {
           onClick={toggleCVVisibility} // This closes the modal when clicking outside
         >
           <div
-            className="relative max-w-[80%] max-h-[90%] p-4 bg-white rounded-lg overflow-hidden flex justify-center items-center"
-            onClick={(e) => e.stopPropagation()} // Prevent event bubbling when clicking inside modal
-          >
-            {/* Image of CV */}
-            <img
-              src="/images/about/CV - Shohanur Rahman.jpg" // Update with your CV image path
-              alt="CV"
-              className="max-h-[60%] w-auto object-contain"
-            />
-            {/* Close Button with SVG for the close icon */}
-            <button
-              className="absolute top-2 right-2 p-2 text-black hover:text-red-500"
-              onClick={toggleCVVisibility}
-            >
-              {/* SVG Close Icon */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-6 h-6"
-              >
-                <path d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+  className="relative max-w-[80%] max-h-[90%] p-4 bg-white rounded-lg overflow-hidden flex justify-center items-center"
+  onClick={(e) => e.stopPropagation()} // Prevent event bubbling when clicking inside modal
+>
+  {/* Image of CV */}
+  <img
+    src="/images/about/CV - Shohanur Rahman.jpg" // Update with your CV image path
+    alt="CV"
+    className="object-contain w-[80%] h-[80%]" // Make the image 80% of the parent's size
+  />
+  {/* Close Button with SVG for the close icon */}
+  <button
+    className="absolute top-2 right-2 p-2 text-black hover:text-red-500"
+    onClick={toggleCVVisibility}
+  >
+    {/* SVG Close Icon */}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-6 h-6"
+    >
+      <path d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</div>
+
+
         </div>
       )}
     </div>
