@@ -3,7 +3,7 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import CustomSections from './custom-sections';
+import CustomSections from '../custom-sections';
 import { SectionType } from '@/model/sectiontype';
 
 import Prism from 'prismjs';
@@ -442,7 +442,7 @@ with open(output_path, 'w') as f:
 
           
 
-          <div className= "h-[30px]"></div>
+          <div className="h-[80px]"></div>
 
           
           

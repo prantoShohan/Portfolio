@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import CustomSections from './custom-sections';
 import { SectionType } from '@/model/sectiontype';
+import CustomSections from '../custom-sections';
 
 const Analogue = () => {
   // Define section refs here
@@ -52,41 +52,41 @@ const Analogue = () => {
       title: 'Modules',
       ref: modulesRef,
       subsections: [
-        {
-          title: 'VCO',
-          ref: vcoRef,
-          subsections: [],
-        },
-        {
-          title: 'Clock + Divider',
-          ref: clockDividerRef,
-          subsections: [],
-        },
-        {
-          title: '10 Step Sequencer',
-          ref: tenStepSequencerRef,
-          subsections: [],
-        },
-        {
-          title: 'ADSR',
-          ref: ADSRRef,
-          subsections: [],
-        },
-        {
-          title: 'VCA',
-          ref: vcaRef,
-          subsections: [],
-        },
-        {
-          title: 'VCF',
-          ref: vcfRef,
-          subsections: [],
-        },
-        {
-          title: 'Power and Casing',
-          ref: powerRef,
-          subsections: [],
-        },
+        // {
+        //   title: 'VCO',
+        //   ref: vcoRef,
+        //   subsections: [],
+        // },
+        // {
+        //   title: 'Clock + Divider',
+        //   ref: clockDividerRef,
+        //   subsections: [],
+        // },
+        // {
+        //   title: '10 Step Sequencer',
+        //   ref: tenStepSequencerRef,
+        //   subsections: [],
+        // },
+        // {
+        //   title: 'ADSR',
+        //   ref: ADSRRef,
+        //   subsections: [],
+        // },
+        // {
+        //   title: 'VCA',
+        //   ref: vcaRef,
+        //   subsections: [],
+        // },
+        // {
+        //   title: 'VCF',
+        //   ref: vcfRef,
+        //   subsections: [],
+        // },
+        // {
+        //   title: 'Power and Casing',
+        //   ref: powerRef,
+        //   subsections: [],
+        // },
       ],
     },
     {
@@ -181,10 +181,10 @@ const Analogue = () => {
 
 
         <div className="w-full">           
-          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+
             {/* Text Section */}
-            <div className="md:w-[20%] md:basis-1/3 relative">
-              <div className="text-2xl font-bold py-4 text-gray-800"
+            <div className="relative">
+              <div className="section-title"
                 id="Landform System"
                 ref={overviewRef}>Overview</div>
               <div className="section-text">
@@ -196,11 +196,21 @@ const Analogue = () => {
               </div>
             </div>
 
-            {/* Image Section */}
-            <div className=" relative grow mt-4 w-full h-auto">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/-AepALiHQB4?si=GaaYzYrUMpk3CxyN" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            
+            <div className="relative grow w-full mt-8">
+              <div className="relative w-full pb-[56.25%] h-0">
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/-AepALiHQB4?si=GaaYzYrUMpk3CxyN"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
-          </div>
+
         </div>
 
         <div
@@ -221,13 +231,11 @@ const Analogue = () => {
         </div>
 
 
-        <div className="w-full">           
-          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+        <div className="w-full pt-32">           
+
             {/* Text Section */}
-            <div className="md:w-[20%] md:basis-1/3 relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
-                id="VCO"
-                ref={vcoRef}>VCO</div>
+            <div className=" relative">
+              <div className="subsection-title">VCO</div>
               <div className="section-text">
                 I am a fan of Don Buchla and West Coast synthesis.
                  So I wanted to experiment with FM and triangle core oscillators.
@@ -238,16 +246,16 @@ const Analogue = () => {
             </div>
 
             {/* Image Section */}
-            <div className=" relative grow mt-4 w-full h-auto">
+            <div className=" relative grow mt-16 w-full h-auto">
               <img 
                 src="/images/analog/vco.png"
                 className="w-full h-auto object-contain"
                 alt="Reaction Diffusion"
               />
             </div>
-          </div>
 
-          <div className=" relative grow mt-4 w-full h-auto">
+
+          <div className=" relative grow mt-16 w-full h-auto">
             <img 
               src="/images/analog/circuit.png"
               className="w-full h-auto object-contain"
@@ -255,7 +263,7 @@ const Analogue = () => {
             />
           </div>
 
-          <div className="md:flex md:flex-row md:space-x-5 relative text-section">
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section mt-16">
             {/* Text Section */}
             <div className="md:w-[20%] md:basis-1/3 relative">
               <div className="section-text">
@@ -275,12 +283,11 @@ const Analogue = () => {
         </div>
 
 
-        <div className="w-full">           
+        <div className="w-full pt-32">           
           <div className="md:flex md:flex-row md:space-x-5 relative text-section">
             {/* Text Section */}
             <div className="md:w-[20%] md:basis-1/3 relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
-                 id="Clock + Divider"ref={clockDividerRef}>Clock + Divider</div>
+              <div className="subsection-title mt-0">Clock + Divider</div>
               <div className="section-text">
                 The clock divider is built with CD4040 binary counter. There is an external clock input support.
               </div>
@@ -298,12 +305,11 @@ const Analogue = () => {
         </div>
 
 
-        <div className="w-full">           
+        <div className="w-full pt-32">           
           <div className="md:flex md:flex-row md:space-x-5 relative text-section">
             {/* Text Section */}
             <div className="md:w-[20%] md:basis-1/3 relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
-                 id="10 Step Sequencer"ref={tenStepSequencerRef}>10 Step Sequencer</div>
+              <div className="subsection-title mt-0">10 Step Sequencer</div>
               <div className="section-text">
                 The sequencer is based on CD4017 Decade Counter. The length of the sequence can be adjusted from 1 to 10.
               </div>
@@ -321,12 +327,11 @@ const Analogue = () => {
         </div>
 
 
-        <div className="w-full">           
+        <div className="w-full pt-32">           
           <div className="md:flex md:flex-row md:space-x-5 relative text-section">
             {/* Text Section */}
             <div className="md:w-[20%] md:basis-1/3 relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
-                 id="ADSR"ref={ADSRRef}>ADSR: Attack Decay Sustain Release</div>
+              <div className="subsection-title mt-0">ADSR: Attack Decay Sustain Release</div>
               <div className="section-text">
                 This ADSR is based on Kassutronics Precision ADSR which is actually based on The Fastest Envelope in the West by Rene Schmitz.
               </div>
@@ -344,12 +349,11 @@ const Analogue = () => {
         </div>
 
 
-        <div className="w-full">           
+        <div className="w-full pt-32">           
           <div className="md:flex md:flex-row md:space-x-5 relative text-section">
             {/* Text Section */}
             <div className="md:w-[20%] md:basis-1/3 relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
-                 id="VCA"ref={vcaRef}>Dual VCA: Voltage Controlled Amplifier</div>
+              <div className="subsection-title mt-0">Dual VCA: Voltage Controlled Amplifier</div>
               <div className="section-text">
                 This is classic transistor VCA based on Moritz Klein.
               </div>
@@ -367,12 +371,11 @@ const Analogue = () => {
         </div>
 
 
-        <div className="w-full">           
+        <div className="w-full pt-32">           
           <div className="md:flex md:flex-row md:space-x-5 relative text-section">
             {/* Text Section */}
             <div className="md:w-[20%] md:basis-1/3 relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
-                 id="VCF"ref={vcfRef}>VCF: Voltage Controlled Filter</div>
+              <div className="subsection-title mt-0">VCF: Voltage Controlled Filter</div>
               <div className="section-text">
                 This is a diode ladder filter based on Moritz Klein.
               </div>
@@ -389,12 +392,11 @@ const Analogue = () => {
           </div>
         </div>
 
-        <div className="w-full">           
+        <div className="w-full pt-32">           
           <div className="relative text-section">
             {/* Text Section */}
             <div className=" relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
-                 id="Power and Casing"ref={powerRef}>Power and Casing</div>
+              <div className="subsection-title mt-0">Power and Casing</div>
               <div className="section-text">
                 The power supply provide the rail to rail voltage required for driving the op-amps.
                 The cover is made from 5mm PVC with glue joint.
@@ -429,7 +431,7 @@ const Analogue = () => {
           <div className="relative text-section">
             {/* Text Section */}
             <div className=" relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
+              <div className="subsection-title "
                  id="Circuit Simulation"ref={simulationRef}>Circuit Simulation</div>
               <div className="section-text">
                 Simulators help to understand the circuits which is essential later during debugging.
@@ -452,7 +454,7 @@ const Analogue = () => {
           <div className="relative text-section">
             {/* Text Section */}
             <div className=" relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
+              <div className="subsection-title "
                  id="Breadboard Prototype"ref={breadBoardRef}>Breadboard Prototype</div>
               <div className="section-text">
                 Breadboarding a circuit creates understanding of the circuit and essential part of circuit design process.
@@ -477,7 +479,7 @@ const Analogue = () => {
         <div className="w-full pt-12">
           <div className="relative">
             <div
-              className="text-xl font-bold text-gray-600"
+              className="subsection-title "
               id="Panel Design"
               ref={panelRef}
             >
@@ -520,7 +522,7 @@ const Analogue = () => {
         <div className="w-full pt-12">
           <div className="relative">
             <div
-              className="text-xl font-bold text-gray-600"
+              className="subsection-title "
               id="Vero Board Design"
               ref={veroRef}
             >
@@ -565,7 +567,7 @@ const Analogue = () => {
           <div className="relative text-section">
             {/* Text Section */}
             <div className=" relative">
-              <div className="text-xl font-bold py-4 text-gray-600"
+              <div className="subsection-title "
                  id="PCB Design"ref={pcbRef}>PCB Design</div>
               <div className="section-text">
                 I am starting to design PCB though it is really expensive. I am designing some modules for PCB.

@@ -3,8 +3,8 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import CustomSections from './custom-sections';
 import { SectionType } from '@/model/sectiontype';
+import CustomSections from '../custom-sections';
 
 const Exploration = () => {
   const overviewRef = useRef(null);
@@ -196,6 +196,8 @@ const Exploration = () => {
               />
             </div>
           </div>
+
+          <div className="h-[80px]"></div>
 
 
           

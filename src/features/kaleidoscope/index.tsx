@@ -3,8 +3,9 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import CustomSections from './custom-sections';
 import { SectionType } from '@/model/sectiontype';
+import CustomSections from '../custom-sections';
+import CodeBlock from '../CodeBlock';
 
 const Kaleidoscope = () => {
 
@@ -22,7 +23,7 @@ const Kaleidoscope = () => {
   const KALEIDOSCOPE_SECTIONS: SectionType[] = [
 
     {
-      title: 'Making from Scratch',
+      title: 'Making',
       ref: MakingRef,
       subsections: [],
     },
@@ -33,6 +34,133 @@ const Kaleidoscope = () => {
     },
 
   ]
+
+  const code = `
+	#include "Equil.h"
+	#include "utils/utils.h"
+
+
+
+Equil::Equil(float a, int x, int y)
+{
+	for(int j = 0; j < y; j++)
+	{
+		for (int i = 0; i < x; i++)
+		{
+			vertices.push_back({ glm::vec3(3 * a * i,                    (a * sin(-30) * (j * 2)),                     0.0f),       0.0f });
+			vertices.push_back({ glm::vec3(3 * a * i + a,                (a * sin(-30) * (j * 2)),                     0.0f),       1.0f });
+			vertices.push_back({ glm::vec3((3 * i * a) + (a / 2),        (a * sin(-30) * (j * 2)) + (a * sin(-30)),    0.0f),       2.0f });
+
+
+			vertices.push_back({ glm::vec3((3 * i * a) + (1.5f * a),     (a * sin(-30) * (j * 2)) + (a * sin(-30)),    0.0f),       0.0f });
+			vertices.push_back({ glm::vec3((3 * i * a) + (2.0f * a),     (a * sin(-30) * (j * 2)),                     0.0f),       2.0f });
+			vertices.push_back({ glm::vec3((3 * i * a) + (2.5f * a),     (a * sin(-30) * (j * 2)) + (a * sin(-30)),    0.0f),       1.0f });
+
+
+			faces.push_back(glm::uvec3(6 * i + 0 + (x * 6 * j),      6 * i + 1 + (x * 6 * j),     6 * i + 2 + (x * 6 * j)));
+ 			faces.push_back(glm::uvec3(6 * i + 1 + (x * 6 * j),      6 * i + 3 + (x * 6 * j),     6 * i + 2 + (x * 6 * j)));
+ 			faces.push_back(glm::uvec3(6 * i + 1 + (x * 6 * j),      6 * i + 4 + (x * 6 * j),     6 * i + 3 + (x * 6 * j)));
+ 			faces.push_back(glm::uvec3(6 * i + 3 + (x * 6 * j),      6 * i + 4 + (x * 6 * j),     6 * i + 5 + (x * 6 * j)));
+
+			if (i > 0)
+			{
+				faces.push_back(glm::uvec3(6 * i - 2 + (x * 6 * j), 6 * i + (x * 6 * j), 6 * i - 1 + (x * 6 * j)));
+				faces.push_back(glm::uvec3(6 * i + (x * 6 * j), 6 * i + 2 + (x * 6 * j), 6 * i - 1 + (x * 6 * j)));
+			}
+			if (j > 0)
+			{
+				faces.push_back(glm::uvec3(6 * i + 0 + (x * 6 * j), 6 * i + 1 + (x * 6 * j), 6 * i + 2 + (x * 6 * (j-1))));
+				faces.push_back(glm::uvec3(6 * i + 1 + (x * 6 * j), 6 * i + 3 + (x * 6 * (j-1)), 6 * i + 2 + (x * 6 * (j-1))));
+				faces.push_back(glm::uvec3(6 * i + 1 + (x * 6 * j), 6 * i + 4 + (x * 6 * j), 6 * i + 3 + (x * 6 *( j - 1))));
+				faces.push_back(glm::uvec3(6 * i + 3 + (x * 6 * (j-1)), 6 * i + 4 + (x * 6 * j), 6 * i + 5 + (x * 6 * (j-1))));
+
+				if (i > 0)
+				{
+					faces.push_back(glm::uvec3(6 * i - 2 + (x * 6 * j), 6 * i + (x * 6 * j), 6 * i - 1 + (x * 6 * (j-1))));
+					faces.push_back(glm::uvec3(6 * i + (x * 6 * (j)), 6 * i + 2 + (x * 6 * (j-1)), 6 * i - 1 + (x * 6 * (j-1))));
+				}
+
+			}
+
+		}
+	}
+
+
+
+
+
+
+
+
+	float b = 0.5f;
+
+	texCoord = {
+		glm::vec2(0.0f, 0.0f),
+		glm::vec2(b, 0.0f),
+		glm::vec2(b / 2, b * sin(-30))
+	};
+
+// 	vertices = {
+// 		{glm::vec3(0.0f, 0.0f, 0.0f), 0.0f},
+// 		{glm::vec3(a, 0.0f, 0.0f), 1.0f},
+// 		{glm::vec3(a / 2, a * sin(-30), 0.0f),2.0f},
+// 		{glm::vec3(a / 2 + a, a * sin(-30), 0.0f), 0.0f},
+// 		{glm::vec3(2*a, 0.0f, 0.0f), 2.0f}
+// 	};
+// 
+// 
+// 
+// 
+// 	faces = {
+// 		glm::uvec3(0, 1, 2),
+// 		glm::uvec3(1, 3, 2),
+// 		glm::uvec3(4, 3, 1)
+// 	};
+
+	lattice = Geometry(getVertices(), layout, getIndices());
+
+}
+
+void Equil::bind()
+{
+	lattice.bind();
+}
+
+void Equil::unbind()
+{
+	lattice.unbind();
+}
+
+std::vector<float> Equil::getVertices()
+{
+	std::vector<float> vert;
+	for (Vertex v : vertices)
+	{
+		vert.push_back(v.pos.x);
+		vert.push_back(v.pos.y);
+		vert.push_back(v.pos.z);
+
+		vert.push_back(v.t);
+
+
+	}
+
+	return vert;
+}
+
+std::vector<unsigned int> Equil::getIndices()
+{
+	std::vector<unsigned int> ind;
+	for (glm::ivec3 v : faces)
+	{
+		ind.push_back(v.x);
+		ind.push_back(v.y);
+		ind.push_back(v.z);
+	}
+
+	return ind;
+}
+ `
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -91,13 +219,13 @@ const Kaleidoscope = () => {
         
         <div>
 
-          <div className="md:flex md:flex-row md:space-x-5 relative text-section" >
+          <div className="md:flex md:flex-row md:space-x-5 relative text-section mt-32" >
             <div className="md:w-[20%] md:basis-1/2 relative">
             {/* this header needs to have a custom class */}
-              <div className="text-2xl font-bold pt-2 text-gray-800"
-                id="Making from Scratch"
+              <div className="section-title mt-0"
+                id="Making"
                 ref={MakingRef}>
-                Making from Scratch
+                Making
               </div>
               <div className="section-text ">
               I was fascinated with the idea of kelaidoscope, how it can take a small piece of reality and makes a 
@@ -126,14 +254,17 @@ const Kaleidoscope = () => {
           
 
           <div className="w-full">   
-             <div className="text-2xl font-bold pt-2 text-gray-800 pt-12"
+             <div className="section-title"
                   id="Toy Application"
                   ref={ToyappRef}>
                   Toy Application
-              </div>      
+              </div> 
+              <CodeBlock code={code} language="python" />     
              
             <div className="md:flex md:flex-row md:space-x-5 relative text-section">
-            <div className="md:w-[20%] md:basis-1/2 md:ml-4  relative md:order-last">
+
+
+              <div className="md:w-[20%] md:basis-1/2 md:ml-4  relative md:order-last">
                 <div className="section-text ">
                   I was learning C++ and design patterns of object oriented languages and experimenting with openGL
                   for graphics. openGL was very daunting. So I thought a simple project like e kelaidoscope can be 
@@ -176,7 +307,7 @@ const Kaleidoscope = () => {
             </div>
           </div>
 
-          <div className= "h-[30px]"></div>
+          <div className="h-[80px]"></div>
 
           
           

@@ -3,8 +3,8 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import CustomSections from './custom-sections';
 import { SectionType } from '@/model/sectiontype';
+import CustomSections from '../custom-sections';
 
 const Architecture = () => {
   const overviewRef = useRef(null);
@@ -103,12 +103,10 @@ const Architecture = () => {
             id="Overview"
             ref={overviewRef}>Overview</div>
           <div className="section-text max-w-[600px]">
-            These projects were done during the first year of my architecture school.
-             Having prior experience in programming, I became immidiately interested in Grasshopper.
-             As I experimented with grasshopper for my class projects, it became intuitive to me.
+            These are some of architectural design projects done during my undergraduate years.
 
           </div>
-
+          <div className="h-[80px]"></div>
           <div className='flex flex-row w-full border border-gray-300/50' 
             id="Highrise"
             ref={HighriseRef}>
@@ -391,6 +389,7 @@ const Architecture = () => {
               />
             </div>
           </div>
+          <div className="h-[80px]"></div>
 
 
 

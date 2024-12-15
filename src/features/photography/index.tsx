@@ -3,7 +3,7 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import CustomSections from './custom-sections';
+import CustomSections from '../custom-sections';
 import { SectionType } from '@/model/sectiontype';
 import ImageGrid from '../ImageGrid';
 

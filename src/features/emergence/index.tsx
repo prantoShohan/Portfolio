@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import CompareSlider from './CompareSlider';
 import React, { useEffect, useRef, useState } from 'react';
-import CustomSections from './custom-sections';
+import CustomSections from '../custom-sections';
 import { SectionType } from '@/model/sectiontype';
 import CodeBlock from '../CodeBlock';
 import Link from 'next/link';
@@ -661,8 +661,8 @@ Blocks[287].findNearestAll()
           >
           <div className="relative">
             {/* this header needs to have a custom class */}
-            <div className="section-title" id="Context"
-          ref={ContextRef}>
+              <div className="section-title" id="Context"
+              ref={ContextRef}>
               Context
             </div>
             <div className='font-style: italic text:xl  py-4 text-gray-600'>Dhaka’s urban expansion vs. wetland geography and ecologicaly.</div>
@@ -1140,7 +1140,7 @@ Blocks[287].findNearestAll()
 
 
 
-        <div className="h-[80px]"></div>
+        {/* <div className="h-[80px]"></div>
 
         <div className="flex justify-between mt-8 font-bold text-xl">
           <Link href="/">
@@ -1149,7 +1149,7 @@ Blocks[287].findNearestAll()
           <Link href="/projects/evolution">
             <div className="text-blue-500 hover:underline">Next Project</div>
           </Link>
-        </div>
+        </div> */}
 
         <div className="h-[80px]"></div>
 

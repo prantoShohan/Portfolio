@@ -10,7 +10,7 @@ export interface SectionProps {
 const CustomSections = ({ sections, activeSection }: SectionProps) => {
   return (
     <nav
-      className="hidden lg:block fixed rounded-xl p-4 w-[10%] bottom-20 left-[10%] text-black border border-border/20 space-y-3 shadow-md"
+      className="hidden lg:block fixed rounded-xl p-4 w-[10%] bottom-20 left-[10%] text-black border border-border/5 space-y-3 shadow-md"
       role="navigation"
       aria-label="Section Navigation"
     >

@@ -3,7 +3,7 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import CustomSections from './custom-sections';
+import CustomSections from '../custom-sections';
 import { SectionType } from '@/model/sectiontype';
 import ImageComparison from '../ImageComparison';
 
@@ -97,7 +97,7 @@ const TravelSketches: React.FC = () => {
 
 
 
-      <div className="text-black relative px-4 responsive-padding">
+      <div className="text-black relative px-4 responsive-padding-pages">
         <CustomSections
               sections={TRAVELSKETCHES_SECTIONS}
               activeSection={activeSection}

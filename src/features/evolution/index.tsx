@@ -3,8 +3,9 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import CustomSections from './custom-sections';
+
 import { SectionType } from '@/model/sectiontype';
+import CustomSections from '../custom-sections';
 
 const Evolution = () => {
   const overviewRef = useRef(null);
@@ -122,11 +123,21 @@ const Evolution = () => {
             activeSection={activeSection}
           />
       
-        
-        <div
-          id="Overview"
-          ref={overviewRef}>
-          <div className="section-title">Overview</div>
+      <div className="italic text-xl pt-24 text-gray-600">
+        This project is based on my research paper:
+        <div className="mt-2 text-lg font-semibold text-gray-800">
+          <a href="https://dx.doi.org/10.2139/ssrn.4977277" target="_blank" rel="noopener noreferrer">
+            Evolutionary Algorithm based Design Framework to Develop Environmentally Sensitive Building Forms Considering Local Codes
+          </a>
+        </div>
+      </div>
+
+
+
+        <div>
+          <div className="section-title"
+            id="Overview"
+            ref={overviewRef}>Overview</div>
           <div className="section-text">
             In this project I explored how to subject a building to Evolution for optimal performance.
             We can create an environment where the process of Natural selection can be applied to a buildig.
@@ -145,10 +156,10 @@ const Evolution = () => {
 
         </div>
 
-        <div
-          id="Context"
-          ref={ContextRef}>
-          <div className="section-title">Context</div>
+        <div>
+          <div className="section-title"
+            id="Context"
+            ref={ContextRef}>Context</div>
           <div className="section-text">
             This study aims to develop an evolutionary algorithm
             based form finding framework to improve the indoor
@@ -172,14 +183,14 @@ const Evolution = () => {
 
         </div>
 
-        <div className="w-full"
-          id="Genetic Coding"
-          ref={GeneticCodingRef}>  
+        <div className="w-full">  
 
           <div className="md:flex md:flex-row md:space-x-5 relative text-section">
               {/* Text Section */}
               <div className="md:w-[20%] md:basis-1/2 relative">
-                <div className="text-2xl font-bold pb-4 text-gray-800">
+                <div className="section-title"
+                  id="Genetic Coding"
+                  ref={GeneticCodingRef}>
                   Genetic Coding
                 </div>
                 
@@ -221,13 +232,13 @@ const Evolution = () => {
 
 
 
-        <div
-          id="Fitness Objectives"
-          ref={FitnessRef}>
+        <div>
           <div className="md:flex md:flex-row md:space-x-5 relative text-section">
               {/* Text Section */}
               <div className="md:w-[20%] md:basis-2/3 relative">
-                <div className="text-2xl font-bold pb-4 text-gray-800">
+                <div className="section-title" 
+                id="Fitness Objectives"
+                ref={FitnessRef}>
                 Fitness Objectives
                 </div>
                 
@@ -253,20 +264,20 @@ const Evolution = () => {
 
 
 
-        <div
-          id="Evolution"
-          ref={EvolutionRef}>
-          <div className="section-title">Evolution</div>
+        <div>
+          <div className="section-title" 
+            id="Evolution"
+            ref={EvolutionRef}>Evolution</div>
           <div className="section-text">
             The evolutionary algorithm solver-Wallacei starts with a population of random parameters.
             According to the calculated fitness scores, it selects the best individuals and use these for the seed of next 
             generation. 
           </div>
 
-          <div
-          id="Generations"
-          ref={GenerationsRef}>
-            <div className="text-xl font-bold py-4 text-gray-600">Generations</div>
+          <div>
+            <div className="subsection-title"
+              id="Generations"
+              ref={GenerationsRef}>Generations</div>
 
             <div className="w-full mt-4">
               <img 
@@ -303,10 +314,10 @@ const Evolution = () => {
           </div>
 
           <div
-            id="Pareto Front"
-            ref={ParetoRef}
             className="mt-8">
-            <div className="text-xl font-bold py-4 text-gray-600">Pareto Front</div>
+            <div className="subsection-title" 
+              id="Pareto Front"
+              ref={ParetoRef}>Pareto Front</div>
 
             <div className="w-full mt-4">
               <img 
@@ -339,10 +350,10 @@ const Evolution = () => {
 
 
 
-        <div
-          id="Species"
-          ref={SpeciesRef}>
-          <div className="section-title">Species</div>
+        <div>
+          <div className="section-title" 
+            id="Species"
+            ref={SpeciesRef}>Species</div>
           <div className="section-text">
             After analysing 50 generation of 30 individual buildings total 1500 individuals,
             Wallacei gives us all the data in a Parallel Coordinate Plot(PCP) and a 3d graph of the solution space.
@@ -415,16 +426,7 @@ const Evolution = () => {
           <div className="w-full">           
             <div className="md:flex md:flex-row md:space-x-5 relative text-section">
             <div className="flex flex-col justify-between md:w-[20%] md:basis-2/3 md:ml-4 md:py-4 relative md:order-last">
-                <div className="section-text ">
-                  This study shows how to conduct a simple optimization of building forms considering local codes.
-                   More importantly, it shows that the procedure of the MOO turns out to be an exploratory passage
-                    for building planning and design. Similar to nature, which evolves many species of an organism
-                     of the same context, optimization makes a set of species that evolved from the same context but
-                      remained different from one another, which provides architects with a number of options to improve
-                       upon and design further. The results show that the optimized
-                   solutions from the MOO using EA have a compromised building performance in the optimum solution.
-
-                </div>
+                
                 <div className="md:w-[80%] relative grow mt-4 w-full h-auto">
                   <img
                     src="/images/evolution/EXISTING.png"
@@ -445,18 +447,19 @@ const Evolution = () => {
             </div>
           </div>
 
+          <div className="section-text ">
+            This study shows how to conduct a simple optimization of building forms considering local codes.
+              More importantly, it shows that the procedure of the MOO turns out to be an exploratory passage
+              for building planning and design. Similar to nature, which evolves many species of an organism
+                of the same context, optimization makes a set of species that evolved from the same context but
+                remained different from one another, which provides architects with a number of options to improve
+                  upon and design further. The results show that the optimized
+              solutions from the MOO using EA have a compromised building performance in the optimum solution.
 
+          </div>
+          <div className="h-[80px]"></div>
         </div>
-
-
-
-
-
-
       </div>
-
-      
-
       </div>
 
   );

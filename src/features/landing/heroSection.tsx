@@ -236,7 +236,7 @@ class Node {
     }
 
     this.p5.textFont('Courier New');
-    this.p5.text(this.name, this.position.x - 30, this.position.y + 15 + txty);
+    ;
 
     this.p5.circle(this.position.x, this.position.y, 10);
 
@@ -247,6 +247,8 @@ class Node {
       txtx = 0;
       txty = 12;
     }
+
+    this.p5.text(this.name, this.position.x - 30, this.position.y + 15 + txty)
 
     if (this.router) {
       this.p5.strokeWeight(5);
