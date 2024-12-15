@@ -129,7 +129,7 @@ class Node {
           0,
           this.p5.height - (this.position.y + this.radius)
         );
-        this.applyForce(moveVector.mult(10));
+        this.applyForce(moveVector.mult(2));
       }
 
       // Check if the node has gone above the top of the canvas
@@ -139,7 +139,7 @@ class Node {
           0,
           -this.position.y + this.radius
         );
-        this.applyForce(moveVector.mult(10));
+        this.applyForce(moveVector.mult(2));
       }
 
       // Check if the node has gone to the right of the canvas
@@ -149,7 +149,7 @@ class Node {
           this.p5.width - (this.position.x + this.radius),
           0
         );
-        this.applyForce(moveVector.mult(10));
+        this.applyForce(moveVector.mult(2));
       }
 
       // Check if the node has gone to the left of the canvas
@@ -159,7 +159,7 @@ class Node {
           -this.position.x + this.radius,
           0
         );
-        this.applyForce(moveVector.mult(10));
+        this.applyForce(moveVector.mult(2));
       }
     }
   }
