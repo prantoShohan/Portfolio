@@ -161,7 +161,10 @@ class Node {
   }
 
   handleClick() {
-    this.router.push(this.path);
+    if(this.router){
+      this.router.push(this.path);
+    }
+
   }
 
 
@@ -185,7 +188,12 @@ class Node {
     let txtx = 0;
     let txty = 0;
     this.p5.textSize(Node.textsize);
-    this.p5.fill(256)
+    if(this.p5.windowWidth<600 && this.radius <= 50){
+      this.p5.fill(100);
+    }else{
+      this.p5.fill(256);
+    }
+
     this.p5.circle(this.position.x, this.position.y, 10);
 
     if(this.isHovered()){
@@ -196,8 +204,8 @@ class Node {
       txty = 12;
     }
 
-    if(this.path){
-      this.p5.strokeWeight(3);
+    if(this.router){
+      this.p5.strokeWeight(5);
       this.p5.stroke('#00a14b');
       this.p5.fill(0,0);
       this.p5.circle(this.position.x, this.position.y, 15);
@@ -211,11 +219,12 @@ class Node {
     // this.p5.drawingContext.shadowColor = 'black';
 
     if(this.id == 0){
-      this.p5.text("Hi, This is my Mind Map", this.position.x-30, this.position.y-30);
+      this.p5.textSize(30);
+      this.p5.text("Mind Map", this.position.x-65, this.position.y-30);
     }
 
     this.p5.fill(0, 0)
-    this.p5.stroke(25);
+    this.p5.stroke('#222222');
     this.p5.circle(this.position.x, this.position.y, this.radius);
     this.p5.stroke(256);
 
@@ -293,7 +302,7 @@ const HeroSection: React.FC = () => {
       
   
       // Initialize nodes
-      let Nature = new Node(p5, 1, "Nature", 150*scalefactor, 2 * p5.width / 7, p5.height / 2, ROUTES.PHOTOGRAPHY, router);
+      let Nature = new Node(p5, 1, "Nature", 150*scalefactor, 2 * p5.width / 6, p5.height / 2);
       rootNode.addChild(Nature);
       let Observation = new Node(p5, 1, "Observation", 50, p5.random(0, p5.width), p5.random(0, p5.height), ROUTES.PHOTOGRAPHY, router);
       Nature.addChild(Observation);
@@ -304,22 +313,22 @@ const HeroSection: React.FC = () => {
       let EmergentBehaviour = new Node(p5, 1, "EmergentBehaviour", 50, p5.random(0, p5.width), p5.random(0, p5.height));
       Nature.addChild(EmergentBehaviour);
   
-      let Architecture = new Node(p5, 2, "Architecture", 150*scalefactor, 3 * p5.width / 7, p5.height / 2, ROUTES.ARCHITECTURE, router);
+      let Architecture = new Node(p5, 2, "Architecture", 150*scalefactor, 3 * p5.width / 6, p5.height / 2);
       rootNode.addChild(Architecture);
-      let ArchitecturalProjects = new Node(p5, 2, "ArchitecturalProjects", 50, p5.random(0, p5.width), p5.random(0, p5.height), ROUTES.ARCHITECTURE, router);
+      let ArchitecturalProjects = new Node(p5, 2, "ArchitecturalProjects", 50, p5.random(0, p5.width), p5.random(0, p5.height),ROUTES.ARCHITECTURE, router);
       Architecture.addChild(ArchitecturalProjects);
-      let UrbanDesign = new Node(p5, 2, "UrbanDesign", 50, p5.random(0, p5.width), p5.random(0, p5.height), ROUTES.ARCHITECTURE, router);
+      let UrbanDesign = new Node(p5, 2, "UrbanDesign", 50, p5.random(0, p5.width), p5.random(0, p5.height));
       Architecture.addChild(UrbanDesign);
       let ComputationalDesign = new Node(p5, 2, "ComputationalDesign", 50, p5.random(0, p5.width), p5.random(0, p5.height));
       Architecture.addChild(ComputationalDesign);
       Architecture.addChild(Landscaping);
   
-      let Highrise = new Node(p5, 4, "Highrise", 50, p5.random(0, p5.width), p5.random(0, p5.height), ROUTES.ARCHITECTURE, router);
-      ArchitecturalProjects.addChild(Highrise);
-      let SportsCenter = new Node(p5, 4, "SportsCenter", 50, p5.random(0, p5.width), p5.random(0, p5.height),ROUTES.ARCHITECTURE, router);
-      ArchitecturalProjects.addChild(SportsCenter);
-      let Mawa = new Node(p5, 4, "Mawa", 50, p5.random(0, p5.width), p5.random(0, p5.height),ROUTES.ARCHITECTURE, router);
-      UrbanDesign.addChild(Mawa);
+      // let Highrise = new Node(p5, 4, "Highrise", 50, p5.random(0, p5.width), p5.random(0, p5.height), ROUTES.ARCHITECTURE, router);
+      // ArchitecturalProjects.addChild(Highrise);
+      // let SportsCenter = new Node(p5, 4, "SportsCenter", 50, p5.random(0, p5.width), p5.random(0, p5.height),ROUTES.ARCHITECTURE, router);
+      // ArchitecturalProjects.addChild(SportsCenter);
+      // let Mawa = new Node(p5, 4, "Mawa", 50, p5.random(0, p5.width), p5.random(0, p5.height),ROUTES.ARCHITECTURE, router);
+      // UrbanDesign.addChild(Mawa);
       let PlaceHolder = new Node(p5, 4, "", 50, p5.random(0, p5.width), p5.random(0, p5.height));
       let Emergence = new Node(p5, 4, "Emergence", 50, p5.random(0, p5.width), p5.random(0, p5.height), ROUTES.EMERGENCE, router);
       let Evolution = new Node(p5, 4, "Evolution", 50, p5.random(0, p5.width), p5.random(0, p5.height),ROUTES.EVOLUTION, router);
@@ -330,7 +339,7 @@ const HeroSection: React.FC = () => {
       PlaceHolder.addChild(Emergence);
       PlaceHolder.addChild(Evolution);
   
-      let Programming = new Node(p5, 3, "Programming", 150*scalefactor, 4 * p5.width / 7, p5.height / 2);
+      let Programming = new Node(p5, 3, "Programming", 150*scalefactor, 4 * p5.width / 6, p5.height / 2);
       rootNode.addChild(Programming);
       let Languages = new Node(p5, 3, "Languages", 50, p5.random(0, p5.width), p5.random(0, p5.height));
       Programming.addChild(Languages);
@@ -354,41 +363,45 @@ const HeroSection: React.FC = () => {
       Programming.addChild(EmbeddedSystem);
       Programming.addChild(ComputationalDesign);
   
-      let Electronics = new Node(p5, 4, "Electronics", 150*scalefactor, 5 * p5.width / 7, p5.height / 2);
+      let Electronics = new Node(p5, 4, "Electronics", 150*scalefactor, 5 * p5.width / 6, p5.height / 2);
       rootNode.addChild(Electronics);
-      let AnalogElectronics = new Node(p5, 4, "AnalogElectronics", 50, p5.random(0, p5.width), p5.random(0, p5.height), ROUTES.ANALOG, router);
+      let AnalogElectronics = new Node(p5, 4, "AnalogElectronics", 50, p5.random(0, p5.width), p5.random(0, p5.height)  );
       Electronics.addChild(AnalogElectronics);
       let ModularSynthesizer = new Node(p5, 4, "ModularSynthesizer", 50, p5.random(0, p5.width), p5.random(0, p5.height), ROUTES.ANALOG, router);
       AnalogElectronics.addChild(ModularSynthesizer);
       Electronics.addChild(EmbeddedSystem);
   
-      let Music = new Node(p5, 4, "Music", 150*scalefactor, 6 * p5.width / 7, p5.height / 2);
+      let Music = new Node(p5, 4, "Music", 150*scalefactor, 6 * p5.width / 6, p5.height / 2);
       rootNode.addChild(Music);
       let Instruments = new Node(p5, 4, "Instruments", 50, p5.random(0, p5.width), p5.random(0, p5.height));
       Music.addChild(Instruments);
+      Music.addChild(Tabulature);
       Instruments.addChild(ModularSynthesizer);
   
-      let Art = new Node(p5, 4, "Art", 150*scalefactor, 7 * p5.width / 7, p5.height / 2, ROUTES.TRAVELSKETCHES, router);
+      let Art = new Node(p5, 4, "Art", 150*scalefactor, 1 * p5.width / 6, p5.height / 2);
+      let TravelSketches = new Node(p5, 4, "TravelSketches", 50, 7 * p5.width / 7, p5.height / 2, ROUTES.TRAVELSKETCHES, router);
       rootNode.addChild(Art);
+      Art.addChild(TravelSketches);
+      Art.addChild(Observation);
   
-      let Interests = new Node(p5, 4, "Interests", 150*scalefactor, p5.width / 7, p5.height / 2);
-      rootNode.addChild(Interests);
+      // let Interests = new Node(p5, 4, "Interests", 150*scalefactor, p5.width / 7, p5.height / 2);
+      // rootNode.addChild(Interests);
   
       // Add all nodes to the allNodes array
       allNodes = [
-        Nature, Architecture, Programming, Electronics, Music, Art, Interests, 
+        Nature, Architecture, Programming, Electronics, Music, Art, 
         Observation, Aquascaping, Landscaping, EmergentBehaviour, 
         ArchitecturalProjects, UrbanDesign, ComputationalDesign, 
         Languages, MachineLearning, Android, EmbeddedSystem, AnalogElectronics, 
-        ModularSynthesizer, Instruments, Highrise, SportsCenter, Mawa, Emergence, 
+        ModularSynthesizer, Instruments,  Emergence, 
         PlaceHolder, Evolution, Exploration, Python, Cpp, Processing, Kaleidoscope, 
-        Tabulature, QuietQuotes,
+        Tabulature, QuietQuotes, TravelSketches
       ];
     };
   
     p5.draw = () => {
       
-      p5.background(10);
+      p5.background('#222222');
   
       rootNode.draw();
       rootNode.hovered();

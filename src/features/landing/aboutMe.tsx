@@ -26,8 +26,8 @@ const AboutMe = () => {
 
         {/* Text Container - Positioned at the left middle of the image */}
         <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white responsive-padding">
-          <div className="text-6xl font-bold">About Me</div>
-          <p>Shohanur Rahman Pranto</p>
+          <div className="text-6xl font-bold">About</div>
+          <p className="text-xl">Shohanur Rahman Pranto</p>
           <div className="max-w-[400px] italic text-[12px]">
             I am fascinated by design of Nature and 
             Computational approaches to Architecture 

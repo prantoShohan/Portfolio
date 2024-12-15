@@ -24,7 +24,7 @@ const ProjectCard = ({
   className="flex items-center w-full space-x-8 h-[180px] rounded-2xl cursor-pointer group"
   onClick={() => router.push(route)}
 >
-  <div className="flex items-center justify-center text-black/10 group-hover:text-gray-800 transition-colors duration-300">
+  <div className="flex items-center justify-center text-black/10 group-hover:text-[#222222] transition-colors duration-300">
     <div className="text-[50px] md:text-[180px] text-center font-bold">
       {serial}
     </div>
