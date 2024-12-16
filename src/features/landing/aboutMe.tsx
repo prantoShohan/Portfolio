@@ -27,9 +27,9 @@ const AboutMe = () => {
           <div className="text-6xl font-bold">About</div>
           <p className="text-xl">Shohanur Rahman Pranto</p>
           <div className="max-w-[400px] italic text-[12px]">
-            I am fascinated by design of Nature and Computational approaches to
-            Architecture and Urban Design. I study organisms and explore the
-            emergent behavior with creative coding. I am curious, learn fast and
+            I am fascinated by intelligent design of Nature and Computational approaches to
+            design. I study organisms and explore the
+            emergent behavior with creative coding. I like to experiment with music with my homebuilt modular synthesizer. I am curious, learn fast and
             want to further my understanding of Nature, Computation and Human
             Sustainability.
           </div>

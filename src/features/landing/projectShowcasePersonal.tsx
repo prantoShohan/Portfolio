@@ -8,7 +8,7 @@ const ProjectShowcasePersonal = () => {
       <div className="text-4xl text-black px-4 pt-[40px]">Personal</div>
       <div className="flex flex-col space-y-8 py-8">
         <ProjectCard
-          imageSrc={`./images/analog/cover.png`}
+          imageSrc={`./images/analog/cover.gif`}
           route={ROUTES.ANALOG}
           serial="05"
           subtitle="Modular Synthesizer from Scratch"

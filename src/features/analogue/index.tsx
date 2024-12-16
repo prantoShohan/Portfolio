@@ -153,7 +153,7 @@ const Analogue = () => {
       <div className="relative h-[460px]">
         {/* Cover Image */}
         <Image
-          src={'/images/analog/cover.png'}
+          src={'/images/analog/cover.gif'}
           className="object-cover"
           alt=""
           fill
@@ -195,13 +195,12 @@ const Analogue = () => {
                       and gradually building a set of basic modules through trial and error. I’m still building new ones today.
               </div>
             </div>
-
-            
+           
             <div className="relative grow w-full mt-8">
               <div className="relative w-full pb-[56.25%] h-0">
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
-                  src="https://www.youtube.com/embed/-AepALiHQB4?si=GaaYzYrUMpk3CxyN"
+                  src="https://www.youtube.com/embed/Zh674k-CJ6k?si=od_knN2cr1S6HyvT"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -384,7 +383,7 @@ const Analogue = () => {
             {/* Image Section */}
             <div className=" relative grow mt-4 w-full h-auto">
               <img
-                src="/images/analog/vca.png"
+                src="/images/analog/vcf.png"
                 className="object-contain w-full h-auto"
                 alt="Dhaka Landform"
               />
@@ -420,9 +419,8 @@ const Analogue = () => {
           ref={buildingFromScratchRef}>
           <div className="section-title">Building From Scratch</div>
           <div className="section-text">
-            A lot of planning goes into building a module. First you have to understand what you want to do with the signals.
-            And designing a circuit is a task. Most circuit available require some level of modification and 
-            core understanding of the circuit. The the most challanging task is Debugging.
+            A lot of planning goes into building a module. Most circuit available require some level of modification and 
+            core understanding of the circuit.But the most challanging task is Debugging the circuit. 
           </div>
         </div>
 
@@ -457,7 +455,7 @@ const Analogue = () => {
               <div className="subsection-title "
                  id="Breadboard Prototype"ref={breadBoardRef}>Breadboard Prototype</div>
               <div className="section-text">
-                Breadboarding a circuit creates understanding of the circuit and essential part of circuit design process.
+                Breadboarding a circuit is an essential part of circuit design process.
 
               </div>
             </div>
@@ -529,7 +527,7 @@ const Analogue = () => {
               Vero Board Design
             </div>
             <div className="section-text">
-              I learned that soldering is a skill and is to be improved by practicing. I have yet to learn SMD soldering.
+              I learned that soldering is a skill and is to be improved by practicing.
             </div>
           </div>
           
@@ -570,7 +568,7 @@ const Analogue = () => {
               <div className="subsection-title "
                  id="PCB Design"ref={pcbRef}>PCB Design</div>
               <div className="section-text">
-                I am starting to design PCB though it is really expensive. I am designing some modules for PCB.
+                I am starting to design PCB though it is expensive. I am designing some modules for PCB.
 
               </div>
             </div>
