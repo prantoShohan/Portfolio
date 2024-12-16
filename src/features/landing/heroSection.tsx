@@ -121,48 +121,39 @@ class Node {
   }
 
   collideBoundary() {
-    // Check if the node has gone below the bottom of the canvas
     if (this.parents.length > 0) {
-      if (this.position.y + this.radius > this.p5.height) {
-        // Apply a force to bring the node back within the bounds
-        const moveVector = this.p5.createVector(
-          0,
-          this.p5.height - (this.position.y + this.radius)
-        );
-        this.applyForce(moveVector.mult(2));
+      const { x, y } = this.position;
+      const { width, height } = this.p5;
+      const buffer = 50; // Minimum distance from all boundaries
+  
+      // Check bottom boundary
+      if (y + this.radius > height - buffer) {
+        const overlap = y + this.radius - (height - buffer);
+        this.applyForce(this.p5.createVector(0, -overlap).mult(2));
       }
-
-      // Check if the node has gone above the top of the canvas
-      if (this.position.y - this.radius < 0) {
-        // Apply a force to bring the node back within the bounds
-        const moveVector = this.p5.createVector(
-          0,
-          -this.position.y + this.radius
-        );
-        this.applyForce(moveVector.mult(2));
+  
+      // Check top boundary
+      if (y - this.radius < buffer) {
+        const overlap = buffer - (y - this.radius);
+        this.applyForce(this.p5.createVector(0, overlap).mult(2));
       }
-
-      // Check if the node has gone to the right of the canvas
-      if (this.position.x + this.radius + 50 > this.p5.width) {
-        // Apply a force to bring the node back within the bounds
-        const moveVector = this.p5.createVector(
-          this.p5.width - (this.position.x + this.radius),
-          0
-        );
-        this.applyForce(moveVector.mult(2));
+  
+      // Check right boundary
+      if (x + this.radius > width - buffer) {
+        const overlap = x + this.radius - (width - buffer);
+        this.applyForce(this.p5.createVector(-overlap, 0).mult(2));
       }
-
-      // Check if the node has gone to the left of the canvas
-      if (this.position.x - (this.radius + 50) < 0) {
-        // Apply a force to bring the node back within the bounds
-        const moveVector = this.p5.createVector(
-          -this.position.x + this.radius,
-          0
-        );
-        this.applyForce(moveVector.mult(2));
+  
+      // Check left boundary
+      if (x - this.radius < buffer) {
+        const overlap = buffer - (x - this.radius);
+        this.applyForce(this.p5.createVector(overlap, 0).mult(2));
       }
     }
   }
+  
+  
+  
 
   applyForce(moveVector: p5.Vector) {
     this.totalForce.add(moveVector);
@@ -329,7 +320,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
       let height = p5.windowHeight;
       let scalefactor = 1;
       if (width < 500) {
-        scalefactor = 0.5;
+        scalefactor = 0.4;
         Node.textsize = 8;
       } else {
         scalefactor = 1;
@@ -369,7 +360,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         1,
         'Observation',
-        50,
+        50 * scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height),
         ROUTES.PHOTOGRAPHY,
@@ -380,7 +371,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         1,
         'Aquascaping',
-        50,
+        50 * scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -389,7 +380,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         1,
         'Landscaping',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -398,7 +389,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         1,
         'EmergentBehaviour',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -417,7 +408,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         2,
         'ArchitecturalProjects',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height),
         ROUTES.ARCHITECTURE,
@@ -428,7 +419,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         2,
         'UrbanDesign',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -437,7 +428,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         2,
         'ComputationalDesign',
-        80,
+        80* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -454,7 +445,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         '',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -462,7 +453,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'Emergence',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height),
         ROUTES.EMERGENCE,
@@ -472,7 +463,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'Evolution',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height),
         ROUTES.EVOLUTION,
@@ -482,7 +473,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'Exploration',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height),
         ROUTES.EXPLORATION,
@@ -516,7 +507,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         3,
         'MachineLearning',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -525,7 +516,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         3,
         'Android',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -542,7 +533,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'Python',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -550,7 +541,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'Cpp',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -558,7 +549,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'Processing',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -566,7 +557,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'Kaleidoscope',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height),
         ROUTES.KALEIDOSCOPE,
@@ -576,7 +567,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'Tabulature',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height),
         ROUTES.TABULATURE,
@@ -586,7 +577,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'QuietQuotes',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -612,7 +603,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'AnalogElectronics',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -621,7 +612,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'ModularSynthesizer',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height),
         ROUTES.ANALOG,
@@ -643,7 +634,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'Instruments',
-        50,
+        50* scalefactor,
         p5.random(0, p5.width),
         p5.random(0, p5.height)
       );
@@ -663,7 +654,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         p5,
         4,
         'TravelSketches',
-        50,
+        50* scalefactor,
         (7 * p5.width) / 7,
         p5.height / 2,
         ROUTES.TRAVELSKETCHES,
