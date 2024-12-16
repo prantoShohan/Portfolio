@@ -36,7 +36,12 @@ const Photography = () => {
     '/images/photography/ms9.jpg',
     '/images/photography/ms13.jpg',
     '/images/photography/ms11.jpg',
-    '/images/photography/ms10.jpg',
+    '/images/photography/j6.jpg',
+    '/images/photography/ms14.jpg',
+    '/images/photography/ms15.jpg',
+    '/images/photography/ms16.jpg',
+    '/images/photography/ms17.jpg',
+    '/images/photography/ms18.jpg',
     '/images/photography/ms12.jpg',
 
 
@@ -44,13 +49,15 @@ const Photography = () => {
   ];
 
   const Collection = [
-    '/images/photography/1.jpg',
+    '/images/photography/8.jpg',
 
     '/images/photography/3.jpg',
     '/images/photography/4.jpg',
+    '/images/photography/9.jpeg',
     '/images/photography/5.jpg',
     '/images/photography/6.jpg',
-    '/images/photography/8.jpg',
+    '/images/photography/1.jpg',
+    '/images/photography/2.jpg',
 
 
     // Add more images as needed
@@ -157,6 +164,8 @@ const Photography = () => {
         
         <div>
 
+          
+
           <div className="section-title"    
               id="Through Lenses"
               ref={LensRef}>Through Lenses</div>
@@ -166,11 +175,42 @@ const Photography = () => {
             I used my magnifying glass or microscope to take these photographs. The design of nature never fails to amaze me.
           </div>
 
+          <div className='flex flex-row space-x-2 mt-8'>
+            <div className="basis-1/3">
+              <img 
+                src="/images/photography/bino.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+            <div className="basis-1/3">
+              <img 
+                src="/images/photography/mag.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+            <div className="basis-1/3">
+              <img 
+                src="/images/photography/microscope.jpg"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
+          </div>
+
           <div className="flex justify-center items-center ">
             <ImageGrid images={Lens} />
           </div>
+          <div className="w-full mt-4">
+              <img 
+                src="/images/photography/vorticella.gif"
+                className="w-full h-auto object-contain"
+                alt="Reaction Diffusion"
+              />
+            </div>
 
-          <div className="section-text max-w-[600px]">
+          <div className="section-text max-w-[600px] mt-24">
             These are eggs of snail I found in local water body. First I did not realize what these are, it looks like jelly. Looking under microscope
             reveals it&apos;s cuteness.
           </div>
