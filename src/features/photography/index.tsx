@@ -163,6 +163,7 @@ const Photography = () => {
       
         
         <div>
+          
 
           
 
@@ -279,6 +280,14 @@ const Photography = () => {
             />
           </div>
 
+          <div className="w-full mt-8">
+            <img 
+              src="/images/photography/kathal.gif"
+              className="w-full h-auto object-contain"
+              alt="Reaction Diffusion"
+            />
+          </div>
+
           <div className="flex justify-center items-center ">
             <ImageGrid images={Collection} />
           </div>
@@ -303,6 +312,7 @@ const Photography = () => {
               alt="Reaction Diffusion"
             />
           </div>
+
 
           <div className= "h-[30px]"></div>
           

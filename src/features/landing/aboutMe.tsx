@@ -23,10 +23,10 @@ const AboutMe = () => {
         </div>
 
         {/* Text Container - Positioned at the left middle of the image */}
-        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white responsive-padding">
-          <div className="text-6xl font-bold">About</div>
-          <p className="text-xl">Shohanur Rahman Pranto</p>
-          <div className="max-w-[400px] italic text-[12px]">
+        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white responsive-padding ">
+          <div className="text-3xl md:text-6xl font-bold">About</div>
+          <p className="text-md md:text-xl">Shohanur Rahman Pranto</p>
+          <div className="max-w-[400px] italic text-[10px] md:text-[12px]">
             I am fascinated by intelligent design of Nature and Computational approaches to
             design. I study organisms and explore the
             emergent behavior with creative coding. I like to experiment with music with my homebuilt modular synthesizer. I am curious, learn fast and
