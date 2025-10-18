@@ -60,7 +60,7 @@ const LandingPage: React.FC = () => {
           <ProjectShowcase />
           <ProjectShowcasePersonal />
           <ProjectShowcaseArtsMisc />
-          <div id="academic-projects" className="h-[100px]"></div> {/* Make sure this section has a valid ID */}
+          <div id="featured-projects" className="h-[100px]"></div> {/* Make sure this section has a valid ID */}
           <AboutMe />
           <Footer />
         </>

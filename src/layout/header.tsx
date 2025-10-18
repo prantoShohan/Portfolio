@@ -46,24 +46,24 @@ const Header = () => {
                 </div>
               </Link>
               <Link
-                href={'/#academic-projects'}
+                href={'/#featured-projects'}
                 className="link-hover font-medium group"
                 onClick={toggleMenu}
               >
                 <div className="relative flex items-center space-x-1">
                   <span className="group-hover:after:w-full after:transition-all after:duration-300 after:ease-in-out after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-white after:w-0">
-                    Academic Projects
+                    Featured Projects
                   </span>
                 </div>
               </Link>
               <Link
-                href={'/#personal-projects'}
+                href={'/#more-projects'}
                 className="link-hover font-medium group"
                 onClick={toggleMenu}
               >
                 <div className="relative flex items-center space-x-1">
                   <span className="group-hover:after:w-full after:transition-all after:duration-300 after:ease-in-out after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-white after:w-0">
-                    Personal Projects
+                    More Projects
                   </span>
                 </div>
               </Link>

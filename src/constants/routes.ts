@@ -1,5 +1,6 @@
 export const ROUTES = {
   HOME: '/',
+  FOREST: '/projects/forest',
   EMERGENCE: '/projects/emergence',
   ANALOG: '/projects/analog',
   EVOLUTION: '/projects/evolution',
