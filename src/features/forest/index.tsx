@@ -332,7 +332,7 @@ const ForestDetails = () => {
             — demand for commercial amenities decays rapidly with distance (people prefer nearby shops and services).
             Residential → Work has β = 1.81 — residents are more willing to travel farther to reach workplaces compared
             to commercial amenities. This data and system of calculating the probability of walking is taken form NIH(National Institutes of Health)
-            from the article "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3377942/"
+            from the article https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3377942/
             <br /><br />
           </div>
           <div className="w-full mt-4">
