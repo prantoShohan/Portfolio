@@ -32,7 +32,8 @@ class Node {
     y: number,
     path: any = null,
     router: any = null,
-    textsize: number = 15
+    textsize: number = 15,
+    isFeatured: boolean = false
   ) {
     this.p5 = p5;
     this.id = id;
@@ -484,6 +485,17 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
       EmergentBehaviour.addChild(PlaceHolder);
       PlaceHolder.addChild(Emergence);
       PlaceHolder.addChild(Evolution);
+      let Forest = new Node(
+        p5,
+        4,
+        'Forest',
+        50 * scalefactor,
+        p5.random(0, p5.width),
+        p5.random(0, p5.height),
+        ROUTES.FOREST,
+        router
+      );
+      PlaceHolder.addChild(Forest);
 
       let Programming = new Node(
         p5,
@@ -700,6 +712,7 @@ const HeroSection: React.FC<{ onLoad: () => void }> = ({ onLoad }) => {
         Tabulature,
         QuietQuotes,
         TravelSketches,
+        Forest,
       ];
 
       setIsSketchLoaded(true);
